@@ -1,0 +1,25 @@
+image: gradle:6.8.3-jdk8
+
+services:
+  - "postgres:latest"
+
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+  DATABASE_URL: jdbc:postgresql://postgres:5432/pacilnugas
+  POSTGRES_USER: postgres
+  POSTGRES_DB: pacilnugas
+  POSTGRES_PASSWORD: postgres
+
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+
+stages:
+  - test
+
+test:
+  stage: test
+  script:
+    - export SPRING_PROFILES_ACTIVE=test
+    - gradle :check
+    - gradle :jacocoTestReport
+    - cat build/reports/jacoco/test/html/index.html
