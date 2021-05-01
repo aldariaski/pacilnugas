@@ -1,9 +1,16 @@
 package com.pacilnugas.Template.core;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Pesan {
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Integer pesanId;
+
     private String nama;
     private String motivasi;
     private String menambahQuotes;

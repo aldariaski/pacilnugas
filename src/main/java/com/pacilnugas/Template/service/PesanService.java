@@ -1,8 +1,11 @@
 package com.pacilnugas.Template.service;
 
+import com.pacilnugas.Template.core.Pesan;
+
 import java.util.List;
 
 public interface PesanService {
-    List<List> getPesan();
-    List createPesan(String kategori, String nama, String motivasi, String nambahQuotes);
+    List<Pesan> getListPesan();
+    Pesan createPesan(String kategori, String nama, String motivasi, String nambahQuotes);
+    List<List> getDaftarPesan();
 }

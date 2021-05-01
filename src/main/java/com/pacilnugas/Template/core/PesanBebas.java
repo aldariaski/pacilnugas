@@ -1,5 +1,8 @@
 package com.pacilnugas.Template.core;
 
+import javax.persistence.Entity;
+
+@Entity
 public class PesanBebas extends Pesan {
     @Override
     String pembukaan() { return "coba pembukaan bebas"; }
