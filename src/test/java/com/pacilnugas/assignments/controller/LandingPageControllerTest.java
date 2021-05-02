@@ -1,7 +1,6 @@
-package com.pacilnugas.landingpage.controller;
+package com.pacilnugas.assignments.controller;
 
-import com.pacilnugas.landingpage.model.AssignmentFake;
-import com.pacilnugas.landingpage.service.ViewFilterServiceImpl;
+import com.pacilnugas.assignments.model.Assignment;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +26,16 @@ public class LandingPageControllerTest {
     @MockBean
     private ViewFilterServiceImpl viewFilterService;
 
-    private AssignmentFake assignment1;
-    private AssignmentFake assignment2;
-    private AssignmentFake assignment3;
-    private List<AssignmentFake> filteredAssignmentList;
+    private Assignment assignment1;
+    private Assignment assignment2;
+    private Assignment assignment3;
+    private List<Assignment> filteredAssignmentList;
 
     @BeforeEach
     public void setUp() {
-        assignment1 = new AssignmentFake("Group Project - Adpro", "Ilmu Komputer", 2019, LocalDateTime.now());
-        assignment2 = new AssignmentFake("Lab 4 - DDAK", "Sistem Informasi", 2020, LocalDateTime.now());
-        assignment3 = new AssignmentFake("Lab 4 - POK", "Ilmu Komputer", 2020, LocalDateTime.now());
+        assignment1 = new Assignment("Group Project - Adpro", "Ilmu Komputer", 2019, LocalDateTime.now());
+        assignment2 = new Assignment("Lab 4 - DDAK", "Sistem Informasi", 2020, LocalDateTime.now());
+        assignment3 = new Assignment("Lab 4 - POK", "Ilmu Komputer", 2020, LocalDateTime.now());
         filteredAssignmentList = new ArrayList<>();
     }
 
