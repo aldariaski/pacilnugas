@@ -25,10 +25,10 @@ public class PersonalizedController {
     @RequestMapping(path = "/add-task", method = RequestMethod.POST)
     public String addTask(@ModelAttribute("task") Task task) {
         observerService.addTask(task);
-        return "redirect:/course-list";
+        return "redirect:/personalized/course-list";
     }
 
-    @RequestMapping(value = "/course-list", method = RequestMethod.GET)
+    @RequestMapping(path = "/course-list", method = RequestMethod.GET)
     public String getCourses(Model model) {
         model.addAttribute("courses", observerService.getCourses());
         return "personalized/courseList";

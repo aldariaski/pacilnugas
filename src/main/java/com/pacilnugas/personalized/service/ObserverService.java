@@ -1,7 +1,7 @@
-package com.pacilnugas.pacilnugas.personalized.service;
+package com.pacilnugas.personalized.service;
 
-import com.pacilnugas.pacilnugas.personalized.core.Course;
-import com.pacilnugas.pacilnugas.personalized.core.Task;
+import com.pacilnugas.personalized.core.Course;
+import com.pacilnugas.personalized.core.Task;
 
 import java.util.List;
 
