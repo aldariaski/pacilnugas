@@ -11,4 +11,8 @@ public class Lecturer extends User{
     public String display() {
         return "Lecturer with username " + this.username;
     }
+
+    public String loginMessage() {
+        return "You logged in as a lecturer with the username " + username + " and password " + password;
+    }
 }

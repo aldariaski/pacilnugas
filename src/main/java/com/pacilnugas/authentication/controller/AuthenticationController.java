@@ -22,11 +22,31 @@ public class AuthenticationController {
     }
 
     @PostMapping("/createUser")
-    public String createMenu(HttpServletRequest request){
+    public String createUser(HttpServletRequest request){
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String type = request.getParameter("type");
         userService.createUser(username, password, type);
         return "redirect:/userList";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model){
+        model.addAttribute("loggedInUser", userService.getLoggedIn());
+        return "authentication/loginPage";
+    }
+
+    @PostMapping("/loggingIn")
+    public String loggingIn(HttpServletRequest request){
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        userService.logIn(username, password);
+        return "redirect:/login";
+    }
+
+    @PostMapping("/loggingOut")
+    public String loggingOut(HttpServletRequest request){
+        userService.logOut();
+        return "redirect:/login";
     }
 }

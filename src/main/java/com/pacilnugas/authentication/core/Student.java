@@ -11,4 +11,8 @@ public class Student extends User{
     public String display() {
         return "Student with username " + this.username;
     }
+
+    public String loginMessage() {
+        return "You logged in as a student with the username " + username + " and password " + password;
+    }
 }

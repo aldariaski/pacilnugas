@@ -12,9 +12,13 @@ import java.util.List;
 @Service
 public class UserServiceImpl {
     private UserRepository userRepository;
+    private User activeUser;
+    private boolean tried;
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = new UserRepository();
+        this.activeUser = null;
+        this.tried = false;
     }
 
     public void createUser(String username, String password, String type) {
@@ -35,5 +39,31 @@ public class UserServiceImpl {
 
     public User getUser(String username, String password) {
         return userRepository.findUser(username, password);
+    }
+
+    public void logIn(String username, String password) {
+        tried = true;
+        User user = getUser(username, password);
+        if (user != null) {
+            activeUser = user;
+        } else {
+            activeUser = null;
+        }
+    }
+
+    public String getLoggedIn() {
+        if (tried == false) {
+            return "";
+        }
+        else if (activeUser == null) {
+            return "Login failed";
+        } else {
+            return activeUser.loginMessage();
+        }
+    }
+
+    public void logOut() {
+        activeUser = null;
+        tried = false;
     }
 }

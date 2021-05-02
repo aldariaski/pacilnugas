@@ -11,6 +11,10 @@ public abstract class User {
         this.password = password;
     }
 
+    abstract public String display();
+
+    abstract public String loginMessage();
+
     public String getUsername() {
         return username;
     }

@@ -11,4 +11,8 @@ public class TeachingAssistant extends User{
     public String display() {
         return "Teaching Assistant with username " + this.username;
     }
+
+    public String loginMessage() {
+        return "You logged in as a teaching assistant with the username " + username + " and password " + password;
+    }
 }
