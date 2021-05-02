@@ -19,12 +19,12 @@ public abstract class Pesan {
     public final List membuatPesan() {
         List list = new ArrayList();
         list.add(untukSiapa());
-        list.add(pembukaan()); //
+        list.add(pembukaan());
         list.add(pesanMotivasi());
-        if (inginMenambahQuotes()) { //
+        if (inginMenambahQuotes()) {
             list.add(quotes());
         }
-        list.add(harapan()); //
+        list.add(harapan());
         return list;
     }
 

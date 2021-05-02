@@ -41,12 +41,12 @@ public class PesanController {
 //    public List<Pesan> getPesan() {
 //        return pesanService.getListPesan(); }
 
-    @PostMapping(value = "")
-    public Pesan createPesan(@RequestBody Map<String,String> json) {
-        String kategori = json.get("kategori");
-        String nama = json.get("nama");
-        String motivasi = json.get("motivasi");
-        String quotes = json.get("quotes");
-        return pesanService.createPesan(kategori, nama, motivasi, quotes); }
+//    @PostMapping(value = "")
+//    public Pesan createPesan(@RequestBody Map<String,String> json) {
+//        String kategori = json.get("kategori");
+//        String nama = json.get("nama");
+//        String motivasi = json.get("motivasi");
+//        String quotes = json.get("quotes");
+//        return pesanService.createPesan(kategori, nama, motivasi, quotes); }
 
 }

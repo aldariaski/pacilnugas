@@ -28,6 +28,7 @@ public class PesanServiceImpl implements PesanService{
             res.setNama(nama);
             res.setMotivasi(motivasi);
             res.setMenambahQuotes(nambahQuotes);
+            res.setKategoriPesan(kategori);
             repo.save(res);
             return res;
         } else if (kategori.equalsIgnoreCase("Tugas")) {
@@ -35,6 +36,7 @@ public class PesanServiceImpl implements PesanService{
             res.setNama(nama);
             res.setMotivasi(motivasi);
             res.setMenambahQuotes(nambahQuotes);
+            res.setKategoriPesan(kategori);
             repo.save(res);
             return res;
         } else if (kategori.equalsIgnoreCase("Bebas")) {
@@ -42,6 +44,7 @@ public class PesanServiceImpl implements PesanService{
             res.setNama(nama);
             res.setMotivasi(motivasi);
             res.setMenambahQuotes(nambahQuotes);
+            res.setKategoriPesan(kategori);
             repo.save(res);
             return res;
         }
