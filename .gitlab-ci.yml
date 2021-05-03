@@ -10,6 +10,9 @@ variables:
   POSTGRES_USER: postgres
   POSTGRES_DB: pacilnugas
   POSTGRES_PASSWORD: postgres
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/pacilnugas
+  SPRING_DATASOURCE_USER: postgres
+  SPRING_DATASOURCE_PASSWORD: postgres
 
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
