@@ -5,19 +5,28 @@ services:
 
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-  DATABASE_URL: jdbc:postgresql://postgres:5432/postgres
+  POSTGRES_HOST: postgres
+  POSTGRES_PORT: 5432
   POSTGRES_USER: postgres
-  POSTGRES_DB: postgres
+  POSTGRES_DB: pacilnugas
   POSTGRES_PASSWORD: postgres
-  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
-  SPRING_DATASOURCE_USER: postgres
-  SPRING_DATASOURCE_PASSWORD: postgres
 
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
 
 stages:
+  - build
   - test
+  - deploy
+
+build:
+  stage: build
+  script:
+    - gradle assemble
+  artifacts:
+    paths:
+      - build/libs/*.jar
+    expire_in: 1 day
 
 test:
   stage: test
@@ -25,3 +34,18 @@ test:
     - gradle :check
     - gradle :jacocoTestReport
     - cat build/reports/jacoco/test/html/index.html
+
+deploy:
+  image: ruby:2.4
+  stage: deploy
+  before_script:
+    - gem install dpl
+    - wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
+  script:
+    - dpl --provider=heroku --app=$HEROKU_APPNAME --api-key=$HEROKU_APIKEY
+    - export HEROKU_API_KEY=$HEROKU_APIKEY
+  environment:
+    name: production
+    url: $HEROKU_APP_HOST
+  only:
+    - master
