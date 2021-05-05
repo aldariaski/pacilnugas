@@ -1,7 +1,7 @@
 package com.pacilnugas.pesan.controller;
 
-import com.pacilnugas.Template.controller.PesanController;
-import com.pacilnugas.Template.service.PesanService;
+import com.pacilnugas.template.controller.PesanController;
+import com.pacilnugas.template.service.PesanService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -10,9 +10,12 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.handler;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 
 @WebMvcTest(controllers = PesanController.class)
@@ -25,7 +28,7 @@ public class PesanControllerTest {
     private PesanService pesanService;
 
     @Test
-    public void whenPesanUrlShouldCallPesanService() throws Exception{
+    public void whenPesanUrlShouldCallPesanService() throws Exception {
         mockMvc.perform(get("/pesan"))
                 .andExpect(status().isOk())
                 .andExpect(handler().methodName("getDaftarPesan"))
@@ -47,11 +50,10 @@ public class PesanControllerTest {
     }
 
     @Test
-    public void whenCreatePesanUrlShouldCallPesanService() throws Exception{
+    public void whenCreatePesanUrlShouldCallPesanService() throws Exception {
         mockMvc.perform(get("/pesan/create-pesan"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("template/formPesan"));
-        //verify(pesanService, times(1)).getDaftarPesan();
     }
 
 
