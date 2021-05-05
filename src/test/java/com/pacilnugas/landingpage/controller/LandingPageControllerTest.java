@@ -16,8 +16,10 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = LandingPageController.class)
 public class LandingPageControllerTest {
@@ -34,9 +36,12 @@ public class LandingPageControllerTest {
 
     @BeforeEach
     public void setUp() {
-        assignment1 = new AssignmentFake("Group Project - Adpro", "Ilmu Komputer", 2019, LocalDateTime.now());
-        assignment2 = new AssignmentFake("Lab 4 - DDAK", "Sistem Informasi", 2020, LocalDateTime.now());
-        assignment3 = new AssignmentFake("Lab 4 - POK", "Ilmu Komputer", 2020, LocalDateTime.now());
+        assignment1 = new AssignmentFake(
+                "Group Project - Adpro", "Ilmu Komputer", 2019, LocalDateTime.now());
+        assignment2 = new AssignmentFake(
+                "Lab 4 - DDAK", "Sistem Informasi", 2020, LocalDateTime.now());
+        assignment3 = new AssignmentFake(
+                "Lab 4 - POK", "Ilmu Komputer", 2020, LocalDateTime.now());
         filteredAssignmentList = new ArrayList<>();
     }
 
@@ -47,7 +52,8 @@ public class LandingPageControllerTest {
         filteredAssignmentList.add(assignment3);
 
         // No filters
-        when(viewFilterService.getListAssignment(0, "")).thenReturn(filteredAssignmentList);
+        when(viewFilterService.getListAssignment(0, ""))
+                .thenReturn(filteredAssignmentList);
 
         mvc.perform(get("/main")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -65,7 +71,8 @@ public class LandingPageControllerTest {
         filteredAssignmentList.add(assignment3);
 
         // Filter assignment by angkatan = 2020
-        when(viewFilterService.getListAssignment(2020, "")).thenReturn(filteredAssignmentList);
+        when(viewFilterService.getListAssignment(2020, ""))
+                .thenReturn(filteredAssignmentList);
 
         mvc.perform(get("/main?year=2020")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -82,7 +89,8 @@ public class LandingPageControllerTest {
         filteredAssignmentList.add(assignment3);
 
         // Filter assignment by major = "Ilmu Komputer"
-        when(viewFilterService.getListAssignment(0, "Ilmu Komputer")).thenReturn(filteredAssignmentList);
+        when(viewFilterService.getListAssignment(0, "Ilmu Komputer"))
+                .thenReturn(filteredAssignmentList);
 
         mvc.perform(get("/main?major=Ilmu Komputer")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -98,7 +106,8 @@ public class LandingPageControllerTest {
         filteredAssignmentList.add(assignment2);
 
         // Filter assignment by year = 2020 and major = "Sistem Informasi"
-        when(viewFilterService.getListAssignment(2020, "Sistem Informasi")).thenReturn(filteredAssignmentList);
+        when(viewFilterService.getListAssignment(2020, "Sistem Informasi"))
+                .thenReturn(filteredAssignmentList);
 
         mvc.perform(get("/main?year=2020&major=Sistem Informasi")
                 .contentType(MediaType.APPLICATION_JSON))

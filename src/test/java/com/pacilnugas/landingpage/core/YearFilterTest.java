@@ -19,9 +19,12 @@ public class YearFilterTest {
 
     @BeforeEach
     public void setUp() {
-        assignment1 = new AssignmentFake("Group Project - Adpro", "Ilmu Komputer", 2019, LocalDateTime.now());
-        assignment2 = new AssignmentFake("Lab 4 - DDAK", "Sistem Informasi", 2020, LocalDateTime.now());
-        assignment3 = new AssignmentFake("Lab 4 - POK", "Ilmu Komputer", 2020, LocalDateTime.now());
+        assignment1 = new AssignmentFake(
+                "Group Project - Adpro", "Ilmu Komputer", 2019, LocalDateTime.now());
+        assignment2 = new AssignmentFake(
+                "Lab 4 - DDAK", "Sistem Informasi", 2020, LocalDateTime.now());
+        assignment3 = new AssignmentFake(
+                "Lab 4 - POK", "Ilmu Komputer", 2020, LocalDateTime.now());
         assignmentList = new ArrayList<>();
         assignmentList.add(assignment1);
         assignmentList.add(assignment2);
@@ -31,7 +34,7 @@ public class YearFilterTest {
     }
 
     @Test
-    public void TestYearFilterWithoutValue() {
+    public void testYearFilterWithoutValue() {
         filteredAssignmentList = assignmentList;
 
         yearFilter = new YearFilter();
@@ -40,7 +43,7 @@ public class YearFilterTest {
     }
 
     @Test
-    public void TestYearFilterWithValue() {
+    public void testYearFilterWithValue() {
         filteredAssignmentList.add(assignment2);
         filteredAssignmentList.add(assignment3);
 
