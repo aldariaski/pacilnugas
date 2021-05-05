@@ -28,6 +28,14 @@ build:
       - build/libs/*.jar
     expire_in: 1 day
 
+checkstyle:
+  stage: test
+  script: gradle check
+  artifacts:
+    paths:
+      - build/reports/checkstyle/*.html
+    expire_in: 1 day
+
 test:
   stage: test
   script:
