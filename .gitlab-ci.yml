@@ -28,14 +28,26 @@ build:
       - build/libs/*.jar
     expire_in: 1 day
 
+checkstyle:
+  stage: test
+  script: gradle checkstyleMain checkstyleTest
+  artifacts:
+    paths:
+      - build/reports/checkstyle/*.html
+    expire_in: 1 day
+
 test:
   stage: test
   script:
     - export SPRING_PROFILES_ACTIVE=test
-    - gradle check --info --stacktrace
+    - gradle check --stacktrace
     - gradle test --stacktrace
     - gradle jacocoTestReport
     - cat build/reports/jacoco/test/html/index.html
+  artifacts:
+    paths:
+      - build/reports/jacoco/*
+    expire_in: 1 day
 
 deploy:
   image: ruby:2.4

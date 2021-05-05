@@ -17,9 +17,12 @@ public class ViewFilterManagerTest {
 
     @BeforeEach
     public void setUp() {
-        assignment1 = new AssignmentFake("Group Project - Adpro", "Ilmu Komputer", 2019, LocalDateTime.now());
-        assignment2 = new AssignmentFake("Lab 4 - DDAK", "Sistem Informasi", 2020, LocalDateTime.now());
-        assignment3 = new AssignmentFake("Lab 4 - POK", "Ilmu Komputer", 2020, LocalDateTime.now());
+        assignment1 = new AssignmentFake(
+                "Group Project - Adpro", "Ilmu Komputer", 2019, LocalDateTime.now());
+        assignment2 = new AssignmentFake(
+                "Lab 4 - DDAK", "Sistem Informasi", 2020, LocalDateTime.now());
+        assignment3 = new AssignmentFake(
+                "Lab 4 - POK", "Ilmu Komputer", 2020, LocalDateTime.now());
         assignmentList = new ArrayList<>();
         assignmentList.add(assignment1);
         assignmentList.add(assignment2);
@@ -27,38 +30,42 @@ public class ViewFilterManagerTest {
     }
 
     @Test
-    public void TestViewFilterManagerApplyFiltersWithFiltersHasNoValue() {
-        List<AssignmentFake> expectedAssignmentList = (new YearFilter()).applyFilter(assignmentList);
-        expectedAssignmentList = (new MajorFilter()).applyFilter(expectedAssignmentList);
+    public void testViewFilterManagerApplyFiltersWithFiltersHasNoValue() {
+        List<AssignmentFake> expectedList = (new YearFilter()).applyFilter(assignmentList);
+        expectedList = (new MajorFilter()).applyFilter(expectedList);
 
-        List<AssignmentFake> result = ViewFilterManager.applyFilters(assignmentList, new YearFilter(), new MajorFilter());
-        Assertions.assertIterableEquals(expectedAssignmentList, result);
+        List<AssignmentFake> result = ViewFilterManager.applyFilters(
+                assignmentList, new YearFilter(), new MajorFilter());
+        Assertions.assertIterableEquals(expectedList, result);
     }
 
     @Test
-    public void TestViewFilterManagerApplyFiltersWithFilterYearHasValue2020() {
-        List<AssignmentFake> expectedAssignmentList = (new YearFilter(2020)).applyFilter(assignmentList);
-        expectedAssignmentList = (new MajorFilter()).applyFilter(expectedAssignmentList);
+    public void testViewFilterManagerApplyFiltersWithFilterYear2020() {
+        List<AssignmentFake> expectedList = (new YearFilter(2020)).applyFilter(assignmentList);
+        expectedList = (new MajorFilter()).applyFilter(expectedList);
 
-        List<AssignmentFake> result = ViewFilterManager.applyFilters(assignmentList, new YearFilter(2020), new MajorFilter());
-        Assertions.assertIterableEquals(expectedAssignmentList, result);
+        List<AssignmentFake> result = ViewFilterManager.applyFilters(
+                assignmentList, new YearFilter(2020), new MajorFilter());
+        Assertions.assertIterableEquals(expectedList, result);
     }
 
     @Test
-    public void TestViewFilterManagerApplyFiltersWithFilterMajorHasValueIlmuKomputer() {
-        List<AssignmentFake> expectedAssignmentList = (new YearFilter()).applyFilter(assignmentList);
-        expectedAssignmentList = (new MajorFilter("Ilmu Komputer")).applyFilter(expectedAssignmentList);
+    public void testViewFilterManagerApplyFiltersWithFilterMajorIlmuKomputer() {
+        List<AssignmentFake> expectedList = (new YearFilter()).applyFilter(assignmentList);
+        expectedList = (new MajorFilter("Ilmu Komputer")).applyFilter(expectedList);
 
-        List<AssignmentFake> result = ViewFilterManager.applyFilters(assignmentList, new YearFilter(), new MajorFilter("Ilmu Komputer"));
-        Assertions.assertIterableEquals(expectedAssignmentList, result);
+        List<AssignmentFake> result = ViewFilterManager.applyFilters(
+                assignmentList, new YearFilter(), new MajorFilter("Ilmu Komputer"));
+        Assertions.assertIterableEquals(expectedList, result);
     }
 
     @Test
-    public void TestViewFilterManagerApplyFiltersWithFiltersYearHasValue2020AndMajorHasValueIlmuKomputer() {
-        List<AssignmentFake> expectedAssignmentList = (new YearFilter(2020)).applyFilter(assignmentList);
-        expectedAssignmentList = (new MajorFilter("Ilmu Komputer")).applyFilter(expectedAssignmentList);
+    public void testViewFilterManagerApplyFiltersWithFiltersYear2020AndMajorIlmuKomputer() {
+        List<AssignmentFake> expectedList = (new YearFilter(2020)).applyFilter(assignmentList);
+        expectedList = (new MajorFilter("Ilmu Komputer")).applyFilter(expectedList);
 
-        List<AssignmentFake> result = ViewFilterManager.applyFilters(assignmentList, new YearFilter(2020), new MajorFilter("Ilmu Komputer"));
-        Assertions.assertIterableEquals(expectedAssignmentList, result);
+        List<AssignmentFake> result = ViewFilterManager.applyFilters(
+                assignmentList, new YearFilter(2020), new MajorFilter("Ilmu Komputer"));
+        Assertions.assertIterableEquals(expectedList, result);
     }
 }

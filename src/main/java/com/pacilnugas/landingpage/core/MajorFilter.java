@@ -18,7 +18,9 @@ public class MajorFilter extends ViewFilter<String> {
     public List<AssignmentFake> applyFilter(List<AssignmentFake> assignmentList) {
         String value = getValue();
         // If the filter is null or "" then we can just return the given list
-        if (value == null || value.equals("")) return assignmentList;
+        if (value == null || value.equals("")) {
+            return assignmentList;
+        }
 
         // Search for assignment that has the specified major
         List<AssignmentFake> assignmentsByMajor = new ArrayList<>();

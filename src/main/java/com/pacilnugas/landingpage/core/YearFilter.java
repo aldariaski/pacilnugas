@@ -18,7 +18,9 @@ public class YearFilter extends ViewFilter<Integer> {
     public List<AssignmentFake> applyFilter(List<AssignmentFake> assignmentList) {
         int value = getValue();
         // If the filter is null or 0 then we can just return the given list
-        if (value == 0) return assignmentList;
+        if (value == 0) {
+            return assignmentList;
+        }
 
         // Search for assignment that is related to specified year
         List<AssignmentFake> assignmentsByYear = new ArrayList<>();
