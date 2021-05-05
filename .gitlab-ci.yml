@@ -30,7 +30,9 @@ build:
 
 checkstyle:
   stage: test
-  script: gradle check
+  script:
+    - gradle checkstyleMain
+    - gradle checkstyleTest
   artifacts:
     paths:
       - build/reports/checkstyle/*.html
