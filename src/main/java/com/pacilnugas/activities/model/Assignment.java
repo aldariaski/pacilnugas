@@ -1,12 +1,14 @@
 package com.pacilnugas.activities.model;
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 
 @Entity
@@ -15,22 +17,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Table(name = "assignment")
 public class Assignment extends Activity {
-    @NotNull
+    //Jika sudah bisa nanti memakai
+    //@JsonManagedReference
+    //@OneToOne(fetch = FetchType.LAZY, mappedBy = "mahasiswa") //(attribute nanti matkul, jangan string
     @Column(name = "matkul")
     private String matkul;
 
-    @NotNull
-    @Column(name = "angkatan")
-    private int angkatan;
-
-    @NotNull
     @Column(name = "deadline")
-    private LocalDateTime deadline;
-
-    public Assignment(String title, String matkul, int angkatan, LocalDateTime deadline) {
-        this.matkul = matkul;
-        this.angkatan = angkatan;
-        this.deadline = deadline;
-        //this.pengajar = pengajar;
-    }
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate deadline;
 }

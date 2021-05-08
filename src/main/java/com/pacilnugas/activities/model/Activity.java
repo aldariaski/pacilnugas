@@ -19,15 +19,12 @@ public abstract class Activity {
     @Column(name = "id_activity", updatable = false)
     private int id_activity;
 
-    @NotNull
     @Column(name = "title")
     private String title;
 
-    @NotNull
     @Column(name = "description")
     private String description;
 
-    @NotNull
     @Column(name = "maker_username")
     private String maker_username;
 }

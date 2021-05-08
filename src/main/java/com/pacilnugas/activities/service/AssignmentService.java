@@ -4,6 +4,7 @@ import com.pacilnugas.activities.model.Assignment;
 
 public interface AssignmentService {
     //Assignment createAssignment(Assignment assignment);
-    Assignment createAssignment(String title, String matkul, String tahunajaran, String deadline);
+    Assignment createAssignment(String title, String description,
+            String matkul, String tahunajaran, String deadline);
 }
 

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Entity
@@ -27,22 +28,14 @@ public class Matkul {
     private String description;
 
     @NotNull
-    @Column(name = "angkatan")
-    private int angkatan;
+    @Column(name = "tahun")
+    private int tahun;
 
     @NotNull
-    @Column(name = "deadline")
-    private LocalDateTime deadline;
+    @Column(name = "semester")
+    private String semester;
 
-    //Nanti dihubungkan dengan user2 buatan Syabib
-    //@NotNull
-    //@Column(name = "pengajar")
-    //private User pengajar;
-
-    public Assignment(String title, int angkatan, LocalDateTime deadline) {
-        this.title = title;
-        this.angkatan = angkatan;
-        this.deadline = deadline;
-        //this.pengajar = pengajar;
-    }
+    @Column(name = "pengajar")
+    private String pengajar; //username pengajar itu
+    // private List<String> list_pengajar; //pakai ini jika sudah bisa menghandle banyak pengajar di satu matkul
 }
