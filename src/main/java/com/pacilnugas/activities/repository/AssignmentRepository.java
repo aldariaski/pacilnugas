@@ -1,6 +1,6 @@
-package com.pacilnugas.assignments.repository;
+package com.pacilnugas.activities.repository;
 
-import com.pacilnugas.assignments.model.Assignment;
+import com.pacilnugas.activities.model.Assignment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 //TODO: Add content repo

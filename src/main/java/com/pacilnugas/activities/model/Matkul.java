@@ -1,15 +1,18 @@
-package com.pacilnugas.assignments.model;
+package com.pacilnugas.activities.model;
 
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
+
 @Entity
-@Table(name = "assignment")
+@Data
+@Table(name = "matkul")
 @NoArgsConstructor
-public class Assignment {
+public class Matkul {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_assignment", updatable = false)
@@ -24,35 +27,22 @@ public class Assignment {
     private String description;
 
     @NotNull
-    @Column(name = "major")
-    private String major;
-
-    @NotNull
-    @Column(name = "tahunajaran")
-    private int tahunajaran;
+    @Column(name = "angkatan")
+    private int angkatan;
 
     @NotNull
     @Column(name = "deadline")
     private LocalDateTime deadline;
 
     //Nanti dihubungkan dengan user2 buatan Syabib
-    @NotNull
-    @Column(name = "pengajar")
-    private User pengajar;
+    //@NotNull
+    //@Column(name = "pengajar")
+    //private User pengajar;
 
-    public Assignment(String title, String major, int angkatan, LocalDateTime deadline) {
+    public Assignment(String title, int angkatan, LocalDateTime deadline) {
         this.title = title;
-        this.major = major;
-        this.tahunajaran = tahunajaran;
+        this.angkatan = angkatan;
         this.deadline = deadline;
-        this.pengajar = pengajar;
-    }
-
-    public int getAngkatan() {
-        return angkatan;
-    }
-
-    public String getMajor() {
-        return major;
+        //this.pengajar = pengajar;
     }
 }

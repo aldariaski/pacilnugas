@@ -1,7 +1,7 @@
-package com.pacilnugas.assignments.service;
+package com.pacilnugas.activities.service;
 
-import com.pacilnugas.assignments.model.Assignment;
-import com.pacilnugas.assignments.repository.AssignmentRepository;
+import com.pacilnugas.activities.model.Assignment;
+import com.pacilnugas.activities.repository.AssignmentRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
-package com.pacilnugas.assignments.controller;
+package com.pacilnugas.activities.controller;
 
-import com.pacilnugas.assignments.model.Assignment;
+import com.pacilnugas.activities.model.Assignment;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

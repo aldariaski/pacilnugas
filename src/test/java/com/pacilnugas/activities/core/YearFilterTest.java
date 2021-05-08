@@ -1,6 +1,6 @@
-package com.pacilnugas.assignments.core;
+package com.pacilnugas.activities.core;
 
-import com.pacilnugas.assignments.model.Assignment;
+import com.pacilnugas.activities.model.Assignment;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MajorFilterTest {
-    private MajorFilter majorFilter;
+public class YearFilterTest {
+    private YearFilter yearFilter;
     private Assignment assignment1;
     private Assignment assignment2;
     private Assignment assignment3;
@@ -31,21 +31,21 @@ public class MajorFilterTest {
     }
 
     @Test
-    public void testMajorFilterWithoutValue() {
+    public void TestYearFilterWithoutValue() {
         filteredAssignmentList = assignmentList;
 
-        majorFilter = new MajorFilter();
-        List<Assignment> result = majorFilter.applyFilter(assignmentList);
+        yearFilter = new YearFilter();
+        List<Assignment> result = yearFilter.applyFilter(assignmentList);
         Assertions.assertIterableEquals(filteredAssignmentList, result);
     }
 
     @Test
-    public void testMajorFilterWithValue() {
-        filteredAssignmentList.add(assignment1);
+    public void TestYearFilterWithValue() {
+        filteredAssignmentList.add(assignment2);
         filteredAssignmentList.add(assignment3);
 
-        majorFilter = new MajorFilter("Ilmu Komputer");
-        List<Assignment> result = majorFilter.applyFilter(assignmentList);
+        yearFilter = new YearFilter(2020);
+        List<Assignment> result = yearFilter.applyFilter(assignmentList);
         Assertions.assertIterableEquals(filteredAssignmentList, result);
     }
 }

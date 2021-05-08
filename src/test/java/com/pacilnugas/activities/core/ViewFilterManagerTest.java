@@ -1,6 +1,6 @@
-package com.pacilnugas.assignments.core;
+package com.pacilnugas.activities.core;
 
-import com.pacilnugas.assignments.model.Assignment;
+import com.pacilnugas.activities.model.Assignment;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
