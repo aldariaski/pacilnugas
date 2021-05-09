@@ -18,7 +18,7 @@
     <div class="flex-item-bottom">
         <hr>
         <div class="kosong"></div>
-        <div th:each="pesan:${SemuaAssignment}" th:if="${SemuaAssignment != null}">
+        <div th:each="tugas:${SemuaAssignment}" th:if="${SemuaAssignment != null}">
             <div class="flex-gap">
                 <div th:each="isi:${tugas}">
                     <p th:text="${isi}"></p>

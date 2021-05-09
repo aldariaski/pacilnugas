@@ -17,18 +17,16 @@ public class ActivitiesController {
     //@RequestMapping(method = RequestMethod.POST, value = "/proses-input-tugas")
     @PostMapping("/proses-input-tugas")
     public String assignmentFormPro(HttpServletRequest request) {
-        /*String title = request.getParameter("title");
+        String title = request.getParameter("title");
         String matkul = request.getParameter("matkul");
         String description = request.getParameter("description");
         String deadline = request.getParameter("deadline");
         String tahunajaran = request.getParameter("deadline").substring(0, 4);
 
         assignmentService.createAssignment(title, description,
-                matkul, tahunajaran, deadline);r
+                matkul, tahunajaran,  deadline);
 
-        return "redirect:/task/fakepage";*/
-        String a = request.getParameter("title");
-        return "redirect:/task/fakepage";
+        return "redirect:/task/all";
     }
 
     //@RequestMapping(method = RequestMethod.GET, value = "/input-tugas")
@@ -40,13 +38,13 @@ public class ActivitiesController {
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public String getPersonalizedDaftarPesan(Model model) {
         model.addAttribute("SemuaAssignment", assignmentService.getAllAssignment());
-        return "activities/inputPage";
+        return "activities/allAssignment";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/all")
     public String getAllAssignment(Model model) {
         model.addAttribute("SemuaAssignment", assignmentService.getAllAssignment());
-        return "activities/inputPage";
+        return "activities/allAssignment";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/fakepage")

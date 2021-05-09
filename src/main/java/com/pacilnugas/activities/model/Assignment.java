@@ -9,6 +9,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -23,7 +25,18 @@ public class Assignment extends Activity {
     @Column(name = "matkul")
     private String matkul;
 
+    //@DateTimeFormat(pattern = "yyyy-mm-dd")
     @Column(name = "deadline")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate deadline;
+    private String deadline;
+    //private LocalDate deadline;
+
+    public List buatString() {
+        List returnan = new ArrayList<>();
+        returnan.add("Nama tugas: " + getTitle());
+        returnan.add("Nama matkul: " + getMatkul());
+        returnan.add("Nama pengajar: " + getMaker_username());
+        returnan.add("Deskripsi: " + getDescription());
+        returnan.add("Deadline: " + getDeadline());
+        return returnan;
+    }
 }
