@@ -37,6 +37,9 @@ public class AssignmentFake {
     @Column(name = "deadline")
     private LocalDateTime deadline;
 
+    /**
+     * Represents an assignment.
+     */
     public AssignmentFake(String title, String major, int angkatan, LocalDateTime deadline) {
         this.title = title;
         this.major = major;
