@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="./../../static/landingpage/LandingPage.css">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.2/evo-calendar/css/evo-calendar.min.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/landingpage/landingpage.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/landingpage/landingpageResponsive.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/landingpage/calendar.css}">
     <title>PacilNugas!</title>
 </head>
 <body id="landing-page">
@@ -10,31 +14,30 @@
         <h1><span class="blue">Pacil</span><span class="red">Nugas!</span></h1>
     </header>
 
-    <nav>
-        <nav-item>Home</nav-item>
-        <nav-item>Personalized Page</nav-item>
-        <nav-item>Score Tracker</nav-item>
-        <nav-item>Pacil Message</nav-item>
-    </nav>
     <div id="main">
-    <div id="filter">
-        <section id="year">
-            <h2>Angkatan:</h2>
-            <button class="filter-button">2020</button>
-            <button class="filter-button">2019</button>
-            <button class="filter-button">2018</button>
-            <button class="filter-button">2017</button>
-        </section>
-        <section id="major">
-            <h2>Jurusan:</h2>
-            <button class="filter-button">Ilmu Komputer</button>
-            <button class="filter-button">Sistem Informasi</button>
-        </section>
+        <div id="filter">
+            <section id="year">
+                <h2>Angkatan:</h2>
+                <button class="filter-button filter-year">2020</button>
+                <button class="filter-button filter-year">2019</button>
+                <button class="filter-button filter-year">2018</button>
+                <button class="filter-button filter-year">2017</button>
+            </section>
+            <section id="major">
+                <h2>Jurusan:</h2>
+                <button class="filter-button filter-major">Ilmu Komputer</button>
+                <button class="filter-button filter-major">Sistem Informasi</button>
+            </section>
+            <section>
+                <button id="filter-submit" class="filter-button">Filter</button>
+            </section>
+        </div>
+
+        <div id="calendar"></div>
     </div>
 
-    <div id="calendar"></div>
-
-    <div id="day"></div>
-    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.2/evo-calendar/js/evo-calendar.min.js"></script>
+    <script th:src="@{/landingpage/landingpage.js}"></script>
 </body>
 </html>

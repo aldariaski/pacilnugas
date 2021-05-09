@@ -1,37 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;900&display=swap');
 
 :root {
-    --biru-laut: #406AD8;
-    --merah-anemia: #CE3030;
-    --merah-light: #FFDEDE;
-    --gray-almostdark: #E3E3E3;
-    --gray-light: #F5F5F5;
+    --sea-blue: #406AD8;
+    --dark-red: #CE3030;
+    --light-red: #FFDEDE;
+    --dark-yellow: #F3AF00;
+    --light-yellow: #FBC436;
+    --dark-gray: #E3E3E3;
+    --light-gray: #F5F5F5;
     --white: #FFFFFF;
+    --black: #000000;
 }
 
 body {
     margin: 0;
     box-sizing: border-box;
     font-family: 'Epilogue', sans-serif;
-    background-color: var(--gray-light);
+    background-color: var(--light-gray);
 }
 
 .blue {
-    color: var(--biru-laut);
+    color: var(--sea-blue);
 }
 
 .red {
-    color: var(--merah-anemia);
+    color: var(--dark-red);
 }
 
 #landing-page {
     display: grid;
+    height: 100vh;
     grid-template-columns: 5% 95%;
-    grid-template-rows: auto;
+    grid-template-rows: min-content;
     grid-template-areas:
         "navbar header"
-        "navbar main"
-        "navbar footer";
+        "navbar main";
 }
 
 header {
@@ -45,33 +48,24 @@ header > h1 {
     margin: 0.1em;
 }
 
-nav {
-    grid-area: navbar;
-}
-
-nav-item {
-    visibility: hidden;
-}
-
 #main {
     grid-area: main;
-    padding-right: 1em;
-    display: grid;
-    grid-template-columns: 64% 36%;
-    grid-template-rows: auto;
-    grid-template-areas:
-        "filter filter"
-        "calendar day";
+    padding: 1em;
 }
 
 #filter {
     grid-area: filter;
-    background-color: var(--gray-almostdark);
+    background-color: var(--dark-gray);
+	margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-#filter section {
+#filter > section {
     display: inline-block;
     margin: 1em;
+    text-align: center;
 }
 
 #filter h2 {
@@ -81,19 +75,27 @@ nav-item {
     margin-right: 1em;
 }
 
-#filter button {
+.filter-button {
     padding: .5em;
     font-size: 1em;
-    min-width: 120px;
-    background-color: var(--merah-light);
+    min-width: 116px;
+    background-color: var(--light-red);
+    border: .18em solid var(--light-red);
     border-radius: 10px;
     cursor: pointer;
 }
 
-#calendar {
-    grid-area: calendar;
+.filter-button.active {
+    border-color: var(--dark-red);
 }
 
-#day {
-    grid-area: day;
+#filter-submit {
+    background-color: var(--dark-red);
+    color: var(--light-gray);
+    border-color: var(--dark-red);
+    cursor: pointer;
+}
+
+nav {
+    grid-area: navbar;
 }
