@@ -30,19 +30,19 @@ public class ActivitiesController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/input-tugas")
     public String assignmentForm(Model model) {
-        return "activities/inputPage";
+        return "activities/assignment/inputPage";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public String getPersonalizeAssignment(Model model) {
         model.addAttribute("SemuaAssignment", assignmentService.getAllAssignment());
-        return "activities/allAssignment";
+        return "activities/assignment/allAssignment";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/all")
     public String getAllAssignment(Model model) {
         model.addAttribute("SemuaAssignment", assignmentService.getAllAssignment());
-        return "activities/allAssignment";
+        return "activities/assignment/allAssignment";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/fakepage")
