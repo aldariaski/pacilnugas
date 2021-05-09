@@ -29,7 +29,7 @@ public class AssignmentServiceImpl implements AssignmentService {
         assignment.setMatkul(matkul);
 
         //LocalDate parsed = LocalDate.parse(deadline);
-        //assignment.setDeadline(parsed);
+        //assignment.setDeadline(parsed); //(pakai saat/bila pakai LocalDate)
         assignment.setDeadline(deadline);
 
         assignmentRepository.save(assignment);
@@ -46,6 +46,4 @@ public class AssignmentServiceImpl implements AssignmentService {
 
         return assignmentList;
     }
-
-
 }

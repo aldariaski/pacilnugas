@@ -14,8 +14,7 @@ public class ActivitiesController {
     @Autowired
     private AssignmentService assignmentService;
 
-    //@RequestMapping(method = RequestMethod.POST, value = "/proses-input-tugas")
-    @PostMapping("/proses-input-tugas")
+    @RequestMapping(method = RequestMethod.POST, value = "/proses-input-tugas")
     public String assignmentFormPro(HttpServletRequest request) {
         String title = request.getParameter("title");
         String matkul = request.getParameter("matkul");
@@ -29,8 +28,7 @@ public class ActivitiesController {
         return "redirect:/task/all";
     }
 
-    //@RequestMapping(method = RequestMethod.GET, value = "/input-tugas")
-    @GetMapping("/input-tugas")
+    @RequestMapping(method = RequestMethod.GET, value = "/input-tugas")
     public String assignmentForm(Model model) {
         return "activities/inputPage";
     }

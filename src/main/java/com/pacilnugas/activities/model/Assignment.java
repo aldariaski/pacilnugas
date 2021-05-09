@@ -32,11 +32,12 @@ public class Assignment extends Activity {
 
     public List buatString() {
         List returnan = new ArrayList<>();
+        returnan.add("TUGAS\n\n");
         returnan.add("Nama tugas: " + getTitle());
         returnan.add("Nama matkul: " + getMatkul());
         returnan.add("Nama pengajar: " + getMaker_username());
-        returnan.add("Deskripsi: " + getDescription());
         returnan.add("Deadline: " + getDeadline());
+        returnan.add("Deskripsi: " + getDescription());
         return returnan;
     }
 }
