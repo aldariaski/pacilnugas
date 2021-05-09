@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewFilterManagerTest {
+class ViewFilterManagerTest {
     private AssignmentFake assignment1;
     private AssignmentFake assignment2;
     private AssignmentFake assignment3;
@@ -30,7 +30,7 @@ public class ViewFilterManagerTest {
     }
 
     @Test
-    public void testViewFilterManagerApplyFiltersWithFiltersHasNoValue() {
+    void testViewFilterManagerApplyFiltersWithFiltersHasNoValue() {
         List<AssignmentFake> expectedList = (new YearFilter()).applyFilter(assignmentList);
         expectedList = (new MajorFilter()).applyFilter(expectedList);
 
@@ -40,7 +40,7 @@ public class ViewFilterManagerTest {
     }
 
     @Test
-    public void testViewFilterManagerApplyFiltersWithFilterYear2020() {
+    void testViewFilterManagerApplyFiltersWithFilterYear2020() {
         List<AssignmentFake> expectedList = (new YearFilter(2020)).applyFilter(assignmentList);
         expectedList = (new MajorFilter()).applyFilter(expectedList);
 
@@ -50,7 +50,7 @@ public class ViewFilterManagerTest {
     }
 
     @Test
-    public void testViewFilterManagerApplyFiltersWithFilterMajorIlmuKomputer() {
+    void testViewFilterManagerApplyFiltersWithFilterMajorIlmuKomputer() {
         List<AssignmentFake> expectedList = (new YearFilter()).applyFilter(assignmentList);
         expectedList = (new MajorFilter("Ilmu Komputer")).applyFilter(expectedList);
 
@@ -60,7 +60,7 @@ public class ViewFilterManagerTest {
     }
 
     @Test
-    public void testViewFilterManagerApplyFiltersWithFiltersYear2020AndMajorIlmuKomputer() {
+    void testViewFilterManagerApplyFiltersWithFiltersYear2020AndMajorIlmuKomputer() {
         List<AssignmentFake> expectedList = (new YearFilter(2020)).applyFilter(assignmentList);
         expectedList = (new MajorFilter("Ilmu Komputer")).applyFilter(expectedList);
 
