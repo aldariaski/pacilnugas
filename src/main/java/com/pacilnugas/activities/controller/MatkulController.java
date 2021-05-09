@@ -14,5 +14,33 @@ public class MatkulController {
     @Autowired
     private MatkulService matkulService;
 
+    @RequestMapping(method = RequestMethod.POST, value = "/proses-input-tugas")
+    public String matkulFormPro(HttpServletRequest request) {
+        String title = request.getParameter("title");
+        String semester = request.getParameter("semester");
+        String description = request.getParameter("description");
+        String tahun = request.getParameter("deadline").substring(0, 4);
+        int tahunInt = Integer.parseInt(tahun);
 
+        matkulService.createMatkul(title, description, tahunInt, semester);
+
+        return "redirect:/matkul/all";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/input-tugas")
+    public String matkulForm(Model model) {
+        return "activities/matkul/inputPageMatkul";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/")
+    public String getPersonalizedDaftarPesan(Model model) {
+        model.addAttribute("SemuaMatkul", matkulService.getAllMatkul());
+        return "activities/matkul/allAssignment";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/all")
+    public String getAllAssignment(Model model) {
+        model.addAttribute("SemuaMatkul", matkulService.getAllMatkul());
+        return "activities/matkul/allAssignment";
+    }
 }

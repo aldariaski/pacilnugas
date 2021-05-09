@@ -34,7 +34,7 @@ public class ActivitiesController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/")
-    public String getPersonalizedDaftarPesan(Model model) {
+    public String getPersonalizeAssignment(Model model) {
         model.addAttribute("SemuaAssignment", assignmentService.getAllAssignment());
         return "activities/allAssignment";
     }
