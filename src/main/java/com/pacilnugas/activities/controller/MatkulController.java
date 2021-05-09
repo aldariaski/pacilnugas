@@ -14,12 +14,12 @@ public class MatkulController {
     @Autowired
     private MatkulService matkulService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/proses-input-tugas")
+    @RequestMapping(method = RequestMethod.POST, value = "/proses-input-matkul")
     public String matkulFormPro(HttpServletRequest request) {
         String title = request.getParameter("title");
         String semester = request.getParameter("semester");
         String description = request.getParameter("description");
-        String tahun = request.getParameter("deadline").substring(0, 4);
+        String tahun = request.getParameter("tahun").substring(0, 4);
         int tahunInt = Integer.parseInt(tahun);
 
         matkulService.createMatkul(title, description, tahunInt, semester);
@@ -33,13 +33,13 @@ public class MatkulController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/")
-    public String getPersonalizedDaftarPesan(Model model) {
+    public String getPersonalizedMatkul(Model model) {
         model.addAttribute("SemuaMatkul", matkulService.getAllMatkul());
         return "activities/matkul/allAssignment";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/all")
-    public String getAllAssignment(Model model) {
+    public String getAllMatkul(Model model) {
         model.addAttribute("SemuaMatkul", matkulService.getAllMatkul());
         return "activities/matkul/allAssignment";
     }

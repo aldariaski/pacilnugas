@@ -38,7 +38,7 @@ public class Matkul {
 
     public List buatString() {
         List returnan = new ArrayList<>();
-        returnan.add("TUGAS\n\n");
+        returnan.add("MATKUL\n\n");
         returnan.add("Nama matkul: " + getTitle());
         returnan.add("Nama pengajar: " + getPengajar());
         returnan.add("Tahun ajaran: " + getTahun() + " - " + getSemester());
