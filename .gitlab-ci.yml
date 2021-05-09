@@ -1,0 +1,80 @@
+image: gradle:6.8.3-jdk8
+
+services:
+  - "postgres:latest"
+
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+  POSTGRES_HOST: postgres
+  POSTGRES_PORT: 5432
+  POSTGRES_USER: postgres
+  POSTGRES_DB: pacilnugas
+  POSTGRES_PASSWORD: postgres
+
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build
+  script:
+    - gradle assemble
+  artifacts:
+    paths:
+      - build/libs/*.jar
+    expire_in: 1 day
+
+checkstyle:
+  stage: test
+  script: gradle checkstyleMain checkstyleTest
+  artifacts:
+    paths:
+      - build/reports/checkstyle/*.html
+    expire_in: 1 day
+
+test:
+  stage: test
+  script:
+    - export SPRING_PROFILES_ACTIVE=test
+    - gradle check --stacktrace
+    - gradle test --stacktrace
+    - gradle jacocoTestReport
+    - cat build/reports/jacoco/test/html/index.html
+  artifacts:
+    paths:
+      - build/reports/jacoco/*
+    expire_in: 1 day
+
+deploy:
+  image: ruby:2.4
+  stage: deploy
+  before_script:
+    - gem install dpl
+    - wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
+  script:
+    - dpl --provider=heroku --app=$HEROKU_APPNAME --api-key=$HEROKU_APIKEY
+    - export HEROKU_API_KEY=$HEROKU_APIKEY
+  environment:
+    name: production
+    url: $HEROKU_APP_HOST
+  only:
+    - master
+
+deploy_staging:
+  image: ruby:2.4
+  stage: deploy
+  before_script:
+    - gem install dpl
+    - wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
+  script:
+    - dpl --provider=heroku --app=$HEROKU_APPNAME --api-key=$HEROKU_APIKEY
+    - export HEROKU_API_KEY=$HEROKU_APIKEY
+  environment:
+    name: production
+    url: $HEROKU_APP_HOST
+  only:
+    - staging
