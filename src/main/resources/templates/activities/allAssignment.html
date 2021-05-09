@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/template/daftarPesan.css}">
+
+    <title>Daftar Tugas</title>
+</head>
+
+<body>
+<div class="flex-container">
+    <div class="flex-item-top">
+        <p id="judul" style="font-size: 40px;font-weight: 700;color: #406AD8;">Daftar<span style="color:#CE3030;">Tugas</span></p>
+    </div>
+    <div class="flex-item-bottom">
+        <hr>
+        <div class="kosong"></div>
+        <div th:each="pesan:${SemuaAssignment}" th:if="${SemuaAssignment != null}">
+            <div class="flex-gap">
+                <div th:each="isi:${tugas}">
+                    <p th:text="${isi}"></p>
+                </div>
+            </div>
+            <div class="kosong"></div>
+        </div>
+        <div th:unless="${SemuaAssignment != null}">
+            <p style="text-align:center;">Tidak ada tugas</p>
+        </div>
+    </div>
+    <div class="footer"></div>
+</div>
+</body>
+</html>

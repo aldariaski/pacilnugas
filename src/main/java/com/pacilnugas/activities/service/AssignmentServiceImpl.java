@@ -5,16 +5,12 @@ import com.pacilnugas.activities.repository.AssignmentRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AssignmentServiceImpl implements AssignmentService {
     AssignmentRepository assignmentRepository;
-
-    /*@Override
-    public Assignment createAssignment(Assignment assignment) {
-        assignmentRepository.save(assignment);
-        return assignment;
-    }*/
 
     @Override
     public Assignment createAssignment(String title, String description, String matkul, String tahunajaran, String deadline) {
@@ -34,5 +30,13 @@ public class AssignmentServiceImpl implements AssignmentService {
         assignmentRepository.save(assignment);
         return assignment;
     }
+
+    @Override
+    public List<List> getAllAssignment() {
+        List<Assignment> allAssignment = assignmentRepository.findAll();
+        List<List> assignmentList = new ArrayList<>();
+        return assignmentList;
+    }
+
 
 }

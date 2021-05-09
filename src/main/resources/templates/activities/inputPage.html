@@ -18,11 +18,12 @@
     </div>
     <div class="flex-item-bottom">
         <hr>
-        <form th:action="@{/pesan/new-pesan}" method="POST">
+        <form th:action="@{/task/proses-input-tugas}" method="POST">
             <div class="form-group">
+
                 <label for="title">Nama Tugas</label>
-                <input type="text" class="form-control" id="title" name="nama" placeholder="Nama Tugas" required><br>
-                <label for="matkul">Pilih Mata Kuliah</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Nama Tugas" required><br>
+                <label for="matkul">Pilih Mata Kuliah</label> <span class="badge badge-secondary">New</span>
                 <select class="form-control" id="matkul" name="matkul" required>
                     <option value="" selected="" disabled="">Pilih Mata Kuliah</option>
                     <option value="Adpro">Adpro</option>
@@ -36,15 +37,14 @@
                 <label for="deadline">Deadline</label>
                 <input type="date" id="deadline" name="deadline">
             </div>
-        </form>
     </div>
 </div>
 
-<div class="kosong"></div>
 <div class="flex-container-but">
     <button class="button">Kirim</button>
     </form>
 </div>
+
 
 <div class="footer"></div>
 </body>
