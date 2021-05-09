@@ -17,7 +17,7 @@ import java.util.List;
 import static org.mockito.Mockito.lenient;
 
 @ExtendWith(MockitoExtension.class)
-public class ViewFilterServiceImplTest {
+class ViewFilterServiceImplTest {
     @InjectMocks
     private ViewFilterServiceImpl viewFilterService;
 
@@ -48,7 +48,7 @@ public class ViewFilterServiceImplTest {
     }
 
     @Test
-    public void testServiceGetListAssignmentWithoutFilter() {
+    void testServiceGetListAssignmentWithoutFilter() {
         filteredAssignmentList.add(assignment1);
         filteredAssignmentList.add(assignment2);
         filteredAssignmentList.add(assignment3);
@@ -58,7 +58,7 @@ public class ViewFilterServiceImplTest {
     }
 
     @Test
-    public void testServiceGetListAssignmentWithYearFilter() {
+    void testServiceGetListAssignmentWithYearFilter() {
         filteredAssignmentList.add(assignment2);
         filteredAssignmentList.add(assignment3);
 
@@ -67,7 +67,7 @@ public class ViewFilterServiceImplTest {
     }
 
     @Test
-    public void testServiceGetListAssignmentWithMajorFilter() {
+    void testServiceGetListAssignmentWithMajorFilter() {
         filteredAssignmentList.add(assignment1);
         filteredAssignmentList.add(assignment3);
 
@@ -76,7 +76,7 @@ public class ViewFilterServiceImplTest {
     }
 
     @Test
-    public void testServiceGetListAssignmentWithYearAndMajorFilter() {
+    void testServiceGetListAssignmentWithYearAndMajorFilter() {
         filteredAssignmentList.add(assignment2);
 
         List<AssignmentFake> result = viewFilterService.getListAssignment(2020, "Sistem Informasi");

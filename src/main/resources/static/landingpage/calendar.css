@@ -1,0 +1,55 @@
+.evo-calendar {
+    box-shadow: none;
+}
+
+.calendar-sidebar {
+    background-color: var(--sea-blue);
+    box-shadow: var(--light-gray)
+}
+
+.calendar-sidebar > .month-list>.calendar-months>li.active-month {
+    color: var(--sea-blue);
+    background-color: var(--white);
+}
+
+.calendar-sidebar > .month-list>.calendar-months>li:hover {
+    color: var(--sea-blue);
+    background-color: var(--white);
+}
+
+#eventListToggler,
+#sidebarToggler {
+    background-color: var(--sea-blue);
+    box-shadow: none;
+}
+
+.calendar-sidebar > span#sidebarToggler {
+    background-color: var(--sea-blue);
+    box-shadow: none;
+}
+
+.calendar-header {
+    font-weight: 500;
+}
+
+th[colspan="7"] {
+    color: var(--sea-blue);
+}
+
+tr.calendar-body .calendar-day .day {
+    border-radius: 0%;
+}
+
+.calendar-sidebar>.calendar-year,
+.calendar-sidebar>.month-list {
+    background-color: var(--sea-blue);
+}
+
+.event-list > .event-empty {
+    background-color: var(--dark-red);
+    border-color: var(--dark-red);
+}
+
+.event-list > .event-empty > p {
+    color: var(--white);
+}
