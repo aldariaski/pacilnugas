@@ -17,7 +17,7 @@ public class AuthenticationController {
 
     @GetMapping("/userList")
     public String getUserList(Model model){
-        model.addAttribute("UserList", userService.getUsers());
+        model.addAttribute("UserList", userService.getAllUser());
         return "authentication/userList";
     }
 
@@ -30,23 +30,23 @@ public class AuthenticationController {
         return "redirect:/userList";
     }
 
-    @GetMapping("/login")
-    public String login(Model model){
-        model.addAttribute("loggedInUser", userService.getLoggedIn());
+    @GetMapping("/loginMenu")
+    public String loginMenu(Model model){
+        model.addAttribute("loginStatus", userService.getLoginStatus());
         return "authentication/loginPage";
     }
 
-    @PostMapping("/loggingIn")
-    public String loggingIn(HttpServletRequest request){
+    @PostMapping("/loginAccount")
+    public String loginAccount(HttpServletRequest request){
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        userService.logIn(username, password);
-        return "redirect:/login";
+        userService.login(username, password);
+        return "redirect:/loginMenu";
     }
 
-    @PostMapping("/loggingOut")
-    public String loggingOut(HttpServletRequest request){
-        userService.logOut();
-        return "redirect:/login";
+    @PostMapping("/logoutAccount")
+    public String logoutAccount(HttpServletRequest request){
+        userService.logout();
+        return "redirect:/loginMenu";
     }
 }

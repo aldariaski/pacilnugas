@@ -13,27 +13,31 @@ import java.util.List;
 public class UserServiceImpl {
     private UserRepository userRepository;
     private User activeUser;
-    private boolean tried;
+    private boolean loginTrial;
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = new UserRepository();
         this.activeUser = null;
-        this.tried = false;
+        this.loginTrial = false;
     }
 
     public void createUser(String username, String password, String type) {
-        User newUser = null;
-        if (type.equalsIgnoreCase("Student")) {
-            newUser = new Student(username, password);
-        } else if (type.equalsIgnoreCase("Teaching Assistant")) {
-            newUser = new TeachingAssistant(username, password);
-        } else if (type.equalsIgnoreCase("Lecturer")) {
-            newUser = new Lecturer(username, password);
-        }
+        User newUser = createUserType(username, password, type);
         userRepository.addUser(newUser);
     }
 
-    public List<User> getUsers() {
+    public User createUserType(String username, String password, String type) {
+        if (type.equalsIgnoreCase("Student")) {
+            return new Student(username, password);
+        } else if (type.equalsIgnoreCase("Teaching Assistant")) {
+            return new TeachingAssistant(username, password);
+        } else if (type.equalsIgnoreCase("Lecturer")) {
+            return new Lecturer(username, password);
+        }
+        return  null;
+    }
+
+    public List<User> getAllUser() {
         return userRepository.getUserList();
     }
 
@@ -41,8 +45,8 @@ public class UserServiceImpl {
         return userRepository.findUser(username, password);
     }
 
-    public void logIn(String username, String password) {
-        tried = true;
+    public void login(String username, String password) {
+        this.loginTrial = true;
         User user = getUser(username, password);
         if (user != null) {
             activeUser = user;
@@ -51,19 +55,19 @@ public class UserServiceImpl {
         }
     }
 
-    public String getLoggedIn() {
-        if (tried == false) {
+    public String getLoginStatus() {
+        if (this.loginTrial == false) {
             return "";
         }
-        else if (activeUser == null) {
+        else if (this.activeUser == null) {
             return "Login failed";
         } else {
-            return activeUser.loginMessage();
+            return this.activeUser.loginMessage();
         }
     }
 
-    public void logOut() {
-        activeUser = null;
-        tried = false;
+    public void logout() {
+        this.activeUser = null;
+        this.loginTrial = false;
     }
 }

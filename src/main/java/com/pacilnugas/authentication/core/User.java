@@ -3,6 +3,7 @@ package com.pacilnugas.authentication.core;
 public abstract class User {
     protected String username;
     protected String password;
+    protected String type;
     protected boolean inputAccess;
     protected boolean personalizedAccess;
 
@@ -11,9 +12,13 @@ public abstract class User {
         this.password = password;
     }
 
-    abstract public String display();
+    public String displayUser() {
+        return this.type + " with username " + this.username;
+    }
 
-    abstract public String loginMessage();
+    public String loginMessage() {
+        return "You logged in as a " + this.type.toLowerCase() + " with username " + this.username;
+    }
 
     public String getUsername() {
         return username;
@@ -23,27 +28,7 @@ public abstract class User {
         return password;
     }
 
-    public boolean getInputAccess() {
-        return inputAccess;
-    }
-
-    public boolean getPersonalizedAccess() {
-        return personalizedAccess;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setInputAccess(boolean inputAccess) {
-        this.inputAccess = inputAccess;
-    }
-
-    public void setPersonalizedAccess(boolean personalizedAccess) {
-        this.personalizedAccess = personalizedAccess;
+    public String getType() {
+        return type;
     }
 }

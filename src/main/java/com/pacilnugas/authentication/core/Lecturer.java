@@ -4,15 +4,8 @@ public class Lecturer extends User{
 
     public Lecturer(String username, String password) {
         super(username, password);
+        this.type = "Lecturer";
         this.inputAccess = false;
         this.personalizedAccess = true;
-    }
-
-    public String display() {
-        return "Lecturer with username " + this.username;
-    }
-
-    public String loginMessage() {
-        return "You logged in as a lecturer with the username " + username + " and password " + password;
     }
 }
