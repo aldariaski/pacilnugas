@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" th:href="@{/template/formPesan.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" th:href="@{/fragments/navbar.css}">
 
     <title>Buat Pesan</title>
 
 </head>
 
 <body>
+<div th:insert="fragments/navbar :: navbar"></div>
 <div class="flex-container">
     <div class="flex-item-top">
         <p id="judul" style="font-size: 40px;font-weight: 700;color: #406AD8;">Tuliskan<span style="color:#CE3030;">Pesan!</span></p>
@@ -24,7 +27,7 @@
                 <label for="kategori">Pilih Kategori Pesan</label>
                 <select class="form-control" id="kategori" name="kategori" required>
                     <option value="" selected="" disabled="">Pilih Kategori Pesan</option>
-                    <option value="Ujian">Pesan penyemangat ujian</option>
+                    <option value="Ujian">Pesan motivasi ujian</option>
                     <option value="Tugas">Pesan penyemangat tugas</option>
                     <option value="Bebas">Pesan sehari-hari</option>
                 </select><br>

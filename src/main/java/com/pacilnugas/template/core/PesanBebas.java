@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 public class PesanBebas extends Pesan {
     @Override
     String pembukaan() {
-        return "coba pembukaan bebas";
+        return "Emang kuliah itu engga gampang...";
     }
 
     @Override
