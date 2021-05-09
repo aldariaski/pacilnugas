@@ -5,6 +5,8 @@ import com.pacilnugas.landingpage.model.AssignmentFake;
 import java.util.List;
 
 public class ViewFilterManager {
+    private ViewFilterManager() {}
+
     /**
      * This method is used to apply all given filters to a list of assignments.
      *
