@@ -4,7 +4,7 @@ import com.pacilnugas.landingpage.core.MajorFilter;
 import com.pacilnugas.landingpage.core.ViewFilterManager;
 import com.pacilnugas.landingpage.core.YearFilter;
 import com.pacilnugas.landingpage.model.AssignmentFake;
-import com.pacilnugas.landingpage.repository.AssignmentRepository;
+import com.pacilnugas.landingpage.repository.AssignmentFakeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class ViewFilterServiceImpl implements ViewFilterService {
     private MajorFilter majorFilter = new MajorFilter();
 
     @Autowired
-    private AssignmentRepository assignmentRepository;
+    private AssignmentFakeRepository assignmentRepository;
 
     @Override
     public List<AssignmentFake> getListAssignment(int year, String major) {
