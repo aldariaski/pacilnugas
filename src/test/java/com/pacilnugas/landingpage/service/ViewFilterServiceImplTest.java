@@ -1,7 +1,7 @@
 package com.pacilnugas.landingpage.service;
 
 import com.pacilnugas.landingpage.model.AssignmentFake;
-import com.pacilnugas.landingpage.repository.AssignmentRepository;
+import com.pacilnugas.landingpage.repository.AssignmentFakeRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ class ViewFilterServiceImplTest {
     private ViewFilterServiceImpl viewFilterService;
 
     @Mock
-    private AssignmentRepository assignmentRepository;
+    private AssignmentFakeRepository assignmentRepository;
 
     private AssignmentFake assignment1;
     private AssignmentFake assignment2;
