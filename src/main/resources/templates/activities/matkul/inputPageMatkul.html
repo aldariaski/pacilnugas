@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/template/formPesan.css}">
+
+    <title>Buat Pesan</title>
+
+</head>
+
+<body>
+<div class="flex-container">
+    <div class="flex-item-top">
+        <p id="judul" style="font-size: 40px;font-weight: 700;color: #406AD8;">Buat<span style="color:#CE3030;">Matkul</span></p>
+        <p id="judul-2" style="font-size: 20px;font-weight: 350;color: #406AD8;">(Hanya bisa diakses pengajar)</span></p>
+    </div>
+    <div class="flex-item-bottom">
+        <hr>
+        <form th:action="@{/matkul/proses-input-matkul}" method="POST">
+            <div class="form-group">
+
+                <label for="title">Nama Matkul</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Nama Tugas" required><br>
+                <label for="semester">Pilih Semester</label> <span class="badge badge-secondary">New</span>
+                <select class="form-control" id="semester" name="semester" required>
+                    <option value="" selected="" disabled="">Pilih Semester</option>
+                    <option value="Gasal">Gasal</option>
+                    <option value="Genap">Genap</option>
+                </select><br>
+                <label for="description">Deskripsi Matkuls</label>
+                <textarea class="form-control" id="description" rows="4" cols="50" name="description" required>Tulis disini...</textarea><br>
+                <label for="maker_username">Nama Pengajar (Anda)</label>
+                <input type="text" class="form-control" id="maker_username" name="maker_username" value="Budi Budiman" disabled required><br>
+                <label for="tahun">Tahun Ajaran</label>
+                <input type="date" id="tahun" name="tahun">
+            </div>
+    </div>
+</div>
+
+<div class="flex-container-but">
+    <button class="button">Kirim</button>
+    </form>
+</div>
+
+
+<div class="footer"></div>
+</body>
+
+
+</html>
