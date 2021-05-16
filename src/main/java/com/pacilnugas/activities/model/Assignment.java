@@ -30,6 +30,12 @@ public class Assignment extends Activity {
     private String deadline;
     //private LocalDate deadline;
 
+    @Column(name = "major", columnDefinition = "character varying(20) default ''")
+    private String major;
+
+    @Column(name = "angkatan", columnDefinition = "integer default 2019")
+    private int angkatan;
+
     public List buatString() {
         List returnan = new ArrayList<>();
         returnan.add("TUGAS\n\n");
