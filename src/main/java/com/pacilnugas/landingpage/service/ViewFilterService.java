@@ -1,9 +1,9 @@
 package com.pacilnugas.landingpage.service;
 
-import com.pacilnugas.landingpage.model.AssignmentFake;
+import com.pacilnugas.activities.model.Assignment;
 
 import java.util.List;
 
 public interface ViewFilterService {
-    List<AssignmentFake> getListAssignment(int year, String major);
+    List<Assignment> getListAssignment(int year, String major);
 }

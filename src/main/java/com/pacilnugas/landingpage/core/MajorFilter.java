@@ -1,6 +1,6 @@
 package com.pacilnugas.landingpage.core;
 
-import com.pacilnugas.landingpage.model.AssignmentFake;
+import com.pacilnugas.activities.model.Assignment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,16 +15,15 @@ public class MajorFilter extends ViewFilter<String> {
     }
 
     @Override
-    public List<AssignmentFake> applyFilter(List<AssignmentFake> assignmentList) {
+    public List<Assignment> applyFilter(List<Assignment> assignmentList) {
         String value = getValue();
-        // If the filter is null or "" then we can just return the given list
-        if (value == null || value.equals("")) {
+        if (value.equals("")) {
             return assignmentList;
         }
 
         // Search for assignment that has the specified major
-        List<AssignmentFake> assignmentsByMajor = new ArrayList<>();
-        for (AssignmentFake assignment : assignmentList) {
+        List<Assignment> assignmentsByMajor = new ArrayList<>();
+        for (Assignment assignment : assignmentList) {
             if (assignment.getMajor().equals(value)) {
                 assignmentsByMajor.add(assignment);
             }

@@ -1,11 +1,13 @@
 const baseUrl = window.location.protocol + '//' + (window.location.href).match('^(?:http:\/\/|www\.|https:\/\/)([^\/]+)')[1];
 
+let idAssignments = [];
+
 const pickColor = (deadline) => {
 	const today = new Date();
 	const assignmentDate = new Date(deadline);
 	const diff = Math.ceil((assignmentDate - today) / 3600000);
 	if (diff < 0) {
-		return '#F5F5F5';
+		return '#3B3B3B';
 	} else if (diff < 24) {
 		return '#CE3030';
 	} else if (diff < 168) {
@@ -18,8 +20,9 @@ const pickColor = (deadline) => {
 const renderData = (result) => {
 	let assignments = result.map(
 		assignment => {
+			idAssignments.push(assignment.id_activity);
 			return {
-				'id': assignment.idAssignment,
+				'id': assignment.id_activity,
 				'name': assignment.title,
 				'date': assignment.deadline,
 				'color': pickColor(assignment.deadline),
@@ -29,6 +32,11 @@ const renderData = (result) => {
 	);
 	$('#calendar').evoCalendar('addCalendarEvent', assignments);
 };
+
+const removeEvent = () => {
+	$('#calendar').evoCalendar('removeCalendarEvent', idAssignments);
+	idAssignments = [];
+}
 
 // Fetch the data
 const fetchData = (year = 0, major = '') => {
@@ -40,11 +48,18 @@ const fetchData = (year = 0, major = '') => {
 	})
 };
 
+const main = (year = 0, major = '') => {
+	removeEvent();
+	$('#calendar').evoCalendar('selectMonth', ((new Date()).getMonth() - 1));
+	$('#calendar').evoCalendar('selectMonth', (new Date()).getMonth());
+	fetchData(year, major);
+}
+
 $(document).ready(function() {
 	$('#calendar').evoCalendar({
 		'sidebarDisplayDefault': false
 	});
-	fetchData();
+	main();
 });
 
 $('#calendar').on('selectDate', function(event, newDate, oldDate) {
@@ -86,5 +101,5 @@ $('#filter-submit').on('click', function(event) {
 			year = parseInt($(this).text());
 		}
 	});
-	fetchData(year, major);
+	main(year, major);
 });
