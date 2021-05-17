@@ -1,10 +1,10 @@
 package com.pacilnugas.landingpage.service;
 
+import com.pacilnugas.activities.model.Assignment;
+import com.pacilnugas.activities.repository.AssignmentRepository;
 import com.pacilnugas.landingpage.core.MajorFilter;
 import com.pacilnugas.landingpage.core.ViewFilterManager;
 import com.pacilnugas.landingpage.core.YearFilter;
-import com.pacilnugas.landingpage.model.AssignmentFake;
-import com.pacilnugas.landingpage.repository.AssignmentFakeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +16,11 @@ public class ViewFilterServiceImpl implements ViewFilterService {
     private MajorFilter majorFilter = new MajorFilter();
 
     @Autowired
-    private AssignmentFakeRepository assignmentRepository;
+    private AssignmentRepository assignmentRepository;
 
     @Override
-    public List<AssignmentFake> getListAssignment(int year, String major) {
-        List<AssignmentFake> filteredAssignmentList = assignmentRepository.findAll();
+    public List<Assignment> getListAssignment(int year, String major) {
+        List<Assignment> filteredAssignmentList = assignmentRepository.findAll();
         yearFilter.setValue(year);
         majorFilter.setValue(major);
         return ViewFilterManager.applyFilters(filteredAssignmentList, yearFilter, majorFilter);

@@ -1,4 +1,4 @@
-@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://fonts.googleapis.com/css?family=Epilogue');
 .fa-2x {
@@ -126,5 +126,28 @@ nav ul,nav li {
     font-family: Epilogue, sans-serif, monospace;
     font-style: normal;
     font-weight: 300;
-    /*src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');*/
+}
+
+#navbar-toggler {
+    position: fixed;
+    background-color: #CE3030;
+    color: #FFFFFF;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    #navbar-toggler {
+        display: block;
+    }
+
+    #navbar {
+        left: -59px;
+    }
+
+    .main-menu:hover {
+        width: 60px;
+        overflow: hidden;
+    }
 }

@@ -1,6 +1,6 @@
 package com.pacilnugas.landingpage.core;
 
-import com.pacilnugas.landingpage.model.AssignmentFake;
+import com.pacilnugas.activities.model.Assignment;
 
 import java.util.List;
 
@@ -14,10 +14,10 @@ public class ViewFilterManager {
      * @param filterStrategies contains all view filter that will be applied
      * @return a list containing filtered assignments
      */
-    public static List<AssignmentFake> applyFilters(
-            List<AssignmentFake> assignmentList,
+    public static List<Assignment> applyFilters(
+            List<Assignment> assignmentList,
             FilterStrategy... filterStrategies) {
-        List<AssignmentFake> filteredAssignmentList = assignmentList;
+        List<Assignment> filteredAssignmentList = assignmentList;
 
         // Apply all filter
         for (FilterStrategy filterStrategy : filterStrategies) {

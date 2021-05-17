@@ -1,6 +1,6 @@
 package com.pacilnugas.landingpage.controller;
 
-import com.pacilnugas.landingpage.model.AssignmentFake;
+import com.pacilnugas.activities.model.Assignment;
 import com.pacilnugas.landingpage.service.ViewFilterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class LandingPageController {
 
     @GetMapping(produces = {"application/json"})
     @ResponseBody
-    public ResponseEntity<List<AssignmentFake>> getListAssignment(
+    public ResponseEntity<List<Assignment>> getListAssignment(
             @RequestParam(defaultValue = "0") int year,
             @RequestParam(defaultValue = "") String major
     ) {
