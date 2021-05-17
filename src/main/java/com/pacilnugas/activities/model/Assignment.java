@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,5 +46,13 @@ public class Assignment extends Activity {
         returnan.add("Deadline: " + getDeadline());
         returnan.add("Deskripsi: " + getDescription());
         return returnan;
+    }
+
+    public Assignment (String title, String major, int angkatan, LocalDateTime deadline) {
+        super();
+        this.setTitle(title);
+        this.major = major;
+        this.angkatan = angkatan;
+        this.deadline = deadline.toString();
     }
 }
