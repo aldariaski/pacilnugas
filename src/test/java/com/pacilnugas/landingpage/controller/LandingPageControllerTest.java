@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = LandingPageController.class)
-public class LandingPageControllerTest {
+class LandingPageControllerTest {
     @Autowired
     private MockMvc mvc;
 
@@ -46,7 +46,7 @@ public class LandingPageControllerTest {
     }
 
     @Test
-    public void testControllerGetListAssignmentWithoutParameter() throws Exception {
+    void testControllerGetListAssignmentWithoutParameter() throws Exception {
         filteredAssignmentList.add(assignment1);
         filteredAssignmentList.add(assignment2);
         filteredAssignmentList.add(assignment3);
@@ -66,7 +66,7 @@ public class LandingPageControllerTest {
     }
 
     @Test
-    public void testControllerGetListAssignmentWithYearParameter() throws Exception {
+    void testControllerGetListAssignmentWithYearParameter() throws Exception {
         filteredAssignmentList.add(assignment2);
         filteredAssignmentList.add(assignment3);
 
@@ -84,7 +84,7 @@ public class LandingPageControllerTest {
     }
 
     @Test
-    public void testControllerGetListAssignmentWithMajorParameter() throws Exception {
+    void testControllerGetListAssignmentWithMajorParameter() throws Exception {
         filteredAssignmentList.add(assignment1);
         filteredAssignmentList.add(assignment3);
 
@@ -102,7 +102,7 @@ public class LandingPageControllerTest {
     }
 
     @Test
-    public void testControllerGetListAssignmentWithYearAndMajorParameter() throws Exception {
+    void testControllerGetListAssignmentWithYearAndMajorParameter() throws Exception {
         filteredAssignmentList.add(assignment2);
 
         // Filter assignment by year = 2020 and major = "Sistem Informasi"

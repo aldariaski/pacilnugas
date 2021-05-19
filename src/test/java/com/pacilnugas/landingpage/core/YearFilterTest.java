@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class YearFilterTest {
+class YearFilterTest {
     private YearFilter yearFilter;
     private AssignmentFake assignment1;
     private AssignmentFake assignment2;
@@ -34,7 +34,7 @@ public class YearFilterTest {
     }
 
     @Test
-    public void testYearFilterWithoutValue() {
+    void testYearFilterWithoutValue() {
         filteredAssignmentList = assignmentList;
 
         yearFilter = new YearFilter();
@@ -43,7 +43,7 @@ public class YearFilterTest {
     }
 
     @Test
-    public void testYearFilterWithValue() {
+    void testYearFilterWithValue() {
         filteredAssignmentList.add(assignment2);
         filteredAssignmentList.add(assignment3);
 

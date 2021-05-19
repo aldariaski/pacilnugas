@@ -1,8 +1,12 @@
 # PacilNugas!
 
-## Status
-[![pipeline status](https://gitlab.com/a11-pacilnugas/pacilnugas/badges/lita/pipeline.svg)](https://gitlab.com/a11-pacilnugas/pacilnugas/-/commits/lita)
-[![coverage report](https://gitlab.com/a11-pacilnugas/pacilnugas/badges/lita/coverage.svg)](https://gitlab.com/a11-pacilnugas/pacilnugas/-/commits/lita)
+## Status Branch Master
+[![pipeline status](https://gitlab.com/a11-pacilnugas/pacilnugas/badges/master/pipeline.svg)](https://gitlab.com/a11-pacilnugas/pacilnugas/-/commits/master)
+[![coverage report](https://gitlab.com/a11-pacilnugas/pacilnugas/badges/master/coverage.svg)](https://gitlab.com/a11-pacilnugas/pacilnugas/-/commits/master)
+
+## Status Branch Staging
+[![pipeline status](https://gitlab.com/a11-pacilnugas/pacilnugas/badges/staging/pipeline.svg)](https://gitlab.com/a11-pacilnugas/pacilnugas/-/commits/staging)
+[![coverage report](https://gitlab.com/a11-pacilnugas/pacilnugas/badges/staging/coverage.svg)](https://gitlab.com/a11-pacilnugas/pacilnugas/-/commits/staging)
 
 ## Deskripsi
 **PacilNugas!** adalah sebuah assignment tracker berbasis web untuk mahasiswa Fasilkom UI. Selain itu, **PacilNugas!** juga memiliki fitur tracker nilai yang berfungsi untuk menghitung nilai yang sudah didapatkan. **PacilNugas!** juga memiliki fitur pesan untuk dapat saling menyemangati.

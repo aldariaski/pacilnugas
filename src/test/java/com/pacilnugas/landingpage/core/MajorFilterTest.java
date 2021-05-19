@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MajorFilterTest {
+class MajorFilterTest {
     private MajorFilter majorFilter;
     private AssignmentFake assignment1;
     private AssignmentFake assignment2;
@@ -34,7 +34,7 @@ public class MajorFilterTest {
     }
 
     @Test
-    public void testMajorFilterWithoutValue() {
+    void testMajorFilterWithoutValue() {
         filteredAssignmentList = assignmentList;
 
         majorFilter = new MajorFilter();
@@ -43,7 +43,7 @@ public class MajorFilterTest {
     }
 
     @Test
-    public void testMajorFilterWithValue() {
+    void testMajorFilterWithValue() {
         filteredAssignmentList.add(assignment1);
         filteredAssignmentList.add(assignment3);
 
