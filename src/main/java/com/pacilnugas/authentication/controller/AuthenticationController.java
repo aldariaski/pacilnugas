@@ -1,23 +1,22 @@
 package com.pacilnugas.authentication.controller;
 
-import com.pacilnugas.authentication.service.UserServiceImpl;
+import com.pacilnugas.authentication.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class AuthenticationController {
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @GetMapping("/userList")
     public String getUserList(Model model){
-        model.addAttribute("UserList", userService.getAllUser());
+        model.addAttribute("UserDisplayList", userService.getAllDisplayMessage());
         return "authentication/userList";
     }
 

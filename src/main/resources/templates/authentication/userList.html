@@ -36,8 +36,8 @@
     <tr>
         <td>
             <div>
-                <div class="border" th:each="user:${UserList}">
-                    <h3 th:text="${user.displayUser()}"></h3>
+                <div class="border" th:each="message:${UserDisplayList}">
+                    <h3 th:text="${message}"></h3>
                 </div>
             </div>
         </td>
