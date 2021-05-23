@@ -1,6 +1,6 @@
 package com.pacilnugas.landingpage.core;
 
-import com.pacilnugas.landingpage.model.AssignmentFake;
+import com.pacilnugas.activities.model.Assignment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,16 +15,15 @@ public class YearFilter extends ViewFilter<Integer> {
     }
 
     @Override
-    public List<AssignmentFake> applyFilter(List<AssignmentFake> assignmentList) {
+    public List<Assignment> applyFilter(List<Assignment> assignmentList) {
         int value = getValue();
-        // If the filter is null or 0 then we can just return the given list
         if (value == 0) {
             return assignmentList;
         }
 
         // Search for assignment that is related to specified year
-        List<AssignmentFake> assignmentsByYear = new ArrayList<>();
-        for (AssignmentFake assignment : assignmentList) {
+        List<Assignment> assignmentsByYear = new ArrayList<>();
+        for (Assignment assignment : assignmentList) {
             if (assignment.getAngkatan() == value) {
                 assignmentsByYear.add(assignment);
             }
