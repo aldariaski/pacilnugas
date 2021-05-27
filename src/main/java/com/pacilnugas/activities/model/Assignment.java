@@ -9,6 +9,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+<<<<<<< Updated upstream
+=======
+import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+>>>>>>> Stashed changes
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,14 +27,15 @@ import java.util.List;
 public class Assignment extends Activity {
     //Jika sudah bisa nanti memakai
     //@JsonManagedReference
-    //@OneToOne(fetch = FetchType.LAZY, mappedBy = "mahasiswa") //(attribute nanti matkul, jangan string
+    //@ManyToOne(fetch = FetchType.LAZY, mappedBy = "mahasiswa") //(attribute nanti matkul, jangan string
     @Column(name = "matkul")
     private String matkul;
 
-    //@DateTimeFormat(pattern = "yyyy-mm-dd")
     @Column(name = "deadline")
-    private String deadline;
-    //private LocalDate deadline;
+    private LocalDate deadline;
+
+    @Column(name = "time")
+    private LocalTime time;
 
     @Column(name = "major", columnDefinition = "character varying(20) default ''")
     private String major;
@@ -37,13 +44,24 @@ public class Assignment extends Activity {
     private int angkatan;
 
     public List buatString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+        String formattedString = getDeadline().format(formatter);
         List returnan = new ArrayList<>();
         returnan.add("TUGAS\n\n");
         returnan.add("Nama tugas: " + getTitle());
         returnan.add("Nama matkul: " + getMatkul());
         returnan.add("Nama pengajar: " + getMaker_username());
-        returnan.add("Deadline: " + getDeadline());
+        returnan.add("Deadline: " + formattedString);
         returnan.add("Deskripsi: " + getDescription());
+        returnan.add("Debug ID: " + getId_activity());
         return returnan;
+    }
+    
+    public Assignment (String title, String major, int angkatan, LocalDate deadline) {
+        super();
+        this.setTitle(title);
+        this.major = major;
+        this.angkatan = angkatan;
+        this.deadline = deadline;
     }
 }

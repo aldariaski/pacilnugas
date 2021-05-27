@@ -17,7 +17,7 @@ public class AssignmentServiceImpl implements AssignmentService {
     AssignmentRepository assignmentRepository;
 
     @Override
-    public Assignment createAssignment(String title, String description, String matkul, String tahunajaran, String deadline) {
+    public Assignment createAssignment(String title, String description, String matkul, String tahunajaran, LocalDate deadline) {
         Assignment assignment = new Assignment();
 
         //Handle this saat diintegrasikan dengan sistem auth
@@ -45,5 +45,14 @@ public class AssignmentServiceImpl implements AssignmentService {
         }
 
         return assignmentList;
+    }
+
+    @Override
+    public List getAssignmentById(int idassignment) {
+        Assignment assignment = assignmentRepository.findById(idassignment).get();
+        List assignmentHere = new ArrayList<>();
+        assignmentHere.add(assignment.buatString());
+
+        return assignmentHere;
     }
 }
