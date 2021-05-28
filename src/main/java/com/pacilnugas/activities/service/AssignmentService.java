@@ -11,6 +11,10 @@ public interface AssignmentService {
 
     List<List> getAllAssignment();
 
-    List getAssignmentById(int idassignment);
+    Assignment getAssignmentById(int idassignment);
+
+    Assignment updateAssignment(int idassignment, String title, String description,
+                                String matkul, LocalDate deadline,
+                                LocalTime time);
 }
 
