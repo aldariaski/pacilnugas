@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/fragments/navbar.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/activities/rincian/rincian.css}">
+    <script type="text/javascript" th:src="@{/activities/rincian/countdown.js}"></script>
+</head>
+
+<body>
+<div th:insert="fragments/navbar :: navbar"></div>
+<div class="flex-container">
+    <div class="flex-item-top">
+        <p> </p>
+        <p style="font-size: 20px;font-weight: 700; text-align: center;"><a th:text="${AssignmentIni[0]}"></a></p>
+        <p style="font-size: 20px;font-weight: 500; text-align: right;"><a th:text="${AssignmentIni[1]}"></a></p>
+    </div>
+    <div><hr></div>
+
+
+
+    <div class="kosong"></div>
+    <p th:text="${AssignmentIni[2]}"></p>
+    <div class="kosong"></div>
+
+    <div class="flex-item-top">
+        <div style="flex: 1;">
+            <p style="font-weight: 700;">Angkatan:</p>
+            <p><a th:text="${AssignmentIni[5]}"></a></p>
+        </div>
+        <div style="flex: 1;">
+            <p style="font-weight: 700;">Jurusan:</p>
+            <p><a th:text="${AssignmentIni[6]}"></a></p>
+        </div>
+    </div>
+
+    <div class="kosong"></div>
+
+    <div class="flex-item-top">
+        <div style="flex: 1;">
+            <p style="font-weight: 700;">Pengajar:</p>
+            <p><a th:text="${AssignmentIni[7]}"></a></p>
+        </div>
+        <div style="flex: 1;">
+            <p style="font-weight: 700;">Deadline:</p>
+            <p><a th:text="${AssignmentIni[3]}"></a>, <a th:text="${AssignmentIni[4]}"></a></p>
+        </div>
+    </div>
+
+    <div class="kosong"></div>
+
+    <div id="clockdiv">
+        <h5><span id="end1" style="color: rgb(219, 0, 0);font-weight: 700;"></span></h5>
+        <h5><span id="end2" style="color: rgb(245, 188, 0);font-weight: 700;"></span></h5>
+        <h5><span id="end3" style="color: rgb(59, 204, 30);font-weight: 700;"></span></h5>
+        <div>
+            <span id="days"></span>
+            <div class="smalltext">Hari</div>
+        </div>
+        <div>
+            <span id="hours"></span>
+            <div class="smalltext">Jam</div>
+        </div>
+        <div>
+            <span id="mins"></span>
+            <div class="smalltext">Menit</div>
+        </div>
+        <div>
+            <span id="secs"></span>
+            <div class="smalltext">Detik</div>
+        </div>
+    </div>
+
+</div>
+
+<div class="kosong"></div>
+<div class="flex-container-but">
+    <button class="button">Edit</button>
+</div>
+<div class="footer"></div>
+</body>
+</html>

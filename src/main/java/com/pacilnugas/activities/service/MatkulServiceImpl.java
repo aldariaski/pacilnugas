@@ -14,6 +14,17 @@ public class MatkulServiceImpl implements MatkulService {
     MatkulRepository matkulRepository;
 
     @Override
+    public List<List> getAllMatkulOfMahasiswa(String username) {
+        List<Matkul> allMatkul = matkulRepository.findAll();
+        List<List> matkulList = new ArrayList<>();
+        for (Matkul matkul : allMatkul) {
+            matkulList.add(matkul.buatString());
+        }
+
+        return matkulList;
+    }
+
+    @Override
     public Matkul createMatkul(String title, String description, int tahun, String semester) {
         Matkul matkul = new Matkul();
 

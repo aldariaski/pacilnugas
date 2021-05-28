@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
+import java.time.*;
 
 @Controller
 @RequestMapping(path = "/task")
@@ -19,11 +20,12 @@ public class ActivitiesController {
         String title = request.getParameter("title");
         String matkul = request.getParameter("matkul");
         String description = request.getParameter("description");
-        String deadline = request.getParameter("deadline");
+        LocalDate deadline = LocalDate.parse(request.getParameter("deadline"));
+        LocalTime deadline_time = LocalTime.parse(request.getParameter("deadline-time"));
         String tahunajaran = request.getParameter("deadline").substring(0, 4);
 
         assignmentService.createAssignment(title, description,
-                matkul, tahunajaran,  deadline);
+                matkul, tahunajaran, deadline, deadline_time);
 
         return "redirect:/task/all";
     }
@@ -43,6 +45,12 @@ public class ActivitiesController {
     public String getAllAssignment(Model model) {
         model.addAttribute("SemuaAssignment", assignmentService.getAllAssignment());
         return "activities/assignment/allAssignment";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/view/{idAss}")
+    public String getSpecificAssignment(Model model, @PathVariable(value = "idAss") int idAss) {
+        model.addAttribute("AssignmentIni", assignmentService.getAssignmentById(idAss));
+        return "activities/rincian/rincian";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/fakepage")
