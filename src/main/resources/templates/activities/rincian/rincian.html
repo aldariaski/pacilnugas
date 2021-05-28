@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" th:href="@{/fragments/navbar.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/templates/activities/rincian/rincian.css}">
-    <script type="text/javascript" th:src="@{/templates/activities/rincian/countdown.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/activities/rincian/rincian.css}">
+    <script type="text/javascript" th:src="@{/activities/rincian/countdown.js}"></script>
 </head>
 
 <body>
@@ -15,23 +15,25 @@
 <div class="flex-container">
     <div class="flex-item-top">
         <p> </p>
-        <p style="font-size: 20px;font-weight: 700; text-align: center;">Tugas Kelompok Adpro</p>
-        <p> </p>
+        <p style="font-size: 20px;font-weight: 700; text-align: center;"><a th:text="${AssignmentIni[0]}"></a></p>
+        <p style="font-size: 20px;font-weight: 500; text-align: right;"><a th:text="${AssignmentIni[1]}"></a></p>
     </div>
     <div><hr></div>
 
+
+
     <div class="kosong"></div>
-    <p>Tugas kelompok adpro ini dilakukan secara kelompok. Deskripsi a a a a....Deskripsi a a a aDeskripsi a a a aDeskripsi a a a aDeskripsi a a a aDeskripsi a a a a</p>
+    <p th:text="${AssignmentIni[2]}"></p>
     <div class="kosong"></div>
 
     <div class="flex-item-top">
         <div style="flex: 1;">
             <p style="font-weight: 700;">Angkatan:</p>
-            <p>2019</p>
+            <p><a th:text="${AssignmentIni[5]}"></a></p>
         </div>
         <div style="flex: 1;">
             <p style="font-weight: 700;">Jurusan:</p>
-            <p>Ilmu Komputer</p>
+            <p><a th:text="${AssignmentIni[6]}"></a></p>
         </div>
     </div>
 
@@ -39,12 +41,12 @@
 
     <div class="flex-item-top">
         <div style="flex: 1;">
-            <p style="font-weight: 700;">Matkul:</p>
-            <p>Adpro</p>
+            <p style="font-weight: 700;">Pengajar:</p>
+            <p><a th:text="${AssignmentIni[7]}"></a></p>
         </div>
         <div style="flex: 1;">
             <p style="font-weight: 700;">Deadline:</p>
-            <p>30 Mei 2021</p>
+            <p><a th:text="${AssignmentIni[3]}"></a>, <a th:text="${AssignmentIni[4]}"></a></p>
         </div>
     </div>
 
@@ -71,6 +73,7 @@
             <div class="smalltext">Detik</div>
         </div>
     </div>
+
 </div>
 
 <div class="kosong"></div>
