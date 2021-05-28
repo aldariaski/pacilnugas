@@ -22,5 +22,5 @@
 1. Landing Page (Cornelita Lugita Santoso)
 2. Personal Page & Account (Syabib Ash-shiddiqi)
 3. Detail Page & Message (Shanika Tysha Anqita)
-4. Input Assignment (Yusuf Fakhri Aldrian)
+4. Courses, Assignments & Activities (Yusuf Fakhri Aldrian)
 5. Score Tracker (Vander Gerald Sukandi)

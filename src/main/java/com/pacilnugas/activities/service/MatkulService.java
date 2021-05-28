@@ -9,5 +9,7 @@ public interface MatkulService {
             int tahun, String semester);
 
     List<List> getAllMatkul();
+
+    List<List> getAllMatkulOfMahasiswa(String username);
 }
 
