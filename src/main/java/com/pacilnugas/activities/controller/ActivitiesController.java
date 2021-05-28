@@ -73,7 +73,6 @@ public class ActivitiesController {
         LocalTime deadline_time = LocalTime.parse(request.getParameter("deadline-time"));
         assignmentService.updateAssignment(idAss,title, description,
                 matkul, deadline, deadline_time);
-
         return "redirect:/task/view/{idAss}";
     }
 
