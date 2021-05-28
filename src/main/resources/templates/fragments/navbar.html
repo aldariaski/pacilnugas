@@ -1,72 +1,54 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" type="text/css" th:href="@{/fragments/navbar.css}">
-</head>
-<body>
-<div class="area"></div>
-<nav class="main-menu" th:fragment="navbar">
-    <ul>
-        <li>
-            <a href="#">
-                <i class="fa material-icons fa-2x">home</i>
-                <span class="nav-text">
-                            Home
-                        </span>
-            </a>
-        </li>
-        <li class="has-subnav">
-            <a href="#">
-                <i class="fa material-icons fa-2x">create</i>
-                <span class="nav-text">
-                            Input Assignment
-                        </span>
-            </a>
-        </li>
-        <li class="has-subnav">
-            <a href="#">
-                <i class="fa material-icons fa-2x">account_circle</i>
-                <span class="nav-text">
-                            Personal Page
-                        </span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="fa material-icons fa-2x">sports_score</i>
-                <span class="nav-text">
-                            Score Tracker
-                        </span>
-            </a>
-        </li>
-        <li class="has-subnav">
-            <a th:href="@{/pesan}">
-                <i class="fa material-icons fa-2x">emoji_emotions</i>
-                <span class="nav-text">
-                            Message
-                        </span>
-            </a>
-        </li>
-    </ul>
+<body th:fragment="navbar">
+    <div id="navbar-toggler"><i class="fa fa-bars"></i></div>
+    <nav id="navbar" class="main-menu">
+        <ul>
+            <li>
+                <a th:href="@{/}">
+                    <i class="fa material-icons fa-2x">home</i>
+                    <span class="nav-text">Home</span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a href="#">
+                    <i class="fa material-icons fa-2x">create</i>
+                    <span class="nav-text">Input Assignment</span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a href="#">
+                    <i class="fa material-icons fa-2x">account_circle</i>
+                    <span class="nav-text">Personal Page</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa material-icons fa-2x">sports_score</i>
+                    <span class="nav-text">Score Tracker</span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a th:href="@{/pesan}">
+                    <i class="fa material-icons fa-2x">emoji_emotions</i>
+                    <span class="nav-text">Message</span>
+                </a>
+            </li>
+        </ul>
 
-    <ul class="logout">
-        <li>
-            <a href="#">
-                <i class="fa material-icons fa-2x">login</i>
-                <span class="nav-text">
-                             Login
-                         </span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="fa material-icons fa-2x">power_settings_new</i>
-                <span class="nav-text">
-                            Logout
-                        </span>
-            </a>
-        </li>
-    </ul>
-</nav>
+        <ul class="logout">
+            <li>
+                <a href="#">
+                    <i class="fa material-icons fa-2x">login</i>
+                    <span class="nav-text">Login</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa material-icons fa-2x">power_settings_new</i>
+                    <span class="nav-text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </body>
 </html>

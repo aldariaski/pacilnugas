@@ -1,7 +1,7 @@
 package com.pacilnugas.landingpage.service;
 
-import com.pacilnugas.landingpage.model.AssignmentFake;
-import com.pacilnugas.landingpage.repository.AssignmentFakeRepository;
+import com.pacilnugas.activities.model.Assignment;
+import com.pacilnugas.activities.repository.AssignmentRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,21 +22,21 @@ class ViewFilterServiceImplTest {
     private ViewFilterServiceImpl viewFilterService;
 
     @Mock
-    private AssignmentFakeRepository assignmentRepository;
+    private AssignmentRepository assignmentRepository;
 
-    private AssignmentFake assignment1;
-    private AssignmentFake assignment2;
-    private AssignmentFake assignment3;
-    private List<AssignmentFake> filteredAssignmentList;
-    private List<AssignmentFake> assignmentList;
+    private Assignment assignment1;
+    private Assignment assignment2;
+    private Assignment assignment3;
+    private List<Assignment> filteredAssignmentList;
+    private List<Assignment> assignmentList;
 
     @BeforeEach
     public void setUp() {
-        assignment1 = new AssignmentFake(
+        assignment1 = new Assignment(
                 "Group Project - Adpro", "Ilmu Komputer", 2019, LocalDateTime.now());
-        assignment2 = new AssignmentFake(
+        assignment2 = new Assignment(
                 "Lab 4 - DDAK", "Sistem Informasi", 2020, LocalDateTime.now());
-        assignment3 = new AssignmentFake(
+        assignment3 = new Assignment(
                 "Lab 4 - POK", "Ilmu Komputer", 2020, LocalDateTime.now());
         assignmentList = new ArrayList<>();
         assignmentList.add(assignment1);
@@ -53,7 +53,7 @@ class ViewFilterServiceImplTest {
         filteredAssignmentList.add(assignment2);
         filteredAssignmentList.add(assignment3);
 
-        List<AssignmentFake> result = viewFilterService.getListAssignment(0, "");
+        List<Assignment> result = viewFilterService.getListAssignment(0, "");
         Assertions.assertIterableEquals(filteredAssignmentList, result);
     }
 
@@ -62,7 +62,7 @@ class ViewFilterServiceImplTest {
         filteredAssignmentList.add(assignment2);
         filteredAssignmentList.add(assignment3);
 
-        List<AssignmentFake> result = viewFilterService.getListAssignment(2020, "");
+        List<Assignment> result = viewFilterService.getListAssignment(2020, "");
         Assertions.assertIterableEquals(filteredAssignmentList, result);
     }
 
@@ -71,7 +71,7 @@ class ViewFilterServiceImplTest {
         filteredAssignmentList.add(assignment1);
         filteredAssignmentList.add(assignment3);
 
-        List<AssignmentFake> result = viewFilterService.getListAssignment(0, "Ilmu Komputer");
+        List<Assignment> result = viewFilterService.getListAssignment(0, "Ilmu Komputer");
         Assertions.assertIterableEquals(filteredAssignmentList, result);
     }
 
@@ -79,7 +79,7 @@ class ViewFilterServiceImplTest {
     void testServiceGetListAssignmentWithYearAndMajorFilter() {
         filteredAssignmentList.add(assignment2);
 
-        List<AssignmentFake> result = viewFilterService.getListAssignment(2020, "Sistem Informasi");
+        List<Assignment> result = viewFilterService.getListAssignment(2020, "Sistem Informasi");
         Assertions.assertIterableEquals(filteredAssignmentList, result);
     }
 }
