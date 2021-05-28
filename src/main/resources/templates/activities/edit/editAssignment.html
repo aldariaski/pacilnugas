@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/fragments/navbar.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/template/formPesan.css}">
 
-    <title>Buat Tugas</title>
+    <title>Edit Assignment</title>
 
 </head>
 
@@ -15,41 +15,44 @@
 <div th:insert="fragments/navbar :: navbar"></div>
 <div class="flex-container">
     <div class="flex-item-top">
-        <p id="judul" style="font-size: 40px;font-weight: 700;color: #406AD8;">Buat<span style="color:#CE3030;">Tugas</span></p>
-        <p id="judul-2" style="font-size: 20px;font-weight: 350;color: #406AD8;">(Hanya bisa diakses pengajar)</span></p>
+        <p id="judul" style="font-size: 40px;font-weight: 700;color: #406AD8;">Edit<span style="color:#CE3030;">Tugas</span></p>
+        <p id="judul-2" style="font-size: 20px;font-weight: 300;color: #406AD8;">(Hanya bisa diakses pengajar)</span></p>
     </div>
     <div class="flex-item-bottom">
         <hr>
-        <form th:action="@{/task/proses-input-tugas}" method="POST">
+        <form th:action="@{/task/view/{idAss}/update(idAss=${AssignmentIni.getId_activity()})}"
+              th:object="${AssignmentIni}" method="POST">
             <div class="form-group">
 
                 <label for="title">Nama Tugas</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Nama Tugas" required><br>
+                <input type="text" class="form-control" id="title" name="title" th:value="${AssignmentIni.getTitle()}" required><br>
                 <label for="matkul">Pilih Mata Kuliah</label> <span class="badge badge-secondary">New</span>
-                <select class="form-control" id="matkul" name="matkul" required>
+                <select class="form-control" id="matkul" name="matkul" th:field="*{matkul}" th:value="${AssignmentIni.getMatkul()}" required>
                     <option value="" selected="" disabled="">Pilih Mata Kuliah</option>
                     <option value="Adpro">Adpro</option>
                     <option value="Statprob">Statprob</option>
                     <option value="Klik">Klik untuk membuat matkul baru</option>
                 </select><br>
                 <label for="description">Deskripsi Tugas</label>
-                <textarea class="form-control" id="description" rows="4" cols="50" name="description" required>Tulis disini...</textarea><br>
+                <textarea class="form-control" id="description" rows="4" cols="50" name="description" th:text="${AssignmentIni.getDescription()}" required></textarea><br>
                 <label for="maker_username">Nama Pengajar (Anda)</label>
                 <input type="text" class="form-control" id="maker_username" name="maker_username" value="Budi Budiman" disabled required><br>
                 <label for="deadline">Deadline</label>
-                <input type="date" id="deadline" name="deadline">
-                <input type="time" id="deadline-time" name="deadline-time">
+                <input type="date" id="deadline" name="deadline" th:value="${AssignmentIni.getDeadline()}" required>
+                <input type="time" id="deadline-time" name="deadline-time" th:value="${AssignmentIni.getTime()}" required>
             </div>
     </div>
 </div>
 
 <div class="flex-container-but">
-    <button class="button">Kirim</button>
+    <button class="button">Simpan</button>
     </form>
 </div>
 
 
 <div class="footer"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script th:src="@{/fragments/navbar.js}"></script>
 </body>
 
 
