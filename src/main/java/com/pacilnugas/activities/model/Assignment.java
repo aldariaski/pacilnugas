@@ -54,11 +54,13 @@ public class Assignment extends Activity {
         return returnan;
     }
 
-    public Assignment (String title, String major, int angkatan, LocalDate deadline) {
+    public Assignment (String title, String major, int angkatan, LocalDateTime deadline) {
         super();
         this.setTitle(title);
         this.major = major;
         this.angkatan = angkatan;
-        this.deadline = deadline;
+        LocalDate deadline_date = deadline.toLocalDate();
+        this.deadline = deadline_date;
+        this.time = deadline.toLocalTime();
     }
 }
