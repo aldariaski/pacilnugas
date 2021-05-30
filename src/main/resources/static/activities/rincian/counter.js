@@ -4,8 +4,14 @@ var countDownDate = new Date(dateTime).getTime();
 console.log(dateTime);
 // var countDownDate = new Date("May 30 2021 22:04:30").getTime();
 
+
 // Run myfunc every second
 var myfunc = setInterval(function() {
+
+    var longDate = new Date(dates);
+    var formattedDate = longDate.toDateString();
+    console.log(formattedDate);
+    document.getElementById("dateFormatted").innerHTML = formattedDate;
 
     var now = new Date().getTime();
     var timeleft = countDownDate - now;
