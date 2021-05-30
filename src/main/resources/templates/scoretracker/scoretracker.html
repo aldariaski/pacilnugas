@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.2/evo-calendar/css/evo-calendar.min.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/fragments/navbar.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/scoretracker/scoretracker.css}">
+    <title>PacilNugas! | Score Tracker</title>
+</head>
+<body>
+    <header>
+        <h1><span class="blue">Score</span><span class="red">Tracker!</span></h1>
+        <hr>
+    </header>
+
+    <div th:replace="fragments/navbar :: navbar"></div>
+
+    <div id="main">
+        <div id="inputTotal">
+            <label for="totalComponent">Jumlah Komponen</label>
+            <input type="number" name="totalComponent" id="totalComponent" placeholder="0">
+            <button type="submit" id="submitTotal" class="button">Go!</button>
+        </div>
+    </div>
+
+    <div id="result">
+        <h2>Masukkan jumlah komponen penilaian</h2>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script th:src="@{/fragments/navbar.js}"></script>
+    <script th:src="@{/scoretracker/scoretracker.js}"></script>
+</body>
+</html>
