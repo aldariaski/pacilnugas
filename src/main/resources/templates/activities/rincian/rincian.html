@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/activities/rincian/rincian.css}">
     <script th:inline="javascript">
         /* variable used by counter.js */
-        var dates = [[${AssignmentIni.getDeadlineFormatted()}]];
+        var dates = [[${AssignmentIni.getDeadline()}]];
         var time = [[${AssignmentIni.getTime()}]];
     </script>
     <script type="text/javascript" th:src="@{/activities/rincian/counter.js}"></script>
@@ -52,7 +52,7 @@
         </div>
         <div style="flex: 1;">
             <p style="font-weight: 700;">Deadline:</p>
-            <p><span th:text="${AssignmentIni.getDeadlineFormatted()}"></span>, <span th:text="${AssignmentIni.getTime()}"></span></p>
+            <p><span id="dateFormatted"></span>, <span th:text="${AssignmentIni.getTime()}"></span></p>
         </div>
     </div>
 
