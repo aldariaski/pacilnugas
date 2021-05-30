@@ -40,12 +40,18 @@ const removeEvent = () => {
 
 // Fetch the data
 const fetchData = (year = 0, major = '') => {
-	fetch(`${baseUrl}/main?year=${year}&major=${major}`)
-	.then(response => response.json())
-	.then(responseJson => renderData(responseJson))
-	.catch(error => {
-	    alert('There was an error when fetching the data, please try again later!');
-	})
+	$.ajax({
+		method: 'GET',
+		url: `${baseUrl}/main?year=${year}&major=${major}`,
+		dataType: 'json',
+		success: function (response) {
+			console.log(response);
+			renderData(response);
+		},
+		failed: function (error) {
+			alert('There was an error when fetching the data, please try again later!');
+		}
+	});
 };
 
 const main = (year = 0, major = '') => {
@@ -67,7 +73,7 @@ $('#calendar').on('selectDate', function(event, newDate, oldDate) {
 });
 
 $('#calendar').on('selectEvent', function(event, activeEvent) {
-	// Will be used to redirect to details page
+	location.href = `/task/view/${activeEvent.id}`;
 });
 
 // Change the active state of filter year
