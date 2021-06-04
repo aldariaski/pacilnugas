@@ -1,11 +1,18 @@
 package com.pacilnugas.authentication.core;
 
-public class Lecturer extends User{
+import javax.persistence.Entity;
+
+@Entity
+public class Lecturer extends Account {
+
+    public Lecturer() {
+        super();
+    }
 
     public Lecturer(String username, String password) {
         super(username, password);
-        this.type = "Lecturer";
-        this.inputAccess = true;
-        this.personalizedAccess = false;
+        this.setType("Lecturer");
+//        this.setInputAccess(true);
+//        this.setPersonalizedAccess(false);
     }
 }

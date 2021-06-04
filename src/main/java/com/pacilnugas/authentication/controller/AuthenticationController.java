@@ -14,19 +14,24 @@ public class AuthenticationController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/userList")
+    @GetMapping("/accountList")
     public String getUserList(Model model){
         model.addAttribute("UserDisplayList", userService.getAllDisplayMessage());
-        return "authentication/userList";
+        return "authentication/accountList";
     }
 
-    @PostMapping("/createUser")
-    public String createUser(HttpServletRequest request){
+    @GetMapping("/createAccountMenu")
+    public String createAccountMenu(Model model) {
+        return "authentication/createAccount";
+    }
+
+    @PostMapping("/createAccount")
+    public String createAccount(HttpServletRequest request){
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String type = request.getParameter("type");
         userService.createUser(username, password, type);
-        return "redirect:/userList";
+        return "redirect:/accountList";
     }
 
     @GetMapping("/loginMenu")
