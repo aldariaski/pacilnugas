@@ -45,7 +45,6 @@ const fetchData = (year = 0, major = '') => {
 		url: `${baseUrl}/main?year=${year}&major=${major}`,
 		dataType: 'json',
 		success: function (response) {
-			console.log(response);
 			renderData(response);
 		},
 		failed: function (error) {
