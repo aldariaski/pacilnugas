@@ -20,6 +20,8 @@ import java.util.List;
 public class ActivitiesController {
     @Autowired
     private AssignmentService assignmentService;
+    @Autowired
+    private MatkulService matkulService;
 
     @RequestMapping(method = RequestMethod.POST, value = "/proses-input-tugas")
     public String assignmentFormPro(HttpServletRequest request) {
@@ -38,8 +40,7 @@ public class ActivitiesController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/input-tugas")
     public String assignmentForm(Model model) {
-        MatkulService matkulService;
-        List allMatkul = matkulService.getAllMatkulOject();
+        List allMatkul = matkulService.getAllMatkulObject();
         return "activities/assignment/inputPage";
     }
 
