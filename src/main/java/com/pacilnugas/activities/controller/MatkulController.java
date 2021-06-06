@@ -47,19 +47,19 @@ public class MatkulController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/view/{idAss}")
-    public String getSpecificAssignment(Model model, @PathVariable(value = "idAss") int idAss) {
+    public String getSpecificMatkul(Model model, @PathVariable(value = "idAss") int idAss) {
         model.addAttribute("AssignmentIni", matkulService.getAssignmentById(idAss));
         return "activities/rincian/rincian";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/view/{idAss}/edit")
-    public String getAssignmentToEdit(@PathVariable(value = "idAss") int idAss, Model model) {
+    public String getMatkulToEdit(@PathVariable(value = "idAss") int idAss, Model model) {
         model.addAttribute("AssignmentIni", matkulService.getAssignmentById(idAss));
         return "activities/edit/editAssignment";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/view/{idAss}/update")
-    public String assignmentEditForm(HttpServletRequest request, @PathVariable(value = "idAss") int idAss, Model model) {
+    public String matkulEditForm(HttpServletRequest request, @PathVariable(value = "idAss") int idAss, Model model) {
         model.addAttribute("AssignmentIni", matkulService.getAssignmentById(idAss));
         String title = request.getParameter("title");
         String matkul = request.getParameter("matkul");

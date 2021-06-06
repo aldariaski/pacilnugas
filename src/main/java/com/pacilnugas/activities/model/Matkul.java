@@ -32,6 +32,14 @@ public class Matkul {
     @Column(name = "semester")
     private String semester;
 
+    @Column(name = "major", columnDefinition = "character varying(20) default 'Ilmu Komputer'")
+    private String major;
+
+    //Angkatan intended siapa yang seharusnya mendapatkan.
+    //Bisa juga ada misal angkatan 2018 yang mengulang mengambil matkul u/ 2019
+    @Column(name = "angkatan", columnDefinition = "integer default 2019")
+    private int angkatan;
+
     @Column(name = "pengajar")
     private String pengajar; //username pengajar itu
     // private List<String> list_pengajar; //pakai ini jika sudah bisa menghandle banyak pengajar di satu matkul
