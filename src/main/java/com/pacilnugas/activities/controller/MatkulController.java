@@ -48,25 +48,25 @@ public class MatkulController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/view/{idAss}")
     public String getSpecificMatkul(Model model, @PathVariable(value = "idAss") int idAss) {
-        model.addAttribute("AssignmentIni", matkulService.getAssignmentById(idAss));
+        model.addAttribute("AssignmentIni", matkulService.getMatkulById(idAss));
         return "activities/rincian/rincian";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/view/{idAss}/edit")
     public String getMatkulToEdit(@PathVariable(value = "idAss") int idAss, Model model) {
-        model.addAttribute("AssignmentIni", matkulService.getAssignmentById(idAss));
+        model.addAttribute("AssignmentIni", matkulService.getMatkulById(idAss));
         return "activities/edit/editAssignment";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/view/{idAss}/update")
     public String matkulEditForm(HttpServletRequest request, @PathVariable(value = "idAss") int idAss, Model model) {
-        model.addAttribute("AssignmentIni", matkulService.getAssignmentById(idAss));
+        model.addAttribute("AssignmentIni", matkulService.getMatkulById(idAss));
         String title = request.getParameter("title");
         String matkul = request.getParameter("matkul");
         String description = request.getParameter("description");
         LocalDate deadline = LocalDate.parse(request.getParameter("deadline"));
         LocalTime deadline_time = LocalTime.parse(request.getParameter("deadline-time"));
-        matkulService.updateAssignment(idAss,title, description,
+        matkulService.updateMatkul(idAss,title, description,
                 matkul, deadline, deadline_time);
         return "redirect:/task/view/{idAss}";
     }

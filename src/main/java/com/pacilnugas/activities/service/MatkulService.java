@@ -1,5 +1,6 @@
 package com.pacilnugas.activities.service;
 
+import com.pacilnugas.activities.model.Assignment;
 import com.pacilnugas.activities.model.Matkul;
 
 import java.util.List;
@@ -13,5 +14,7 @@ public interface MatkulService {
     List<List> getAllMatkulOfMahasiswa(String username);
 
     List getAllMatkulObject();
+
+    Assignment getMatkulById(int idmatkul);
 }
 

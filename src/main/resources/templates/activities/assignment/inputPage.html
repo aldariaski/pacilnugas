@@ -25,7 +25,8 @@
 
                 <label for="title">Nama Tugas</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="Nama Tugas" required><br>
-                <label for="matkul">Pilih Mata Kuliah</label> <span class="badge badge-secondary">New</span>
+                <label for="matkul">Pilih Mata Kuliah</label>
+                <span class="badge badge-secondary" th:href="@{/matkul/input-matkul}">Create New Matkul</span>
                 <select class="form-control" id="matkul" name="matkul" required>
                     <option value="" selected="" disabled="">Pilih Mata Kuliah</option>
                     <option value="Adpro">Adpro</option>
