@@ -1,8 +1,9 @@
 package com.pacilnugas.activities.controller;
 
 import com.pacilnugas.activities.model.Assignment;
-import org.springframework.stereotype.Controller;
+import com.pacilnugas.activities.service.MatkulService;
 import com.pacilnugas.activities.service.AssignmentService;
+import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.*;
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/task")
@@ -36,6 +38,8 @@ public class ActivitiesController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/input-tugas")
     public String assignmentForm(Model model) {
+        MatkulService matkulService;
+        List allMatkul = matkulService.getAllMatkulOject();
         return "activities/assignment/inputPage";
     }
 

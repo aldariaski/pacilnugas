@@ -11,5 +11,7 @@ public interface MatkulService {
     List<List> getAllMatkul();
 
     List<List> getAllMatkulOfMahasiswa(String username);
+
+    List getAllMatkulObject();
 }
 

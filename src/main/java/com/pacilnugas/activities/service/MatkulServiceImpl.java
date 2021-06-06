@@ -51,4 +51,10 @@ public class MatkulServiceImpl implements MatkulService {
 
         return matkulList;
     }
+
+    @Override
+    public List getAllMatkulObject() {
+        List<Matkul> matkulList = matkulRepository.findAll();
+        return matkulList;
+    }
 }
