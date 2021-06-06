@@ -41,6 +41,7 @@ public class ActivitiesController {
     @RequestMapping(method = RequestMethod.GET, value = "/input-tugas")
     public String assignmentForm(Model model) {
         List allMatkul = matkulService.getAllMatkulObject();
+        model.addAttribute("listMatkul", allMatkul);
         return "activities/assignment/inputPage";
     }
 
