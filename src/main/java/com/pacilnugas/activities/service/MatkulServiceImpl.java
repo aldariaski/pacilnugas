@@ -28,7 +28,8 @@ public class MatkulServiceImpl implements MatkulService {
     }
 
     @Override
-    public Matkul createMatkul(String title, String description, int tahun, String semester) {
+    public Matkul createMatkul(String title, String description, LocalDate mulai, int tahun,
+                               String semester, String major, int angkatan) {
         Matkul matkul = new Matkul();
 
         //Handle this saat diintegrasikan dengan sistem auth
@@ -37,8 +38,11 @@ public class MatkulServiceImpl implements MatkulService {
 
         matkul.setTitle(title);
         matkul.setDescription(description);
+        matkul.setMulai(mulai);
         matkul.setTahun(tahun);
         matkul.setSemester(semester);
+        matkul.setMajor(major);
+        matkul.setAngkatan(angkatan);
 
         matkulRepository.save(matkul);
         return matkul;

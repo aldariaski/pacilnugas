@@ -21,10 +21,13 @@ public class MatkulController {
         String title = request.getParameter("title");
         String semester = request.getParameter("semester");
         String description = request.getParameter("description");
+        LocalDate mulai = LocalDate.parse(request.getParameter("tahun"));
         String tahun = request.getParameter("tahun").substring(0, 4);
         int tahunInt = Integer.parseInt(tahun);
+        String major = request.getParameter("major");
+        int angkatan = Integer.parseInt(request.getParameter("angkatan"));
 
-        matkulService.createMatkul(title, description, tahunInt, semester);
+        matkulService.createMatkul(title, description, mulai, tahunInt, semester, major, angkatan);
 
         return "redirect:/matkul/all";
     }
