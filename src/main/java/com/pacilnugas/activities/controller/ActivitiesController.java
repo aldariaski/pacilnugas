@@ -75,10 +75,4 @@ public class ActivitiesController {
                 matkul, deadline, deadline_time);
         return "redirect:/task/view/{idAss}";
     }
-
-    @RequestMapping(method = RequestMethod.GET, value = "/fakepage")
-    public String fakePage(Model model) {
-        return "activities/errorLandingPage";
-    }
-
 }

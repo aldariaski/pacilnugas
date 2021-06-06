@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Controller
 @RequestMapping(path = "/matkul")
@@ -27,7 +29,7 @@ public class MatkulController {
         return "redirect:/matkul/all";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/input-tugas")
+    @RequestMapping(method = RequestMethod.GET, value = "/input-matkul")
     public String matkulForm(Model model) {
         return "activities/matkul/inputPageMatkul";
     }
@@ -42,5 +44,30 @@ public class MatkulController {
     public String getAllMatkul(Model model) {
         model.addAttribute("SemuaMatkul", matkulService.getAllMatkul());
         return "activities/matkul/allAssignment";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/view/{idAss}")
+    public String getSpecificAssignment(Model model, @PathVariable(value = "idAss") int idAss) {
+        model.addAttribute("AssignmentIni", matkulService.getAssignmentById(idAss));
+        return "activities/rincian/rincian";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/view/{idAss}/edit")
+    public String getAssignmentToEdit(@PathVariable(value = "idAss") int idAss, Model model) {
+        model.addAttribute("AssignmentIni", matkulService.getAssignmentById(idAss));
+        return "activities/edit/editAssignment";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/view/{idAss}/update")
+    public String assignmentEditForm(HttpServletRequest request, @PathVariable(value = "idAss") int idAss, Model model) {
+        model.addAttribute("AssignmentIni", matkulService.getAssignmentById(idAss));
+        String title = request.getParameter("title");
+        String matkul = request.getParameter("matkul");
+        String description = request.getParameter("description");
+        LocalDate deadline = LocalDate.parse(request.getParameter("deadline"));
+        LocalTime deadline_time = LocalTime.parse(request.getParameter("deadline-time"));
+        matkulService.updateAssignment(idAss,title, description,
+                matkul, deadline, deadline_time);
+        return "redirect:/task/view/{idAss}";
     }
 }
