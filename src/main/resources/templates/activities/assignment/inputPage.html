@@ -25,12 +25,15 @@
 
                 <label for="title">Nama Tugas</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="Nama Tugas" required><br>
-                <label for="matkul">Pilih Mata Kuliah</label> <span class="badge badge-secondary">New</span>
+                <label for="matkul">Pilih Mata Kuliah</label>
+                <a th:href="@{/matkul/input-matkul}"><span class="badge badge-secondary">Buat Matkul Baru</span></a>
                 <select class="form-control" id="matkul" name="matkul" required>
                     <option value="" selected="" disabled="">Pilih Mata Kuliah</option>
-                    <option value="Adpro">Adpro</option>
-                    <option value="Statprob">Statprob</option>
-                    <option value="Klik">Klik untuk membuat matkul baru</option>
+                    <div th:each="matkul:${listMatkul}" th:if="${listMatkul != null}">
+                        <option "matkul:${listMatkul}" th:if="${listMatkul != null}"
+                                th:value="${matkul.title}"
+                                th:utext="${matkul.title}"/>
+                    </div>
                 </select><br>
                 <label for="description">Deskripsi Tugas</label>
                 <textarea class="form-control" id="description" rows="4" cols="50" name="description" required>Tulis disini...</textarea><br>
