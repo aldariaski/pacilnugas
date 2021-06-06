@@ -20,7 +20,7 @@ public class Matkul {
     @Column(name = "id_assignment", updatable = false)
     private int idAssignment;
 
-    @Column(name = "title")
+    @Column(name = "title", unique= true)
     private String title;
 
     @Column(name = "description")
