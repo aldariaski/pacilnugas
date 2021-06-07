@@ -1,3 +1,5 @@
+const baseUrl = window.location.protocol + '//' + (window.location.href).match('^(?:http:\/\/|www\.|https:\/\/)([^\/]+)')[1];
+
 $('#submitTotal').on('click', () => {
     const total = $('#totalComponent').val();
     addComponents(total);
@@ -19,7 +21,7 @@ const addComponents = (totalComponent = 0) => {
                 <input type="number" class="weight" min="0" placeholder="0">%
             </div>
         `;
-    };
+    }
 
     components += `
             <button type="submit" id="calculate" class="button">Calculate</button>
@@ -42,44 +44,37 @@ const addResultTotal = () => {
 };
 
 const addCalculateEvent = () => {
-    let totalScore = 0;
-    let totalWeight = 0;
     $('#calculate').on('click', () => {
+        let scoreList = [];
+        let weightList = [];
         $('.component').each(function() {
             let score = $(this).children().get(0).value;
             let weight = $(this).children().get(1).value;
             score = (score === "") ? 0 : score;
             weight = (weight === "") ? 0 : weight;
-            totalScore += score * (weight / 100);
-            totalWeight += parseInt(weight);
+            scoreList.push(score);
+            weightList.push(weight);
         });
-        $('#totalWeight').text(totalWeight);
-        $('#totalScore').text(totalScore);
-        showGrade(totalScore);
+
+        $.ajax({
+            method: 'GET',
+            url: `${baseUrl}/scoretracker/track?scoreList=${scoreList}&weightList=${weightList}`,
+            dataType: 'json',
+            success: function (response) {
+                showResult(response);
+            },
+            failed: function () {
+                alert('There was an error when fetching the data, please try again later!');
+            }
+        })
     });
 };
 
-const showGrade = (totalScore) => {
-    if (totalScore >= 85) {
-        $('#finalScore').text("A");
-    } else if (totalScore >= 80) {
-        $('#finalScore').text("A-");
-    } else if (totalScore >= 75) {
-        $('#finalScore').text("B+");
-    } else if (totalScore >= 70) {
-        $('#finalScore').text("B");
-    } else if (totalScore >= 65) {
-        $('#finalScore').text("B-");
-    } else if (totalScore >= 60) {
-        $('#finalScore').text("C+");
-    } else if (totalScore >= 55) {
-        $('#finalScore').text("C");
-    } else if (totalScore >= 40) {
-        $('#finalScore').text("D");
-    } else {
-        $('#finalScore').text("E");
-    }
-};
+const showResult = (result) => {
+    $('#totalWeight').text(result.weight);
+    $('#totalScore').text(result.score);
+    $('#finalScore').text(result.grade);
+}
 
 const addReturnEvent = () => {
     $('#return').on('click', () => {
