@@ -50,7 +50,7 @@
 
 <div class="kosong"></div>
 <div class="flex-container-but">
-    <button class="button">Kirim</button>
+    <button onclick="myFunction()" class="button">Kirim</button>
         </form>
 </div>
 
@@ -59,4 +59,16 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script th:src="@{/fragments/navbar.js}"></script>
+<script>
+    function myFunction() {
+        var name = document.getElementById("nama").value;
+        var kategori = document.getElementById("kategori").value;
+        var motivasi = document.getElementById("motivasi").value;
+        if (name == '' || kategori == '' || motivasi == '') {
+            alert("Please fill out all fields");
+        } else {
+            alert("Message successfully sent");
+        }
+    }
+</script>
 </html>
