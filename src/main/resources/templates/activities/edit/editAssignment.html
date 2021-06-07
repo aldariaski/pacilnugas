@@ -45,7 +45,7 @@
 </div>
 
 <div class="flex-container-but">
-    <button class="button">Simpan</button>
+    <button id="simpan-button" class="button">Simpan</button>
     </form>
 </div>
 
@@ -53,6 +53,18 @@
 <div class="footer"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script th:src="@{/fragments/navbar.js}"></script>
+<script>
+    document
+        .getElementById("simpan-button")
+        .addEventListener("click", function( e ){ //e => event
+            if( ! confirm("Are you sure you want to make these changes?") ){
+                e.preventDefault(); // ! => don't want to do this
+            } else {
+                //want to do this! => maybe do something about it?
+                alert('Changes successfully saved');
+            }
+        });
+</script>
 </body>
 
 
