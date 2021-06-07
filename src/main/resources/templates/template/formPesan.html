@@ -61,7 +61,14 @@
 <script th:src="@{/fragments/navbar.js}"></script>
 <script>
     function myFunction() {
-        alert("Message successfully sent");
+        var name = document.getElementById("nama").value;
+        var kategori = document.getElementById("kategori").value;
+        var motivasi = document.getElementById("motivasi").value;
+        if (name == '' || kategori == '' || motivasi == '') {
+            alert("Please fill out all fields");
+        } else {
+            alert("Message successfully sent");
+        }
     }
 </script>
 </html>
