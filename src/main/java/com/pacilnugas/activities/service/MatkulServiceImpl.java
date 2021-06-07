@@ -1,10 +1,13 @@
 package com.pacilnugas.activities.service;
 
+import com.pacilnugas.activities.model.Assignment;
 import com.pacilnugas.activities.model.Matkul;
 import com.pacilnugas.activities.repository.MatkulRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +28,8 @@ public class MatkulServiceImpl implements MatkulService {
     }
 
     @Override
-    public Matkul createMatkul(String title, String description, int tahun, String semester) {
+    public Matkul createMatkul(String title, String description, LocalDate mulai, int tahun,
+                               String semester, String major, int angkatan) {
         Matkul matkul = new Matkul();
 
         //Handle this saat diintegrasikan dengan sistem auth
@@ -34,8 +38,11 @@ public class MatkulServiceImpl implements MatkulService {
 
         matkul.setTitle(title);
         matkul.setDescription(description);
+        matkul.setMulai(mulai);
         matkul.setTahun(tahun);
         matkul.setSemester(semester);
+        matkul.setMajor(major);
+        matkul.setAngkatan(angkatan);
 
         matkulRepository.save(matkul);
         return matkul;
@@ -51,4 +58,35 @@ public class MatkulServiceImpl implements MatkulService {
 
         return matkulList;
     }
+
+    @Override
+    public List getAllMatkulObject() {
+        List<Matkul> matkulList = matkulRepository.findAll();
+        return matkulList;
+    }
+
+    @Override
+    public Matkul getMatkulById(int id) {
+        Matkul matkul = matkulRepository.findById(id).get();
+        return matkul;
+    }
+
+    @Override
+    public Matkul getMatkulByNama(String nama) {
+        List<Matkul> matkulList = matkulRepository.findAll();
+        for (Matkul tiapMatkul: matkulList) {
+            if (tiapMatkul.getTitle().equals(nama)) {
+                return tiapMatkul;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Matkul updateMatkul(int idassignment, String title, String description, String matkul, LocalDate deadline,
+                                LocalTime time){
+        Matkul matkulReturn = matkulRepository.findById(idassignment).get();
+        return matkulReturn;
+    }
+
 }

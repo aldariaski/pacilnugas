@@ -1,8 +1,9 @@
 package com.pacilnugas.activities.controller;
 
 import com.pacilnugas.activities.model.Assignment;
-import org.springframework.stereotype.Controller;
+import com.pacilnugas.activities.service.MatkulService;
 import com.pacilnugas.activities.service.AssignmentService;
+import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -12,12 +13,15 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.*;
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/task")
 public class ActivitiesController {
     @Autowired
     private AssignmentService assignmentService;
+    @Autowired
+    private MatkulService matkulService;
 
     @RequestMapping(method = RequestMethod.POST, value = "/proses-input-tugas")
     public String assignmentFormPro(HttpServletRequest request) {
@@ -36,6 +40,8 @@ public class ActivitiesController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/input-tugas")
     public String assignmentForm(Model model) {
+        List allMatkul = matkulService.getAllMatkulObject();
+        model.addAttribute("listMatkul", allMatkul);
         return "activities/assignment/inputPage";
     }
 
@@ -75,10 +81,4 @@ public class ActivitiesController {
                 matkul, deadline, deadline_time);
         return "redirect:/task/view/{idAss}";
     }
-
-    @RequestMapping(method = RequestMethod.GET, value = "/fakepage")
-    public String fakePage(Model model) {
-        return "activities/errorLandingPage";
-    }
-
 }
