@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/fragments/navbar.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/template/formPesan.css}">
 
-    <title>Buat Pesan</title>
+    <title>Buat Matkul</title>
 
 </head>
 
 <body>
+<div th:insert="fragments/navbar :: navbar"></div>
 <div class="flex-container">
     <div class="flex-item-top">
         <p id="judul" style="font-size: 40px;font-weight: 700;color: #406AD8;">Buat<span style="color:#CE3030;">Matkul</span></p>
@@ -23,18 +25,34 @@
 
                 <label for="title">Nama Matkul</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="Nama Tugas" required><br>
-                <label for="semester">Pilih Semester</label> <span class="badge badge-secondary">New</span>
+                <label for="description">Deskripsi Mata Kuliah</label>
+                <textarea class="form-control" id="description" rows="4" cols="50" name="description" required>Tulis disini...</textarea><br>
+                <label for="maker_username">Nama Pengajar (Anda)</label>
+                <input type="text" class="form-control" id="maker_username" name="maker_username" value="Budi Budiman" disabled required><br>
+                <label for="tahun">Tanggal Mulai Tahun Ajaran</label>
+                <input type="date" id="tahun" name="tahun"> <br><br>
+                <label for="semester">Pilih Semester</label>
+                <small>(Tidak otomatis karena tanggal mulai tahun ajar tidak bisa menentukan semester secara pasti.)</small>
                 <select class="form-control" id="semester" name="semester" required>
                     <option value="" selected="" disabled="">Pilih Semester</option>
                     <option value="Gasal">Gasal</option>
                     <option value="Genap">Genap</option>
                 </select><br>
-                <label for="description">Deskripsi Matkuls</label>
-                <textarea class="form-control" id="description" rows="4" cols="50" name="description" required>Tulis disini...</textarea><br>
-                <label for="maker_username">Nama Pengajar (Anda)</label>
-                <input type="text" class="form-control" id="maker_username" name="maker_username" value="Budi Budiman" disabled required><br>
-                <label for="tahun">Tahun Ajaran</label>
-                <input type="date" id="tahun" name="tahun">
+                <label for="semester">Pilih Jurusan</label>
+                <select class="form-control" id="major" name="major" required>
+                    <option value="" selected="" disabled="">Pilih Jurusan</option>
+                    <option value="Ilmu Komputer">Ilmu Komputer</option>
+                    <option value="Sistem Informasi">Sistem Informasi</option>
+                </select><br>
+                <label for="semester">Pilih Angkatan Tujuan</label>
+                <small>(Seperti Matkul ini ditujukan umumnya untuk anak 2019, tetapi anak 2018 juga boleh masuk kesini.)</small>
+                <select class="form-control" id="angkatan" name="angkatan" required>
+                    <option value="" selected="" disabled="">Pilih Angkatan Tujuan</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                </select><br>
             </div>
     </div>
 </div>

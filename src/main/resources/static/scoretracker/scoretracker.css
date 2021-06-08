@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;900&display=swap');
+
+:root {
+    --sea-blue: #406AD8;
+    --dark-red: #CE3030;
+    --light-red: #FFDEDE;
+    --dark-yellow: #F3AF00;
+    --light-yellow: #fbc436;
+    --dark-gray: #E3E3E3;
+    --light-gray: #F5F5F5;
+    --white: #FFFFFF;
+    --black: #000000;
+}
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Epilogue', sans-serif;
+    background-color: var(--light-gray);
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 5% 50% 45%;
+    grid-template-rows: min-content;
+    grid-template-areas:
+        "navbar header header"
+        "navbar main result";
+}
+
+.blue {
+    color: var(--sea-blue);
+}
+
+.red {
+    color: var(--dark-red);
+}
+
+header {
+    text-align: center;
+    font-size: 1.8em;
+    grid-area: header;
+    font-weight: bold;
+    padding: 0 1em;
+}
+
+header > h1 {
+    margin: .1em;
+}
+
+#main {
+    grid-area: main;
+    padding: 1em;
+}
+
+#inputTotal {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#main label {
+    display: block;
+    margin-bottom: 1em;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+#totalComponent {
+    width: 50%;
+    height: 2em;
+    margin-bottom: 1em;
+    font-size: 1em;
+    text-align: center;
+}
+
+.button {
+    padding: .5em;
+    font-size: 1em;
+    font-weight: bold;
+    min-width: 116px;
+    background-color: var(--light-yellow);
+    color: var(--white);
+    border-radius: 50px;
+    cursor: pointer;
+    border: none;
+}
+
+#result {
+    grid-area: result;
+    padding: 1em;
+    margin: 1em;
+    background-color: var(--dark-gray);
+    border-radius: 48px;
+    position: static;
+}
+
+#result h2 {
+    margin: .1em;
+    text-align: center;
+}
+
+#components {
+    text-align: center;
+}
+
+.component {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.25em;
+}
+
+.score,
+.weight {
+    flex-basis: 48%;
+    margin: 0 .2em;
+    height: 2em;
+}
+
+table {
+    width: 100%;
+}
+
+table,
+th,
+td {
+    text-align: center;
+    border: .1em solid var(--black);
+    border-collapse: collapse;
+}

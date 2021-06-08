@@ -10,9 +10,15 @@
                 </a>
             </li>
             <li class="has-subnav">
-                <a href="#">
+                <a th:href="@{/task/input-tugas}">
                     <i class="fa material-icons fa-2x">create</i>
-                    <span class="nav-text">Input Assignment</span>
+                    <span class="nav-text">Create Assignment</span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a th:href="@{/matkul/input-matkul}">
+                    <i class="fa material-icons fa-2x">create</i>
+                    <span class="nav-text">Create Course (Matkul)</span>
                 </a>
             </li>
             <li class="has-subnav">
@@ -22,7 +28,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a th:href="@{/scoretracker}">
                     <i class="fa material-icons fa-2x">sports_score</i>
                     <span class="nav-text">Score Tracker</span>
                 </a>
