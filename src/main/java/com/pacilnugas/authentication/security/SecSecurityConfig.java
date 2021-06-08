@@ -1,12 +1,12 @@
 package com.pacilnugas.authentication.security;
-import com.pacilnugas.authentication.core.Account;
-import com.pacilnugas.authentication.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+//import com.pacilnugas.authentication.core.Account;
+//import com.pacilnugas.authentication.service.UserService;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
+//import org.springframework.context.annotation.ImportResource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configurers.provisioning.UserDetailsManagerConfigurer;
+//import org.springframework.security.config.annotation.authentication.configurers.provisioning.UserDetailsManagerConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -15,15 +15,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 
-import java.util.List;
+//import java.util.List;
 
 @Configuration
 @EnableWebSecurity
 //@ImportResource({ "classpath:webSecurityConfig.xml" })
 public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    private UserService userService;
 
     public SecSecurityConfig() {
         super();
@@ -31,8 +31,8 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        List<Account> allAccounts = userService.getAllUser();
-        UserDetailsManagerConfigurer udmc = auth.inMemoryAuthentication();
+//        List<Account> allAccounts = userService.getAllUser();
+//        UserDetailsManagerConfigurer udmc = auth.inMemoryAuthentication();
 //        for(Account account : allAccounts){
 //            udmc = udmc.withUser(account.getUsername()).password(passwordEncoder().encode(account.getPassword())).roles(account.getType()).and();
 //        }

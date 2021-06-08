@@ -3,7 +3,7 @@ package com.pacilnugas.authentication.core;
 import com.pacilnugas.activities.model.Matkul;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -15,7 +15,7 @@ public abstract class Account {
     private String type;
 //    private boolean inputAccess;
 //    private boolean personalizedAccess;
-    private ArrayList<String> personalizedMatkul;
+//    private ArrayList<String> personalizedMatkul;
 
     public Account() {
     }
@@ -23,7 +23,7 @@ public abstract class Account {
     public Account(String username, String password) {
         this.username = username;
         this.password = password;
-        this.personalizedMatkul = new ArrayList<>();
+//        this.personalizedMatkul = new ArrayList<>();
     }
 
     public String getUsername() {
