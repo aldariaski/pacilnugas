@@ -33,16 +33,16 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
         List<Account> allAccounts = userService.getAllUser();
         UserDetailsManagerConfigurer udmc = auth.inMemoryAuthentication();
-        for(Account account : allAccounts){
-            udmc = udmc.withUser(account.getUsername()).password(passwordEncoder().encode(account.getPassword())).roles(account.getType()).and();
-        }
+//        for(Account account : allAccounts){
+//            udmc = udmc.withUser(account.getUsername()).password(passwordEncoder().encode(account.getPassword())).roles(account.getType()).and();
+//        }
 //        udmc.withUser("user1").password(passwordEncoder().encode("user1Pass")).roles("USER");
-//        auth.inMemoryAuthentication()
-//                .withUser("user1").password(passwordEncoder().encode("user1Pass")).roles("USER")
-//                .and()
-//                .withUser("user2").password(passwordEncoder().encode("user2Pass")).roles("USER")
-//                .and()
-//                .withUser("admin").password(passwordEncoder().encode("adminPass")).roles("ADMIN");
+        auth.inMemoryAuthentication()
+                .withUser("user1").password(passwordEncoder().encode("user1Pass")).roles("USER")
+                .and()
+                .withUser("user2").password(passwordEncoder().encode("user2Pass")).roles("USER")
+                .and()
+                .withUser("admin").password(passwordEncoder().encode("adminPass")).roles("ADMIN");
     }
 
     @Bean
