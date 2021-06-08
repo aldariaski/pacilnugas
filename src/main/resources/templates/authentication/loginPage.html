@@ -59,7 +59,7 @@
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password" required><br>
             </div>
             <div class="flex-container-but">
-                <button class="button">Submit</button>
+                <button onclick="loginFunction()" class="button">Submit</button>
             </div>
         </form>
     </div>
@@ -70,4 +70,9 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script th:src="@{/fragments/navbar.js}"></script>
+<script>
+    function loginFunction() {
+        alert("Anda berhasil masuk.");
+    }
+</script>
 </html>
