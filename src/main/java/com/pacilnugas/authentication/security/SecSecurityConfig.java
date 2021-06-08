@@ -65,7 +65,7 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/loginMenu")
                 .loginProcessingUrl("/loginAccount")
-                .defaultSuccessUrl("/accountList", true)
+                .defaultSuccessUrl("/", true)
                 .failureUrl("/authentication/loginPage.html?error=true")
                 .failureHandler(new SimpleUrlAuthenticationFailureHandler())
                 .and()
