@@ -43,13 +43,19 @@
 
         <ul class="logout">
             <li>
-                <a href="#">
+                <a th:href="@{/accountList}">
+                    <i class="fa material-icons fa-2x">person_add</i>
+                    <span class="nav-text">Sign up</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/loginMenu}">
                     <i class="fa material-icons fa-2x">login</i>
                     <span class="nav-text">Login</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a th:href="@{/}">
                     <i class="fa material-icons fa-2x">power_settings_new</i>
                     <span class="nav-text">Logout</span>
                 </a>
