@@ -60,6 +60,18 @@ public class MatkulServiceImpl implements MatkulService {
     }
 
     @Override
+    public int getIdByTitle(String title) {
+        int idMatkul = 0;
+        List<Matkul> matkulList = matkulRepository.findAll();
+        for (Matkul matkul : matkulList) {
+            if (matkul.getTitle().equals(title)) {
+                return matkul.getIdAssignment();
+            }
+        }
+        return idMatkul;
+    }
+
+    @Override
     public List getAllMatkulObject() {
         List<Matkul> matkulList = matkulRepository.findAll();
         return matkulList;

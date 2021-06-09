@@ -49,6 +49,9 @@ public class Matkul {
     private String pengajar; //username pengajar itu
     // private List<String> list_pengajar; //pakai ini jika sudah bisa menghandle banyak pengajar di satu matkul
 
+    @OneToMany
+    private List<Assignment> listAssignment;
+
     public String getDateFormatted() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
         String formattedString = getMulai().format(formatter);
@@ -67,4 +70,6 @@ public class Matkul {
         returnan.add("Deskripsi: " + getDescription());
         return returnan;
     }
+
+
 }

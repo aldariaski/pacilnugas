@@ -13,6 +13,8 @@ public interface MatkulService {
 
     List<List> getAllMatkul();
 
+    int getIdByTitle(String title);
+
     List<List> getAllMatkulOfMahasiswa(String username);
 
     List getAllMatkulObject();
