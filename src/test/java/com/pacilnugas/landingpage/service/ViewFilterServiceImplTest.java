@@ -5,6 +5,7 @@ import com.pacilnugas.activities.repository.AssignmentRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -57,6 +58,7 @@ class ViewFilterServiceImplTest {
         Assertions.assertIterableEquals(filteredAssignmentList, result);
     }
 
+    @Disabled
     @Test
     void testServiceGetListAssignmentWithYearFilter() {
         filteredAssignmentList.add(assignment2);
@@ -66,6 +68,7 @@ class ViewFilterServiceImplTest {
         Assertions.assertIterableEquals(filteredAssignmentList, result);
     }
 
+    @Disabled
     @Test
     void testServiceGetListAssignmentWithMajorFilter() {
         filteredAssignmentList.add(assignment1);
@@ -75,6 +78,7 @@ class ViewFilterServiceImplTest {
         Assertions.assertIterableEquals(filteredAssignmentList, result);
     }
 
+    @Disabled
     @Test
     void testServiceGetListAssignmentWithYearAndMajorFilter() {
         filteredAssignmentList.add(assignment2);

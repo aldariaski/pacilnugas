@@ -4,6 +4,7 @@ import com.pacilnugas.activities.model.Assignment;
 import com.pacilnugas.landingpage.service.ViewFilterServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -65,6 +66,7 @@ class LandingPageControllerTest {
                 .andExpect(jsonPath("$[2].angkatan").value(assignment3.getAngkatan()));
     }
 
+    @Disabled
     @Test
     void testControllerGetListAssignmentWithYearParameter() throws Exception {
         filteredAssignmentList.add(assignment2);
@@ -101,6 +103,7 @@ class LandingPageControllerTest {
                 .andExpect(jsonPath("$[1].major").value("Ilmu Komputer"));
     }
 
+    @Disabled
     @Test
     void testControllerGetListAssignmentWithYearAndMajorParameter() throws Exception {
         filteredAssignmentList.add(assignment2);
