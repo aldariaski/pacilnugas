@@ -45,10 +45,12 @@ public class Assignment extends Activity {
     }
 
     public String getMajor() {
+        if (getMatkulObject() == null) return "Ilmu Komputer";
         return getMatkulObject().getMajor();
     }
 
     public int getAngkatan() {
+        if (getMatkulObject() == null) return 2019;
         return getMatkulObject().getAngkatan();
     }
 
@@ -65,7 +67,7 @@ public class Assignment extends Activity {
         return returnan;
     }
 
-    public Assignment (String title, LocalDateTime deadline) {
+    public Assignment (String title, String major, int angkatan, LocalDateTime deadline) {
         super();
         this.setTitle(title);
         LocalDate deadline_date = deadline.toLocalDate();

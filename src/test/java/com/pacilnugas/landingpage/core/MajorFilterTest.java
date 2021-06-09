@@ -4,6 +4,7 @@ import com.pacilnugas.activities.model.Assignment;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ class MajorFilterTest {
         Assertions.assertIterableEquals(filteredAssignmentList, result);
     }
 
+    @Disabled
     @Test
     void testMajorFilterWithValue() {
         filteredAssignmentList.add(assignment1);
