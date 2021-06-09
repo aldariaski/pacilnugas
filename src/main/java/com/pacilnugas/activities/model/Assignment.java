@@ -1,9 +1,12 @@
 package com.pacilnugas.activities.model;
 
 import com.fasterxml.jackson.annotation.*;
+import com.pacilnugas.activities.repository.MatkulRepository;
+import com.pacilnugas.activities.model.Matkul;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,9 +22,13 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "assignment")
 public class Assignment extends Activity {
+
     //Jika sudah bisa nanti memakai
     //@JsonManagedReference
-    //@ManyToOne(fetch = FetchType.LAZY, mappedBy = "mahasiswa") //(attribute nanti matkul, jangan string
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "matkulobject")
+    private Matkul matkulObject;
+
     @Column(name = "matkul")
     private String matkul;
 
@@ -31,16 +38,20 @@ public class Assignment extends Activity {
     @Column(name = "time")
     private LocalTime time;
 
-    @Column(name = "major", columnDefinition = "character varying(20) default 'Ilmu Komputer'")
-    private String major;
-
-    @Column(name = "angkatan", columnDefinition = "integer default 2019")
-    private int angkatan;
-
     public String getDeadlineFormatted() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
         String formattedString = getDeadline().format(formatter);
         return formattedString;
+    }
+
+    public String getMajor() {
+        if (getMatkulObject() == null) return "Ilmu Komputer";
+        return getMatkulObject().getMajor();
+    }
+
+    public int getAngkatan() {
+        if (getMatkulObject() == null) return 2019;
+        return getMatkulObject().getAngkatan();
     }
 
     public List buatString() {
@@ -51,14 +62,14 @@ public class Assignment extends Activity {
         returnan.add("Nama pengajar: " + getMaker_username());
         returnan.add("Deadline: " + getDeadlineFormatted() + ", " + getTime());
         returnan.add("Deskripsi: " + getDescription());
+        returnan.add("Major:" + getMajor());
+        returnan.add("Angkatan Tujuan:" + getAngkatan());
         return returnan;
     }
 
     public Assignment (String title, String major, int angkatan, LocalDateTime deadline) {
         super();
         this.setTitle(title);
-        this.major = major;
-        this.angkatan = angkatan;
         LocalDate deadline_date = deadline.toLocalDate();
         this.deadline = deadline_date;
         this.time = deadline.toLocalTime();
