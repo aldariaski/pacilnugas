@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Data
@@ -14,17 +16,16 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Table(name = "nontugas")
 public class NonTugas extends Activity {
-    @NotNull
-    @Column(name = "waktu")
-    private LocalDateTime waktu;
+    @Column(name = "date")
+    private LocalDate date;
 
-    //Nanti dihubungkan dengan user2 buatan Syabib
-    //@NotNull
-    //@Column(name = "pengajar")
-    //private User pengajar;
+    @Column(name = "time")
+    private LocalTime time;
 
-    public NonTugas(String title, String matkul, int angkatan, LocalDateTime waktu) {
-        this.waktu = waktu;
-        //this.pengajar = pengajar;
+    public NonTugas (String title, LocalDateTime fulldate) {
+        super();
+        this.setTitle(title);
+        this.date = fulldate.toLocalDate();
+        this.time = fulldate.toLocalTime();
     }
 }

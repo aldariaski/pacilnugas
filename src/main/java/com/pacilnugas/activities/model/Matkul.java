@@ -73,5 +73,7 @@ public class Matkul {
         return returnan;
     }
 
-
+    public Matkul (String title) {
+        this.setTitle(title);
+    }
 }
