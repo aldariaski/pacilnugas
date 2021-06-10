@@ -50,7 +50,7 @@ class LandingPageControllerTest {
         filteredAssignmentList = new ArrayList<>();
     }
 
-    public void setUpMatkul() {
+    private void setUpMatkul() {
         matkulIlmuKomputer2019 = new Matkul();
         matkulIlmuKomputer2019.setMajor("Ilmu Komputer");
         matkulIlmuKomputer2019.setAngkatan(2019);
