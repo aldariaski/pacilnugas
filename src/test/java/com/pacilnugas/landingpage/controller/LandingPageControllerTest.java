@@ -1,10 +1,10 @@
 package com.pacilnugas.landingpage.controller;
 
 import com.pacilnugas.activities.model.Assignment;
+import com.pacilnugas.activities.model.Matkul;
 import com.pacilnugas.landingpage.service.ViewFilterServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Disabled;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -34,16 +34,34 @@ class LandingPageControllerTest {
     private Assignment assignment2;
     private Assignment assignment3;
     private List<Assignment> filteredAssignmentList;
+    private Matkul matkulIlmuKomputer2019;
+    private Matkul matkulIlmuKomputer2020;
+    private Matkul matkulSistemInformasi2020;
 
     @BeforeEach
     public void setUp() {
+        setUpMatkul();
         assignment1 = new Assignment(
-                "Group Project - Adpro", "Ilmu Komputer", 2019, LocalDateTime.now());
+                "Group Project - Adpro", matkulIlmuKomputer2019, LocalDateTime.now());
         assignment2 = new Assignment(
-                "Lab 4 - DDAK", "Sistem Informasi", 2020, LocalDateTime.now());
+                "Lab 4 - DDAK", matkulSistemInformasi2020, LocalDateTime.now());
         assignment3 = new Assignment(
-                "Lab 4 - POK", "Ilmu Komputer", 2020, LocalDateTime.now());
+                "Lab 4 - POK", matkulIlmuKomputer2020, LocalDateTime.now());
         filteredAssignmentList = new ArrayList<>();
+    }
+
+    private void setUpMatkul() {
+        matkulIlmuKomputer2019 = new Matkul();
+        matkulIlmuKomputer2019.setMajor("Ilmu Komputer");
+        matkulIlmuKomputer2019.setAngkatan(2019);
+
+        matkulIlmuKomputer2020 = new Matkul();
+        matkulIlmuKomputer2020.setMajor("Ilmu Komputer");
+        matkulIlmuKomputer2020.setAngkatan(2020);
+
+        matkulSistemInformasi2020 = new Matkul();
+        matkulSistemInformasi2020.setMajor("Sistem Informasi");
+        matkulSistemInformasi2020.setAngkatan(2020);
     }
 
     @Test
@@ -66,7 +84,6 @@ class LandingPageControllerTest {
                 .andExpect(jsonPath("$[2].angkatan").value(assignment3.getAngkatan()));
     }
 
-    @Disabled
     @Test
     void testControllerGetListAssignmentWithYearParameter() throws Exception {
         filteredAssignmentList.add(assignment2);
@@ -103,7 +120,6 @@ class LandingPageControllerTest {
                 .andExpect(jsonPath("$[1].major").value("Ilmu Komputer"));
     }
 
-    @Disabled
     @Test
     void testControllerGetListAssignmentWithYearAndMajorParameter() throws Exception {
         filteredAssignmentList.add(assignment2);

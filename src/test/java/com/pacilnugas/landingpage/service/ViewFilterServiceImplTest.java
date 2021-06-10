@@ -1,11 +1,11 @@
 package com.pacilnugas.landingpage.service;
 
 import com.pacilnugas.activities.model.Assignment;
+import com.pacilnugas.activities.model.Matkul;
 import com.pacilnugas.activities.repository.AssignmentRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -30,15 +30,19 @@ class ViewFilterServiceImplTest {
     private Assignment assignment3;
     private List<Assignment> filteredAssignmentList;
     private List<Assignment> assignmentList;
+    private Matkul matkulIlmuKomputer2019;
+    private Matkul matkulIlmuKomputer2020;
+    private Matkul matkulSistemInformasi2020;
 
     @BeforeEach
     public void setUp() {
+        setUpMatkul();
         assignment1 = new Assignment(
-                "Group Project - Adpro", "Ilmu Komputer", 2019, LocalDateTime.now());
+                "Group Project - Adpro", matkulIlmuKomputer2019, LocalDateTime.now());
         assignment2 = new Assignment(
-                "Lab 4 - DDAK", "Sistem Informasi", 2020, LocalDateTime.now());
+                "Lab 4 - DDAK", matkulSistemInformasi2020, LocalDateTime.now());
         assignment3 = new Assignment(
-                "Lab 4 - POK", "Ilmu Komputer", 2020, LocalDateTime.now());
+                "Lab 4 - POK", matkulIlmuKomputer2020, LocalDateTime.now());
         assignmentList = new ArrayList<>();
         assignmentList.add(assignment1);
         assignmentList.add(assignment2);
@@ -46,6 +50,20 @@ class ViewFilterServiceImplTest {
 
         filteredAssignmentList = new ArrayList<>();
         lenient().when(assignmentRepository.findAll()).thenReturn(assignmentList);
+    }
+
+    private void setUpMatkul() {
+        matkulIlmuKomputer2019 = new Matkul();
+        matkulIlmuKomputer2019.setMajor("Ilmu Komputer");
+        matkulIlmuKomputer2019.setAngkatan(2019);
+
+        matkulIlmuKomputer2020 = new Matkul();
+        matkulIlmuKomputer2020.setMajor("Ilmu Komputer");
+        matkulIlmuKomputer2020.setAngkatan(2020);
+
+        matkulSistemInformasi2020 = new Matkul();
+        matkulSistemInformasi2020.setMajor("Sistem Informasi");
+        matkulSistemInformasi2020.setAngkatan(2020);
     }
 
     @Test
@@ -58,7 +76,6 @@ class ViewFilterServiceImplTest {
         Assertions.assertIterableEquals(filteredAssignmentList, result);
     }
 
-    @Disabled
     @Test
     void testServiceGetListAssignmentWithYearFilter() {
         filteredAssignmentList.add(assignment2);
@@ -68,7 +85,6 @@ class ViewFilterServiceImplTest {
         Assertions.assertIterableEquals(filteredAssignmentList, result);
     }
 
-    @Disabled
     @Test
     void testServiceGetListAssignmentWithMajorFilter() {
         filteredAssignmentList.add(assignment1);
@@ -78,7 +94,6 @@ class ViewFilterServiceImplTest {
         Assertions.assertIterableEquals(filteredAssignmentList, result);
     }
 
-    @Disabled
     @Test
     void testServiceGetListAssignmentWithYearAndMajorFilter() {
         filteredAssignmentList.add(assignment2);

@@ -25,8 +25,9 @@ public class Assignment extends Activity {
 
     //Jika sudah bisa nanti memakai
     //@JsonManagedReference
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "matkulobject")
+    @ManyToOne
+    @JoinColumn(name = "idAssignment")
+    @JsonBackReference
     private Matkul matkulObject;
 
     @Column(name = "matkul")
@@ -67,11 +68,11 @@ public class Assignment extends Activity {
         return returnan;
     }
 
-    public Assignment (String title, String major, int angkatan, LocalDateTime deadline) {
+    public Assignment (String title, Matkul matkul, LocalDateTime deadline) {
         super();
         this.setTitle(title);
-        LocalDate deadline_date = deadline.toLocalDate();
-        this.deadline = deadline_date;
+        this.matkulObject = matkul;
+        this.deadline = deadline.toLocalDate();
         this.time = deadline.toLocalTime();
     }
 }
