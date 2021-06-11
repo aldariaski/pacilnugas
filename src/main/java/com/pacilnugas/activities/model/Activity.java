@@ -18,7 +18,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Activity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

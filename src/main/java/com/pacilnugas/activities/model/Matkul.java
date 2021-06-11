@@ -1,5 +1,6 @@
 package com.pacilnugas.activities.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -49,7 +50,8 @@ public class Matkul {
     private String pengajar; //username pengajar itu
     // private List<String> list_pengajar; //pakai ini jika sudah bisa menghandle banyak pengajar di satu matkul
 
-    @OneToMany
+    @OneToMany(mappedBy = "matkulObject")
+    @JsonManagedReference
     private List<Assignment> listAssignment;
 
     public String getDateFormatted() {
@@ -77,5 +79,9 @@ public class Matkul {
 
     public List<Assignment> getListAssignment() {
         return listAssignment;
+    }
+
+    public Matkul (String title) {
+        this.setTitle(title);
     }
 }
