@@ -1,5 +1,7 @@
 package com.pacilnugas.authentication.service;
 
+import com.pacilnugas.activities.model.Matkul;
+import com.pacilnugas.activities.repository.MatkulRepository;
 import com.pacilnugas.authentication.core.Lecturer;
 import com.pacilnugas.authentication.core.Student;
 import com.pacilnugas.authentication.core.TeachingAssistant;
@@ -15,6 +17,9 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private MatkulRepository matkulRepository;
 
     private Account activeAccount;
     private boolean loginTrial;
@@ -62,6 +67,16 @@ public class UserService {
 //            return null;
 //        }
         return null;
+    }
+
+    public void saveMatkul(String username, List<Matkul> listMatkul) {
+        Account account = getUserByUsername(username);
+        account.setPersonalizedMatkul(listMatkul);
+        userRepository.save(account);
+    }
+
+    public Account getUserByUsername(String username) {
+        return userRepository.findById(username).get();
     }
 
     public void login(String username, String password) {

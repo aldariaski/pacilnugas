@@ -71,5 +71,11 @@ public class Matkul {
         return returnan;
     }
 
+    public String getTitle() {
+        return title;
+    }
 
+    public List<Assignment> getListAssignment() {
+        return listAssignment;
+    }
 }

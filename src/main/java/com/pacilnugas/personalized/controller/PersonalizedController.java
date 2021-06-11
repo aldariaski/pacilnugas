@@ -1,41 +1,50 @@
 package com.pacilnugas.personalized.controller;
 
+import com.pacilnugas.activities.model.Matkul;
+import com.pacilnugas.activities.service.MatkulService;
+import com.pacilnugas.authentication.service.UserService;
 import com.pacilnugas.personalized.core.Task;
 import com.pacilnugas.personalized.service.ObserverServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
-//@RequestMapping(path = "/personalized")
 public class PersonalizedController {
 
     @Autowired
     private ObserverServiceImpl observerService;
 
-//    @RequestMapping(path = "/create-task", method = RequestMethod.GET)
-//    public String createTask(Model model) {
-//        model.addAttribute("task", new Task());
-//        return "personalized/taskForm";
-//    }
-//
-//    @RequestMapping(path = "/add-task", method = RequestMethod.POST)
-//    public String addTask(@ModelAttribute("task") Task task) {
-//        observerService.addTask(task);
-//        return "redirect:/personalized/course-list";
-//    }
-//
-//    @RequestMapping(path = "/course-list", method = RequestMethod.GET)
-//    public String getCourses(Model model) {
-//        model.addAttribute("courses", observerService.getCourses());
-//        return "personalized/courseList";
-//    }
+    @Autowired
+    private UserService userService;
 
-    @RequestMapping(path = "/personal", method = RequestMethod.GET)
-    public String personal(Model model) {
+    @Autowired
+    private MatkulService matkulService;
+
+    @GetMapping(path = "/personal")
+    public String personal(@RequestParam("username") String username, Model model) {
+        List<Matkul> listMatkulPersonal = userService.getUserByUsername(username).getPersonalizedMatkul();
+        List<Matkul> listMatkulTotal = matkulService.getAllMatkulObject();
+        model.addAttribute("listMatkulPersonal", listMatkulPersonal);
+        model.addAttribute("listMatkulTotal", listMatkulTotal);
         return "personalized/personalPage";
+    }
+
+    @GetMapping("/personalFilter")
+    public String personalFilter(@RequestParam("listMatkul") List<String> listMatkul, HttpServletRequest request){
+        System.out.println(listMatkul);
+        List<Matkul> checkedMatkul = new ArrayList<>();
+        for (String stringMatkul: listMatkul) {
+            System.out.println(stringMatkul);
+            Matkul matkul = matkulService.getMatkulByNama(stringMatkul);
+            checkedMatkul.add(matkul);
+        }
+        userService.saveMatkul("sasfort", checkedMatkul);
+        return "redirect:/personal?username=sasfort";
     }
 }

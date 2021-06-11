@@ -33,4 +33,8 @@ public abstract class Activity {
 
     @Column(name = "maker_username")
     private String maker_username;
+
+    public String getTitle() {
+        return title;
+    }
 }

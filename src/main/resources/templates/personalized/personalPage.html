@@ -19,37 +19,36 @@
   </div>
   <div class="flex"></div>
 </div>
-<div class="flex-container">
-  <p style="font-size:24px;font-weight:600;">Advanced Programming</p>
-  <div class="flex-item-bottom">
-    <ul>
-      <li>Deadline Akhir Tugas Kelompok (16/06/2021)</li>
-      <li>Ujian Tengah Semester (18/06/2021)</li>
-    </ul>
-  </div>
-</div>
-<div class="flex-container">
-  <p style="font-size:24px;font-weight:600;">Statistika & Probabilitas</p>
-  <div class="flex-item-bottom">
-    <ul>
-      <li>Ujian Tengah Semester (17/06/2021)</li>
-    </ul>
-  </div>
-</div>
-<div class="flex-container">
-  <form>
-    <input type="checkbox" id="course1" name="course1" value="Adpro" checked>
-    <label for="course1">Advanced Programming</label><br>
-    <input type="checkbox" id="course2" name="course2" value="Statprob" checked>
-    <label for="course2">Statistika & Probabilitas</label><br>
-    <input type="checkbox" id="course3" name="course3" value="TBA">
-    <label for="course3">Teori Bahasa & Automata</label><br><br>
-    <div class="flex-container-but">
-      <button class="button">Filter</button>
+<div th:each="matkul: ${listMatkulPersonal}">
+  <div class="flex-container">
+    <p style="font-size:24px;font-weight:600;" th:text="${matkul.getTitle()}"></p>
+    <div class="flex-item-bottom">
+      <ul>
+        <div th:each="tugas: ${matkul.getListAssignment()}">
+          <li>
+            <p th:text="${tugas.getTitle()}"></p>
+            <p th:text="${tugas.getDeadlineFormatted()}"></p>
+          </li>
+        </div>
+      </ul>
     </div>
-  </form>
+  </div>
+</div>
+<div class="flex-container">
+  <div id="formCheckBox">
+    <div th:each="matkul: ${listMatkulTotal}">
+    <input type="checkbox" id="${matkul.getTitle()}" name="${matkul.getTitle()}" th:value="${matkul.getTitle()}">
+    <label for="${matkul.getTitle()}">
+      <p th:text="${matkul.getTitle()}"></p>
+    </label><br>
+    </div>
+    <div class="flex-container-but">
+      <button id="checkBoxSubmit" class="button">Filter</button>
+    </div>
+  </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script th:src="@{/fragments/navbar.js}"></script>
+<script th:src="@{/personalized/personalCheckbox.js}"></script>
 </body>
 </html>
