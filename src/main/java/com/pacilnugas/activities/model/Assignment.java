@@ -19,7 +19,6 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "assignment")
 public class Assignment extends Activity {
 

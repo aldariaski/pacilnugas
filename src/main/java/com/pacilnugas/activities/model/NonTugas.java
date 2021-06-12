@@ -13,7 +13,6 @@ import java.time.LocalTime;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "nontugas")
 public class NonTugas extends Activity {
     @Column(name = "date")

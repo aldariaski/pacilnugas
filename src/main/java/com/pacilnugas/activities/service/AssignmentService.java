@@ -10,6 +10,8 @@ public interface AssignmentService {
     Assignment createAssignment(String title, String description,
             String matkul, String tahunajaran, LocalDate deadline, LocalTime time);
 
+    Assignment createAssignment2(Assignment assignment);
+
     List<List> getAllAssignment();
 
     Assignment getAssignmentById(int idassignment);
