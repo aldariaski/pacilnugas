@@ -17,7 +17,6 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Activity {
     @Id
