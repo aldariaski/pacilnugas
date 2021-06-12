@@ -5,6 +5,7 @@ import com.pacilnugas.activities.repository.MatkulRepository;
 import com.pacilnugas.activities.model.Matkul;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,7 +20,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 @Table(name = "assignment")
 public class Assignment extends Activity {
 
@@ -46,12 +47,10 @@ public class Assignment extends Activity {
     }
 
     public String getMajor() {
-        if (getMatkulObject() == null) return "Ilmu Komputer";
         return getMatkulObject().getMajor();
     }
 
     public int getAngkatan() {
-        if (getMatkulObject() == null) return 2019;
         return getMatkulObject().getAngkatan();
     }
 
