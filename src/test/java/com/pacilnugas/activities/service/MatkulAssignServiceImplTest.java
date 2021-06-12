@@ -25,8 +25,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.lenient;
 
 @ExtendWith(MockitoExtension.class)
@@ -83,6 +82,8 @@ public class MatkulAssignServiceImplTest {
         assignment2.setDeadline(deadline1);
         assignment2.setTime(time1);
 
+        //NonTugas
+
     }
 
     @Test
@@ -112,5 +113,22 @@ public class MatkulAssignServiceImplTest {
         assertEquals("Ilmu Komputer", assignment2.getMajor());
         assertEquals(2019, assignment2.getAngkatan());
         assertEquals("08 January 2020", assignment2.getDeadlineFormatted());
+    }
+
+    @Test
+    void testMatkul2EqualsObject() {
+        assertTrue(matkul1 instanceof Matkul);
+        assertEquals(matkul1, matkul1);
+        assertTrue(matkul1.equals(matkul1));
+        Matkul matkulnull = null;
+        assertNull(matkulnull);
+    }
+
+    @Test
+    void testServiceGetDaftarPesan() {
+        List<List> listSemua = new ArrayList<>();
+        List<List> listoflist = assignmentService.getAllAssignment();
+        assertEquals(listoflist, listSemua);
+
     }
 }
