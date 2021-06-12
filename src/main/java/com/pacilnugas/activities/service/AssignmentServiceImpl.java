@@ -74,4 +74,15 @@ public class AssignmentServiceImpl implements AssignmentService {
         assignmentRepository.save(assignment);
         return assignment;
     }
+
+    @Override
+    public Assignment getAssignmentByNama(String nama) {
+        List<Assignment> assList = assignmentRepository.findAll();
+        for (Assignment tiapAss: assList) {
+            if (tiapAss.getTitle().equals(nama)) {
+                return tiapAss;
+            }
+        }
+        return null;
+    }
 }

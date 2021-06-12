@@ -46,12 +46,10 @@ public class Assignment extends Activity {
     }
 
     public String getMajor() {
-        if (getMatkulObject() == null) return "Ilmu Komputer";
         return getMatkulObject().getMajor();
     }
 
     public int getAngkatan() {
-        if (getMatkulObject() == null) return 2019;
         return getMatkulObject().getAngkatan();
     }
 
