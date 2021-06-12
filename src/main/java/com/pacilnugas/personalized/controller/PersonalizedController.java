@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,13 +38,15 @@ public class PersonalizedController {
     }
 
     @GetMapping("/personalFilter")
-    public String personalFilter(@RequestParam("listMatkul") List<String> listMatkul, HttpServletRequest request){
-        System.out.println(listMatkul);
+    public String personalFilter(@RequestParam("listMatkul") List<String> listMatkul){
         List<Matkul> checkedMatkul = new ArrayList<>();
         for (String stringMatkul: listMatkul) {
-            System.out.println(stringMatkul);
-            Matkul matkul = matkulService.getMatkulByNama(stringMatkul);
-            checkedMatkul.add(matkul);
+            try {
+                String result = java.net.URLDecoder.decode(stringMatkul, StandardCharsets.UTF_8.name());
+                Matkul matkul = matkulService.getMatkulByNama(result);
+                checkedMatkul.add(matkul);
+            } catch (UnsupportedEncodingException e) {
+            }
         }
         userService.saveMatkul("sasfort", checkedMatkul);
         return "redirect:/personal?username=sasfort";
