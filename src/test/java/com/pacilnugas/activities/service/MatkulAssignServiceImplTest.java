@@ -4,20 +4,12 @@ import com.pacilnugas.activities.model.Assignment;
 import com.pacilnugas.activities.model.Matkul;
 import com.pacilnugas.activities.repository.AssignmentRepository;
 import com.pacilnugas.activities.repository.MatkulRepository;
-import com.pacilnugas.activities.service.AssignmentService;
-import com.pacilnugas.activities.service.MatkulService;
-import com.pacilnugas.template.core.Pesan;
-import com.pacilnugas.template.core.PesanBebas;
-import com.pacilnugas.template.core.PesanTugas;
-import com.pacilnugas.template.core.PesanUjian;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.expression.spel.ast.Assign;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,7 +17,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.lenient;
 
 @ExtendWith(MockitoExtension.class)
@@ -49,11 +43,11 @@ public class MatkulAssignServiceImplTest {
     private void setUp() {
         semuaAss = new ArrayList<>();
         //Setup matkul first
-        LocalDate waktumatkul1 = LocalDate.of(2020, 1, 8);
         matkul1 = new Matkul("Adpro");
         matkul1.setPengajar("budi");
         matkul1.setTitle("Adpro");
         matkul1.setDescription("Belajar programming");
+        LocalDate waktumatkul1 = LocalDate.of(2020, 1, 8);
         matkul1.setMulai(waktumatkul1);
         matkul1.setTahun(2020);
         matkul1.setSemester("Ganjil");
@@ -64,16 +58,15 @@ public class MatkulAssignServiceImplTest {
                 waktumatkul1, 2020, "Ganjil", "Ilmu Komputer", 2019);
         matkul2 = matkulRepository.findByTitle("Adpro");
 
-
         //Assignments
         LocalDate deadline1 = LocalDate.of(2020, 1, 8);
         LocalTime time1 = LocalTime.of(12, 5);
-        LocalDateTime deadlinetime1 = LocalDateTime.of(deadline1, time1);
         assignmentService.createAssignment("Tugas 1 Adpro", "Belajar Pattern", "Adpro",
                 "2019", deadline1, time1);
         assignment1 = assignmentRepository.findByTitle("Tugas 1 Adpro");
         semuaAss.add(assignment1);
 
+        LocalDateTime deadlinetime1 = LocalDateTime.of(deadline1, time1);
         assignment2 = new Assignment("Tugas 2", matkul1, deadlinetime1);
         assignment2.setTitle("Tugas 2");
         assignment2.setDescription("Sangat banyak");
@@ -81,13 +74,10 @@ public class MatkulAssignServiceImplTest {
         assignment2.setMatkulObject(matkul1);
         assignment2.setDeadline(deadline1);
         assignment2.setTime(time1);
-
-        //NonTugas
-
     }
 
     @Test
-    void testServiceCreateAss(){
+    void testServiceCreateAss() {
         lenient().when(assignmentService.createAssignment2(assignment2)).thenReturn(assignment2);
     }
 
@@ -101,10 +91,10 @@ public class MatkulAssignServiceImplTest {
     @Test
     void testMatkulLombokDataToString() {
         String tostring1 = assignment2.toString();
-        assertEquals("Assignment(matkulObject=Matkul(idAssignment=0, title=Adpro, " +
-                "description=Belajar programming, tahun=2020, mulai=2020-01-08, semester=Ganjil, " +
-                "major=Ilmu Komputer, angkatan=2019, pengajar=budi, listAssignment=null), matkul=Adpro, " +
-                "deadline=2020-01-08, time=12:05)",
+        assertEquals("Assignment(matkulObject=Matkul(idAssignment=0, title=Adpro, "
+                        + "description=Belajar programming, tahun=2020, mulai=2020-01-08, "
+                        + "semester=Ganjil, major=Ilmu Komputer, angkatan=2019, pengajar=budi, "
+                        + "listAssignment=null), matkul=Adpro, deadline=2020-01-08, time=12:05)",
                 tostring1);
     }
 
@@ -112,7 +102,6 @@ public class MatkulAssignServiceImplTest {
     void testMatkul2GetPlentiesFromModel() {
         assertEquals("Ilmu Komputer", assignment2.getMajor());
         assertEquals(2019, assignment2.getAngkatan());
-        //assertEquals("08 January 2020", assignment2.getDeadlineFormatted()); //versi lokal
         assertEquals("08 1 2020", assignment2.getDeadlineFormatted()); //versi gitlab
     }
 
@@ -130,6 +119,5 @@ public class MatkulAssignServiceImplTest {
         List<List> listSemua = new ArrayList<>();
         List<List> listoflist = assignmentService.getAllAssignment();
         assertEquals(listoflist, listSemua);
-
     }
 }
