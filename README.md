@@ -24,10 +24,12 @@
 2. 1906350686 - Syabib Ash-shiddiqi
 3. 1906305890 - Shanika Tysha Anqita
 4. 1906351096 - Yusuf Fakhri Aldrian
+5. 1906350603 - Vander Gerald Sukandi
 
 ## Pembagian Tugas
 
 1. Landing Page & Score Tracker (Cornelita Lugita Santoso)
-2. Personal Page & Account (Syabib Ash-shiddiqi)
+2. Sign Up, Login, & Personal Page (Syabib Ash-Shiddiqi)
 3. Detail Page & Message (Shanika Tysha Anqita)
 4. Courses, Assignments & Activities (Yusuf Fakhri Aldrian)
+5. Tidak mengerjakan bagiannya (Vander Gerald Sukandi)
