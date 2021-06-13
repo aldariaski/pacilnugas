@@ -1,9 +1,9 @@
 package com.pacilnugas.activities.service;
 
 import com.pacilnugas.activities.model.Assignment;
-import com.pacilnugas.activities.model.Matkul;
 
-import java.time.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public interface AssignmentService {

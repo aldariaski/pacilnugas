@@ -4,9 +4,12 @@ import com.pacilnugas.activities.service.MatkulService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -62,15 +65,16 @@ public class MatkulController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/view/{idAss}/update")
-    public String matkulEditForm(HttpServletRequest request, @PathVariable(value = "idAss") int idAss, Model model) {
+    public String matkulEditForm(
+            HttpServletRequest request, @PathVariable(value = "idAss") int idAss, Model model) {
         model.addAttribute("AssignmentIni", matkulService.getMatkulById(idAss));
         String title = request.getParameter("title");
         String matkul = request.getParameter("matkul");
         String description = request.getParameter("description");
         LocalDate deadline = LocalDate.parse(request.getParameter("deadline"));
-        LocalTime deadline_time = LocalTime.parse(request.getParameter("deadline-time"));
-        matkulService.updateMatkul(idAss,title, description,
-                matkul, deadline, deadline_time);
+        LocalTime deadlineTime = LocalTime.parse(request.getParameter("deadline-time"));
+        matkulService.updateMatkul(idAss, title, description,
+                matkul, deadline, deadlineTime);
         return "redirect:/task/view/{idAss}";
     }
 }

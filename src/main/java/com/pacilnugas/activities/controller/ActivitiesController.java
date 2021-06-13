@@ -1,18 +1,18 @@
 package com.pacilnugas.activities.controller;
 
-import com.pacilnugas.activities.model.Assignment;
-import com.pacilnugas.activities.service.MatkulService;
 import com.pacilnugas.activities.service.AssignmentService;
-import org.springframework.stereotype.Controller;
+import com.pacilnugas.activities.service.MatkulService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import java.time.*;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -20,6 +20,7 @@ import java.util.List;
 public class ActivitiesController {
     @Autowired
     private AssignmentService assignmentService;
+
     @Autowired
     private MatkulService matkulService;
 
@@ -29,11 +30,11 @@ public class ActivitiesController {
         String matkul = request.getParameter("matkul");
         String description = request.getParameter("description");
         LocalDate deadline = LocalDate.parse(request.getParameter("deadline"));
-        LocalTime deadline_time = LocalTime.parse(request.getParameter("deadline-time"));
+        LocalTime deadlineTime = LocalTime.parse(request.getParameter("deadline-time"));
         String tahunajaran = request.getParameter("deadline").substring(0, 4);
 
         assignmentService.createAssignment(title, description,
-                matkul, tahunajaran, deadline, deadline_time);
+                matkul, tahunajaran, deadline, deadlineTime);
 
         return "redirect:/task/all";
     }
@@ -70,15 +71,16 @@ public class ActivitiesController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/view/{idAss}/update")
-    public String assignmentEditForm(HttpServletRequest request, @PathVariable(value = "idAss") int idAss, Model model) {
+    public String assignmentEditForm(
+            HttpServletRequest request, @PathVariable(value = "idAss") int idAss, Model model) {
         model.addAttribute("AssignmentIni", assignmentService.getAssignmentById(idAss));
         String title = request.getParameter("title");
         String matkul = request.getParameter("matkul");
         String description = request.getParameter("description");
         LocalDate deadline = LocalDate.parse(request.getParameter("deadline"));
-        LocalTime deadline_time = LocalTime.parse(request.getParameter("deadline-time"));
-        assignmentService.updateAssignment(idAss,title, description,
-                matkul, deadline, deadline_time);
+        LocalTime deadlineTime = LocalTime.parse(request.getParameter("deadline-time"));
+        assignmentService.updateAssignment(idAss, title, description,
+                matkul, deadline, deadlineTime);
         return "redirect:/task/view/{idAss}";
     }
 }

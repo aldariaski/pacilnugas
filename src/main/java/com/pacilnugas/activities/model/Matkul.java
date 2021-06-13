@@ -4,14 +4,18 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @Entity
 @Data
@@ -23,7 +27,7 @@ public class Matkul {
     @Column(name = "id_assignment", updatable = false)
     private int idAssignment;
 
-    @Column(name = "title", unique= true)
+    @Column(name = "title", unique = true)
     private String title;
 
     @Column(name = "description")
@@ -48,7 +52,6 @@ public class Matkul {
 
     @Column(name = "pengajar")
     private String pengajar; //username pengajar itu
-    // private List<String> list_pengajar; //pakai ini jika sudah bisa menghandle banyak pengajar di satu matkul
 
     @OneToMany(mappedBy = "matkulObject")
     @JsonManagedReference
@@ -73,7 +76,7 @@ public class Matkul {
         return returnan;
     }
 
-    public Matkul (String title) {
+    public Matkul(String title) {
         this.setTitle(title);
     }
 }
