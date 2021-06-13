@@ -86,7 +86,7 @@ public class MatkulServiceImpl implements MatkulService {
     @Override
     public Matkul getMatkulByNama(String nama) {
         List<Matkul> matkulList = matkulRepository.findAll();
-        for (Matkul tiapMatkul: matkulList) {
+        for (Matkul tiapMatkul : matkulList) {
             if (tiapMatkul.getTitle().equals(nama)) {
                 return tiapMatkul;
             }
@@ -95,8 +95,8 @@ public class MatkulServiceImpl implements MatkulService {
     }
 
     @Override
-    public Matkul updateMatkul(int idassignment, String title, String description, String matkul, LocalDate deadline,
-                                LocalTime time){
+    public Matkul updateMatkul(int idassignment, String title, String description, String matkul,
+                               LocalDate deadline, LocalTime time) {
         Matkul matkulReturn = matkulRepository.findById(idassignment).get();
         return matkulReturn;
     }

@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface AssignmentRepository extends JpaRepository<Assignment, Integer> {
     //Assignment
-
+    Assignment findByTitle(String title);
 }

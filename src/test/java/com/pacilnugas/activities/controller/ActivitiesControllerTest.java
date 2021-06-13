@@ -1,6 +1,5 @@
 package com.pacilnugas.activities.controller;
 
-import com.pacilnugas.activities.controller.ActivitiesController;
 import com.pacilnugas.activities.model.Assignment;
 import com.pacilnugas.activities.model.Matkul;
 import com.pacilnugas.activities.service.AssignmentService;
@@ -15,15 +14,16 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.handler;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-
 
 @WebMvcTest(controllers = ActivitiesController.class)
 public class ActivitiesControllerTest {
@@ -69,8 +69,8 @@ public class ActivitiesControllerTest {
                 .param("deadline-time", "12:05"))
                 .andExpect(handler().methodName("assignmentFormPro"));
 
-        verify(assignmentService, times(1)).
-                createAssignment("TP 1", "Belajar TP", "DDP",
+        verify(assignmentService, times(1))
+                .createAssignment("TP 1", "Belajar TP", "DDP",
                         "2020", deadline, time);
     }
 
@@ -81,20 +81,51 @@ public class ActivitiesControllerTest {
                 .andExpect(view().name("activities/assignment/inputPage"));
     }
 
-    /*@Test
-    public void whenEditAssignmentUrlShouldCallAssignmentView() throws Exception {
-        Matkul matkul1 = new Matkul();
-        matkul1.setMajor("Ilmu Komputer");
-        matkul1.setAngkatan(2019);
-        Assignment assignment1 = new Assignment(
-                "Group Project - Adpro", matkul1, LocalDateTime.now());
-        mockMvc.perform(get("/view/1/edit"))
+    @Test
+    void whenGetSpecificAssignmentUrlIsAccessed() throws Exception {
+        Matkul matkul = new Matkul();
+        matkul.setMajor("Ilmu Komputer");
+        matkul.setAngkatan(2019);
+        Assignment assignment = new Assignment(
+                "Group Project - Adpro", matkul, LocalDateTime.now());
+        lenient().when(assignmentService.getAssignmentById(0)).thenReturn(assignment);
+        mockMvc.perform(get("/task/view/0"))
                 .andExpect(status().isOk())
-                .andExpect(handler().methodName("getAssignmentToEdit"))
+                .andExpect(model().attributeExists("AssignmentIni"))
+                .andExpect(view().name("activities/rincian/rincian"));
+    }
+
+    @Test
+    void whenGetAssignmentToEditUrl() throws Exception {
+        Matkul matkul = new Matkul();
+        matkul.setMajor("Ilmu Komputer");
+        matkul.setAngkatan(2019);
+        Assignment assignment = new Assignment(
+                "Group Project - Adpro", matkul, LocalDateTime.now());
+
+        lenient().when(assignmentService.getAssignmentById(0)).thenReturn(assignment);
+        mockMvc.perform(get("/task/view/0/edit"))
+                .andExpect(status().isOk())
                 .andExpect(model().attributeExists("AssignmentIni"))
                 .andExpect(view().name("activities/edit/editAssignment"));
-    }*/
+    }
 
+    @Test
+    void whenAssignmentEditFormUrl() throws Exception {
+        Matkul matkul = new Matkul();
+        matkul.setMajor("Ilmu Komputer");
+        matkul.setAngkatan(2019);
+        Assignment assignment = new Assignment(
+                "Group Project - Adpro", matkul, LocalDateTime.now());
 
+        lenient().when(assignmentService.getAssignmentById(0)).thenReturn(assignment);
+        mockMvc.perform(post("/task/view/0/update")
+                .param("title", assignment.getTitle())
+                .param("matkul", matkul.getTitle())
+                .param("description", "Belajar TP")
+                .param("deadline", "2020-01-08")
+                .param("deadline-time", "12:05"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/task/view/0"));
+    }
 }
-
