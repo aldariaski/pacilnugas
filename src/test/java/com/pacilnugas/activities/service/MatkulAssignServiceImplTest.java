@@ -102,7 +102,8 @@ public class MatkulAssignServiceImplTest {
     void testMatkul2GetPlentiesFromModel() {
         assertEquals("Ilmu Komputer", assignment2.getMajor());
         assertEquals(2019, assignment2.getAngkatan());
-        assertEquals("08 1 2020", assignment2.getDeadlineFormatted()); //versi gitlab
+        //assertEquals("08 1 2020", assignment2.getDeadlineFormatted()); //versi gitlab
+        assertEquals("08 January 2020", assignment2.getDeadlineFormatted()); //versi local java 13
     }
 
     @Test
