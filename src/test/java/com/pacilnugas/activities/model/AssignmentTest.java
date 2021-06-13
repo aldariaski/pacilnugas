@@ -40,6 +40,6 @@ class AssignmentTest {
     @Test
     void testAssignmentEquals() {
         assignment2 = new Assignment("Group Project - Adpro", matkul, LocalDateTime.now());
-        Assertions.assertEquals(false, assignment1.equals(assignment2));
+        Assertions.assertEquals(true, assignment1.equals(assignment2));
     }
 }
