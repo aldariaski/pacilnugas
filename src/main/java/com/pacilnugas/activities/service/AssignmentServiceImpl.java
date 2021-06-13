@@ -4,14 +4,13 @@ import com.pacilnugas.activities.model.Assignment;
 import com.pacilnugas.activities.model.Matkul;
 import com.pacilnugas.activities.repository.AssignmentRepository;
 import com.pacilnugas.activities.repository.MatkulRepository;
-import com.pacilnugas.activities.service.MatkulService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class AssignmentServiceImpl implements AssignmentService {
@@ -86,7 +85,7 @@ public class AssignmentServiceImpl implements AssignmentService {
     @Override
     public Assignment getAssignmentByNama(String nama) {
         List<Assignment> assList = assignmentRepository.findAll();
-        for (Assignment tiapAss: assList) {
+        for (Assignment tiapAss : assList) {
             if (tiapAss.getTitle().equals(nama)) {
                 return tiapAss;
             }

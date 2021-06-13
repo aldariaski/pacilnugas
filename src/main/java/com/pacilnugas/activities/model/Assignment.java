@@ -1,31 +1,29 @@
 package com.pacilnugas.activities.model;
 
-import com.fasterxml.jackson.annotation.*;
-import com.pacilnugas.activities.repository.MatkulRepository;
-import com.pacilnugas.activities.model.Matkul;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.time.*;
-import java.time.format.DateTimeFormatter;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 @Table(name = "assignment")
 public class Assignment extends Activity {
-
-    //Jika sudah bisa nanti memakai
-    //@JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "idAssignment")
     @JsonBackReference
@@ -56,7 +54,7 @@ public class Assignment extends Activity {
 
     public List buatString() {
         List returnan = new ArrayList<>();
-        returnan.add("TUGAS #"+ getId_activity() + "\n\n");
+        returnan.add("TUGAS #" + getId_activity() + "\n\n");
         returnan.add("Nama tugas: " + getTitle());
         returnan.add("Nama matkul: " + getMatkul());
         returnan.add("Nama pengajar: " + getMaker_username());
@@ -67,7 +65,7 @@ public class Assignment extends Activity {
         return returnan;
     }
 
-    public Assignment (String title, Matkul matkul, LocalDateTime deadline) {
+    public Assignment(String title, Matkul matkul, LocalDateTime deadline) {
         super();
         this.setTitle(title);
         this.matkulObject = matkul;

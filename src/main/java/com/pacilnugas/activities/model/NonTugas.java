@@ -1,12 +1,13 @@
 package com.pacilnugas.activities.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -14,7 +15,7 @@ import java.time.LocalTime;
 @Entity
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 @Table(name = "nontugas")
 public class NonTugas extends Activity {
     @Column(name = "date")
@@ -23,7 +24,7 @@ public class NonTugas extends Activity {
     @Column(name = "time")
     private LocalTime time;
 
-    public NonTugas (String title, LocalDateTime fulldate) {
+    public NonTugas(String title, LocalDateTime fulldate) {
         super();
         this.setTitle(title);
         this.date = fulldate.toLocalDate();
