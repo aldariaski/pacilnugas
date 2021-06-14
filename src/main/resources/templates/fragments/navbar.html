@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li class="has-subnav">
-                <a th:href="@{/personal}">
+                <a th:href="@{/login}">
                     <i class="fa material-icons fa-2x">account_circle</i>
                     <span class="nav-text">Personal Page</span>
                 </a>
@@ -43,21 +43,15 @@
 
         <ul class="logout">
             <li>
-                <a th:href="@{/accountList}">
+                <a th:href="@{/existingAccount}">
+                    <i class="fa material-icons fa-2x">groups</i>
+                    <span class="nav-text">Existing Accounts</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/registration}">
                     <i class="fa material-icons fa-2x">person_add</i>
-                    <span class="nav-text">Sign up</span>
-                </a>
-            </li>
-            <li>
-                <a th:href="@{/loginMenu}">
-                    <i class="fa material-icons fa-2x">login</i>
-                    <span class="nav-text">Login</span>
-                </a>
-            </li>
-            <li>
-                <a th:href="@{/}">
-                    <i class="fa material-icons fa-2x">power_settings_new</i>
-                    <span class="nav-text">Logout</span>
+                    <span class="nav-text">Register</span>
                 </a>
             </li>
         </ul>

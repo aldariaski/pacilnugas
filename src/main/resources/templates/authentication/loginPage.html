@@ -1,38 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
-<!--    <title>Login Page</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<div class="py-3 text-center">-->
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="mx-auto p-4 col-md-7">-->
-<!--                <h1 class="mb-4">Login Page</h1>-->
-<!--                <p class="mb-4">Fill out your username and password:</p>-->
-<!--                <form th:action="@{/loginAccount}" method="POST">-->
-<!--                    <div class="form-group">-->
-<!--                        <input type="text" class="form-control" name="username" placeholder="Username">-->
-<!--                        <input type="password" class="form-control" name="password" placeholder="Password" minlength="8">-->
-<!--                    </div>-->
-<!--                    <button type="submit" class="btn btn-outline-primary btn-block">Submit</button>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<div class="py-3 text-center">-->
-<!--    <h3 th:text="${loginStatus}"></h3>-->
-<!--    <form th:action="@{/logoutAccount}" method="POST">-->
-<!--        <button type="submit" class="btn btn-outline-primary btn-block">Log Out</button>-->
-<!--    </form>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--</body></html>-->
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -42,7 +7,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/authentication/loginPage.css}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" type="text/css" th:href="@{/fragments/navbar.css}">
-    <title>Buat Akun</title>
+    <title>Login</title>
 </head>
 
 <body>
@@ -52,14 +17,15 @@
         <p id="judul" style="font-size: 40px;font-weight: 700;color: #406AD8;">Log<span style="color:#CE3030;">in</span></p>
     </div>
     <div class="flex-item-bottom">
+        <p style="font-size:20px;font-weight:500;">Masukkan akun personal anda yang telah terdaftar</p>
         <hr>
-        <form th:action="@{/loginAccount}" method="POST">
+        <form th:action="@{/loginProcess}" method="POST">
             <div class="form-group">
                 <input type="text" class="form-control" id="username" name="username" placeholder="Username" required><br>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password" required><br>
             </div>
             <div class="flex-container-but">
-                <button onclick="loginFunction()" class="button">Submit</button>
+                <button class="button">Submit</button>
             </div>
         </form>
     </div>
@@ -70,9 +36,4 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script th:src="@{/fragments/navbar.js}"></script>
-<script>
-    function loginFunction() {
-        alert("Anda berhasil masuk.");
-    }
-</script>
 </html>

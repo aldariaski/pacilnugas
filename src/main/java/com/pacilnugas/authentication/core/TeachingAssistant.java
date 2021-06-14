@@ -12,7 +12,7 @@ public class TeachingAssistant extends Account {
     public TeachingAssistant(String username, String password) {
         super(username, password);
         this.setType("Teaching Assistant");
-//        this.setInputAccess(true);
-//        this.setPersonalizedAccess(true);
+        this.setInputAccess(true);
+        this.setPersonalizedAccess(true);
     }
 }

@@ -1,6 +1,7 @@
 const baseUrl = window.location.protocol + '//' + (window.location.href).match('^(?:http:\/\/|www\.|https:\/\/)([^\/]+)')[1];
 
-$('#checkBoxSubmit').on('click', function(event) {
+$('#checkboxSubmit').on('click', function(event) {
+    let username = document.querySelector('#username').getAttribute('value');
     let checkedCourse = [];
     let allCourse = $("input[type='checkbox']").toArray();
     allCourse.forEach((item)=> {
@@ -8,5 +9,6 @@ $('#checkBoxSubmit').on('click', function(event) {
             checkedCourse.push(encodeURIComponent($(item).val()));
         }
     });
-    location.href = `${baseUrl}/personalFilter?listMatkul=${checkedCourse}`;
+    console.log(username);
+    location.href = `${baseUrl}/personalFilter?listMatkul=${checkedCourse}&username=${username}`;
 });

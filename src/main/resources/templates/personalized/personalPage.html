@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" type="text/css" th:href="@{/personalized/personalPage.css}">
-  <title>Daftar Akun</title>
+  <title>Personal Page</title>
 </head>
 
 <body>
@@ -34,8 +34,10 @@
     </div>
   </div>
 </div>
+
 <div class="flex-container">
-  <div id="formCheckBox">
+  <div>
+    <input type="hidden" id="username" name="username" th:value="${username}">
     <div th:each="matkul: ${listMatkulTotal}">
     <input type="checkbox" id="${matkul.getTitle()}" name="${matkul.getTitle()}" th:value="${matkul.getTitle()}">
     <label for="${matkul.getTitle()}">
@@ -43,12 +45,12 @@
     </label><br>
     </div>
     <div class="flex-container-but">
-      <button id="checkBoxSubmit" class="button">Filter</button>
+      <button id="checkboxSubmit" class="button">Filter</button>
     </div>
   </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script th:src="@{/fragments/navbar.js}"></script>
-<script th:src="@{/personalized/personalCheckbox.js}"></script>
+<script th:src="@{/personalized/personalPage.js}"></script>
 </body>
 </html>

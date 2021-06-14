@@ -12,7 +12,7 @@ public class Student extends Account {
     public Student(String username, String password) {
         super(username, password);
         this.setType("Student");
-//        this.setInputAccess(false);
-//        this.setPersonalizedAccess(true);
+        this.setInputAccess(false);
+        this.setPersonalizedAccess(true);
     }
 }

@@ -12,7 +12,7 @@ public class Lecturer extends Account {
     public Lecturer(String username, String password) {
         super(username, password);
         this.setType("Lecturer");
-//        this.setInputAccess(true);
-//        this.setPersonalizedAccess(false);
+        this.setInputAccess(true);
+        this.setPersonalizedAccess(false);
     }
 }

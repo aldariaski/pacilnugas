@@ -11,12 +11,13 @@ public abstract class Account {
     @Id
     private String username;
 
-    @ManyToMany
-    private List<Matkul> personalizedMatkul;
-
     private String password;
     private String type;
+    private boolean inputAccess;
+    private boolean personalizedAccess;
 
+    @ManyToMany
+    private List<Matkul> personalizedMatkul;
 
     public Account() {
     }
@@ -42,11 +43,27 @@ public abstract class Account {
         this.type = type;
     }
 
-    public void setPersonalizedMatkul(List<Matkul> personalizedMatkul) {
-        this.personalizedMatkul = personalizedMatkul;
+    public boolean getInputAccess() {
+        return inputAccess;
+    }
+
+    public void setInputAccess(boolean inputAccess) {
+        this.inputAccess = inputAccess;
+    }
+
+    public boolean getPersonalizedAccess() {
+        return personalizedAccess;
+    }
+
+    public void setPersonalizedAccess(boolean personalizedAccess) {
+        this.personalizedAccess = personalizedAccess;
     }
 
     public List<Matkul> getPersonalizedMatkul() {
         return personalizedMatkul;
+    }
+
+    public void setPersonalizedMatkul(List<Matkul> personalizedMatkul) {
+        this.personalizedMatkul = personalizedMatkul;
     }
 }

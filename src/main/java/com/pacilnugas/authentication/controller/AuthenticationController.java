@@ -1,6 +1,7 @@
 package com.pacilnugas.authentication.controller;
 
-import com.pacilnugas.authentication.service.UserService;
+import com.pacilnugas.authentication.core.Account;
+import com.pacilnugas.authentication.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,49 +9,54 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 @Controller
 public class AuthenticationController {
     @Autowired
-    private UserService userService;
+    private AccountService accountService;
 
-    @GetMapping("/accountList")
-    public String getUserList(Model model){
-        model.addAttribute("UserDisplayList", userService.getAllDisplayMessage());
-        return "authentication/accountList";
+    @GetMapping("/existingAccount")
+    public String existingAccount(Model model){
+        model.addAttribute("AccountDisplayList", accountService.getAllDisplayMessage());
+        return "authentication/existingAccountPage";
     }
 
-    @GetMapping("/createAccountMenu")
-    public String createAccountMenu(Model model) {
-        return "authentication/createAccount";
+    @GetMapping("/registration")
+    public String registration(Model model) {
+        return "authentication/registrationPage";
     }
 
-    @PostMapping("/createAccount")
-    public String createAccount(HttpServletRequest request){
+    @PostMapping("/registrationProcess")
+    public String registrationProcess(HttpServletRequest request){
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String type = request.getParameter("type");
-        userService.createUser(username, password, type);
-        return "redirect:/accountList";
+        accountService.createAccount(username, password, type);
+        return "redirect:/existingAccount";
     }
 
-    @GetMapping("/loginMenu")
-    public String loginMenu(Model model){
-        model.addAttribute("loginStatus", userService.getLoginStatus());
+    @GetMapping("/login")
+    public String login(Model model){
         return "authentication/loginPage";
     }
 
-    @PostMapping("/loginAccount")
-    public String loginAccount(HttpServletRequest request){
+    @PostMapping("/loginProcess")
+    public String loginProcess(HttpServletRequest request){
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        userService.login(username, password);
-        return "redirect:/loginMenu";
-    }
-
-    @PostMapping("/logoutAccount")
-    public String logoutAccount(HttpServletRequest request){
-        userService.logout();
-        return "redirect:/loginMenu";
+        Account foundAccount = accountService.getAccount(username, password);
+        if (foundAccount == null) {
+            return "redirect:/login";
+        }
+        try {
+            username = URLEncoder.encode(username, StandardCharsets.UTF_8.name());
+        } catch (UnsupportedEncodingException e) {
+        }
+        System.out.println(username);
+        return "redirect:/personal?username=" + username;
     }
 }
