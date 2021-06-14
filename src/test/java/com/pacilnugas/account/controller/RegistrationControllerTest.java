@@ -1,6 +1,6 @@
-package com.pacilnugas.authentication.controller;
+package com.pacilnugas.account.controller;
 
-import com.pacilnugas.authentication.service.AccountService;
+import com.pacilnugas.account.service.AccountService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -14,8 +14,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-@WebMvcTest(controllers = AuthenticationController.class)
-public class AuthenticationControllerTest {
+@WebMvcTest(controllers = RegistrationController.class)
+public class RegistrationControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

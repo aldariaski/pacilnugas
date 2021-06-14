@@ -1,13 +1,15 @@
-package com.pacilnugas.authentication.service;
+package com.pacilnugas.account.service;
 
+import com.pacilnugas.account.security.PasswordCoder;
 import com.pacilnugas.activities.model.Matkul;
 import com.pacilnugas.activities.repository.MatkulRepository;
-import com.pacilnugas.authentication.core.Lecturer;
-import com.pacilnugas.authentication.core.Student;
-import com.pacilnugas.authentication.core.TeachingAssistant;
-import com.pacilnugas.authentication.core.Account;
-import com.pacilnugas.authentication.repository.AccountRepository;
+import com.pacilnugas.account.core.Lecturer;
+import com.pacilnugas.account.core.Student;
+import com.pacilnugas.account.core.TeachingAssistant;
+import com.pacilnugas.account.core.Account;
+import com.pacilnugas.account.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,15 +23,18 @@ public class AccountService {
     @Autowired
     private MatkulRepository matkulRepository;
 
-    private Account activeAccount;
-    private boolean loginTrial;
+    private PasswordCoder passwordCoder;
 
     public AccountService() {
-        this.activeAccount = null;
-        this.loginTrial = false;
+        try {
+            this.passwordCoder = new PasswordCoder();
+        } catch (Exception e) {
+
+        }
     }
 
     public void createAccount(String username, String password, String type) {
+        password = passwordCoder.encrypt(password);
         if (type.equalsIgnoreCase("Student")) {
             Student newAccount = new Student(username, password);
             accountRepository.save(newAccount);
@@ -61,6 +66,7 @@ public class AccountService {
 
     public Account getAccount(String username, String password) {
         Account foundAccount = accountRepository.findById(username).get();
+        password = passwordCoder.encrypt(password);
         if (foundAccount.getPassword().equalsIgnoreCase(password)) {
             return foundAccount;
         }
@@ -77,30 +83,12 @@ public class AccountService {
         return accountRepository.findById(username).get();
     }
 
-    public void login(String username, String password) {
-        this.loginTrial = true;
-        this.activeAccount = getAccount(username, password);
-    }
-
-    public String getLoginStatus() {
-        if (!this.loginTrial) {
-            return "";
+    public boolean checkUsernameUsed(String username) {
+        for (Account account: getAllAccount()) {
+            if (account.getUsername().equals(username)) {
+                return true;
+            }
         }
-        else if (this.activeAccount == null) {
-            return "Login failed";
-        } else {
-            return loginMessage();
-        }
-    }
-
-    public String loginMessage() {
-        String type = this.activeAccount.getType().toLowerCase();
-        String username = this.activeAccount.getUsername();
-        return "You logged in as a " + type + " with username " + username;
-    }
-
-    public void logout() {
-        this.activeAccount = null;
-        this.loginTrial = false;
+        return false;
     }
 }

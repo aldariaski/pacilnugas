@@ -1,8 +1,8 @@
-package com.pacilnugas.personalized.controller;
+package com.pacilnugas.account.controller;
 
 import com.pacilnugas.activities.model.Matkul;
 import com.pacilnugas.activities.service.MatkulService;
-import com.pacilnugas.authentication.service.AccountService;
+import com.pacilnugas.account.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class PersonalizedController {
+public class PersonalController {
     @Autowired
     private AccountService accountService;
 
@@ -31,6 +31,7 @@ public class PersonalizedController {
         }
         List<Matkul> listMatkulPersonal = accountService.getAccountByUsername(username).getPersonalizedMatkul();
         List<Matkul> listMatkulTotal = matkulService.getAllMatkulObject();
+        model.addAttribute("display", "Hai, " + username + "!");
         try {
             username = URLEncoder.encode(username, StandardCharsets.UTF_8.name());
         } catch (UnsupportedEncodingException e) {
@@ -38,7 +39,7 @@ public class PersonalizedController {
         model.addAttribute("username", username);
         model.addAttribute("listMatkulPersonal", listMatkulPersonal);
         model.addAttribute("listMatkulTotal", listMatkulTotal);
-        return "personalized/personalPage";
+        return "account/personal/personalPage";
     }
 
     @GetMapping("/personalFilter")

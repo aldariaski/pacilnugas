@@ -1,6 +1,6 @@
-package com.pacilnugas.authentication.repository;
+package com.pacilnugas.account.repository;
 
-import com.pacilnugas.authentication.core.Account;
+import com.pacilnugas.account.core.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

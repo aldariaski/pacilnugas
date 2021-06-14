@@ -1,4 +1,4 @@
-package com.pacilnugas.authentication.core;
+package com.pacilnugas.account.core;
 
 import javax.persistence.Entity;
 
@@ -12,7 +12,7 @@ public class Lecturer extends Account {
     public Lecturer(String username, String password) {
         super(username, password);
         this.setType("Lecturer");
-        this.setInputAccess(true);
+        this.setCourseAccess(true);
         this.setPersonalizedAccess(false);
     }
 }

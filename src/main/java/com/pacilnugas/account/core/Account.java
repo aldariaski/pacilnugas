@@ -1,4 +1,4 @@
-package com.pacilnugas.authentication.core;
+package com.pacilnugas.account.core;
 
 import com.pacilnugas.activities.model.Matkul;
 
@@ -13,7 +13,7 @@ public abstract class Account {
 
     private String password;
     private String type;
-    private boolean inputAccess;
+    private boolean courseAccess;
     private boolean personalizedAccess;
 
     @ManyToMany
@@ -43,12 +43,12 @@ public abstract class Account {
         this.type = type;
     }
 
-    public boolean getInputAccess() {
-        return inputAccess;
+    public boolean getCourseAccess() {
+        return courseAccess;
     }
 
-    public void setInputAccess(boolean inputAccess) {
-        this.inputAccess = inputAccess;
+    public void setCourseAccess(boolean courseAccess) {
+        this.courseAccess = courseAccess;
     }
 
     public boolean getPersonalizedAccess() {
