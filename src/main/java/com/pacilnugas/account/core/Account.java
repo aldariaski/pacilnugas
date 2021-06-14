@@ -2,7 +2,12 @@ package com.pacilnugas.account.core;
 
 import com.pacilnugas.activities.model.Matkul;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
+
 import java.util.List;
 
 @Entity

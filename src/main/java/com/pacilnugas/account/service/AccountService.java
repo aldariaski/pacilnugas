@@ -1,15 +1,14 @@
 package com.pacilnugas.account.service;
 
-import com.pacilnugas.account.security.PasswordCoder;
-import com.pacilnugas.activities.model.Matkul;
-import com.pacilnugas.activities.repository.MatkulRepository;
+import com.pacilnugas.account.core.Account;
 import com.pacilnugas.account.core.Lecturer;
 import com.pacilnugas.account.core.Student;
 import com.pacilnugas.account.core.TeachingAssistant;
-import com.pacilnugas.account.core.Account;
 import com.pacilnugas.account.repository.AccountRepository;
+import com.pacilnugas.account.security.PasswordCoder;
+import com.pacilnugas.activities.model.Matkul;
+import com.pacilnugas.activities.repository.MatkulRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,14 +24,20 @@ public class AccountService {
 
     private PasswordCoder passwordCoder;
 
+    /**
+     * Constructur for accountService, used to initialize PasswordCoder.
+     */
     public AccountService() {
         try {
             this.passwordCoder = new PasswordCoder();
         } catch (Exception e) {
-
+            this.passwordCoder = null;
         }
     }
 
+    /**
+     * Creating account based upon the type that user picks.
+     */
     public void createAccount(String username, String password, String type) {
         password = passwordCoder.encrypt(password);
         if (type.equalsIgnoreCase("Student")) {
@@ -51,6 +56,9 @@ public class AccountService {
         return accountRepository.findAll();
     }
 
+    /**
+     * Retrieving display messages of all existing accounts.
+     */
     public List<String> getAllDisplayMessage() {
         List<Account> listOfAccount = getAllAccount();
         List<String> listOfDisplayMessage = new ArrayList<>();
@@ -64,7 +72,10 @@ public class AccountService {
         return account.getType() + " with username " + account.getUsername();
     }
 
-    public Account getAccount(String username, String password) {
+    /**
+     * Authenticating account based on username and password the user inputs.
+     */
+    public Account authenticate(String username, String password) {
         Account foundAccount = accountRepository.findById(username).get();
         password = passwordCoder.encrypt(password);
         if (foundAccount.getPassword().equalsIgnoreCase(password)) {
@@ -73,6 +84,9 @@ public class AccountService {
         return null;
     }
 
+    /**
+     * Saving picked courses from personal page to database.
+     */
     public void saveMatkul(String username, List<Matkul> listMatkul) {
         Account account = getAccountByUsername(username);
         account.setPersonalizedMatkul(listMatkul);
@@ -83,8 +97,11 @@ public class AccountService {
         return accountRepository.findById(username).get();
     }
 
+    /**
+     * Checking whether username user inputs are already used or not.
+     */
     public boolean checkUsernameUsed(String username) {
-        for (Account account: getAllAccount()) {
+        for (Account account : getAllAccount()) {
             if (account.getUsername().equals(username)) {
                 return true;
             }

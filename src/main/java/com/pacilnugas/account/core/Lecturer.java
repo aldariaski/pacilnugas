@@ -9,6 +9,9 @@ public class Lecturer extends Account {
         super();
     }
 
+    /**
+     * Constructor for a lecturer account with access to course creator page.
+     */
     public Lecturer(String username, String password) {
         super(username, password);
         this.setType("Lecturer");

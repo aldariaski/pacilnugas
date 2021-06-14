@@ -6,6 +6,7 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESedeKeySpec;
+
 import java.security.spec.KeySpec;
 
 public class PasswordCoder {
@@ -19,6 +20,9 @@ public class PasswordCoder {
     private String myEncryptionScheme;
     SecretKey key;
 
+    /**
+     * Constructor for a password coder used for storing and retrieving password safely.
+     */
     public PasswordCoder() throws Exception {
         myEncryptionKey = "ThisIsSpartaThisIsSparta";
         myEncryptionScheme = DESEDE_ENCRYPTION_SCHEME;
@@ -29,7 +33,9 @@ public class PasswordCoder {
         key = skf.generateSecret(ks);
     }
 
-
+    /**
+     * Password encryption that is used for storing password and retrieving password.
+     */
     public String encrypt(String unencryptedString) {
         String encryptedString = null;
         try {

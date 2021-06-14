@@ -9,6 +9,9 @@ public class Student extends Account {
         super();
     }
 
+    /**
+     * Constructor for a student account with access to personal page.
+     */
     public Student(String username, String password) {
         super(username, password);
         this.setType("Student");

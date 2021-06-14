@@ -15,7 +15,7 @@ public class RegistrationController {
     private AccountService accountService;
 
     @GetMapping("/existingAccount")
-    public String existingAccount(Model model){
+    public String existingAccount(Model model) {
         model.addAttribute("AccountDisplayList", accountService.getAllDisplayMessage());
         return "account/registration/existingAccountPage";
     }
@@ -38,8 +38,11 @@ public class RegistrationController {
         return "account/registration/registrationPage";
     }
 
+    /**
+     * Registering and creating a new account.
+     */
     @PostMapping("/registrationProcess")
-    public String registrationProcess(HttpServletRequest request){
+    public String registrationProcess(HttpServletRequest request) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
