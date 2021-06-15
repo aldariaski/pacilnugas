@@ -26,7 +26,7 @@
     <div class="flex-item-bottom">
         <hr>
         <div class="kosong"></div>
-        <div th:each="display: ${AccountDisplayList}" th:if="${!AccountDisplayList.isEmpty()}">
+        <div th:each="display: ${accountDisplayList}" th:if="${!accountDisplayList.isEmpty()}">
             <div class="flex-gap">
                 <div>
                     <p th:text="${display}"></p>
@@ -34,7 +34,7 @@
             </div>
             <div class="kosong"></div>
         </div>
-        <div th:unless="${!AccountDisplayList.isEmpty()}">
+        <div th:unless="${!accountDisplayList.isEmpty()}">
             <p style="text-align:center;">Belum ada akun yang terdaftar</p>
         </div>
     </div>

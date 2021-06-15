@@ -9,7 +9,7 @@ import javax.crypto.spec.DESedeKeySpec;
 
 import java.security.spec.KeySpec;
 
-public class PasswordCoder {
+public class PasswordCrypter {
     private static final String UNICODE_FORMAT = "UTF8";
     public static final String DESEDE_ENCRYPTION_SCHEME = "DESede";
     private KeySpec ks;
@@ -23,7 +23,7 @@ public class PasswordCoder {
     /**
      * Constructor for a password coder used for storing and retrieving password safely.
      */
-    public PasswordCoder() throws Exception {
+    public PasswordCrypter() throws Exception {
         myEncryptionKey = "ThisIsSpartaThisIsSparta";
         myEncryptionScheme = DESEDE_ENCRYPTION_SCHEME;
         arrayBytes = myEncryptionKey.getBytes(UNICODE_FORMAT);

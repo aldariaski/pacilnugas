@@ -16,7 +16,7 @@ public class RegistrationController {
 
     @GetMapping("/existingAccount")
     public String existingAccount(Model model) {
-        model.addAttribute("AccountDisplayList", accountService.getAllDisplayMessage());
+        model.addAttribute("accountDisplayList", accountService.getAllDisplayMessage());
         return "account/registration/existingAccountPage";
     }
 
@@ -46,14 +46,8 @@ public class RegistrationController {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
-        if (accountService.checkUsernameUsed(username)) {
-            return "redirect:/registrationUsed";
-        }
-        if (!password.equals(confirmPassword)) {
-            return "redirect:/registrationError";
-        }
         String type = request.getParameter("type");
-        accountService.createAccount(username, password, type);
-        return "redirect:/existingAccount";
+        String redirect = accountService.registration(username, password, confirmPassword, type);
+        return "redirect:/" + redirect;
     }
 }
