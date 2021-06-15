@@ -33,7 +33,10 @@
         <div th:each="tugas: ${matkul.getListAssignment()}">
           <li>
             <p th:text="${tugas.getTitle()}"></p>
-            <p th:text="${tugas.getDeadlineFormatted()}"></p>
+            <p>
+              <span th:text="${tugas.getDeadlineFormatted()}"></span>
+              <span th:text="${tugas.getTime()}"></span>
+            </p>
           </li>
         </div>
       </ul>

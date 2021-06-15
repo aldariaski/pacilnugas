@@ -21,7 +21,7 @@
 ## Anggota A11
 
 1. 1906292995 - Cornelita Lugita Santoso
-2. 1906350686 - Syabib Ash-shiddiqi
+2. 1906350686 - Syabib Ash-Shiddiqi
 3. 1906305890 - Shanika Tysha Anqita
 4. 1906351096 - Yusuf Fakhri Aldrian
 5. 1906350603 - Vander Gerald Sukandi
