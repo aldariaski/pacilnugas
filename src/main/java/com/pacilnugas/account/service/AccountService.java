@@ -9,9 +9,13 @@ import com.pacilnugas.account.security.PasswordCrypter;
 import com.pacilnugas.account.security.URLCoder;
 import com.pacilnugas.activities.model.Matkul;
 import com.pacilnugas.activities.repository.MatkulRepository;
+import com.pacilnugas.activities.service.MatkulService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,6 +130,16 @@ public class AccountService {
         Account account = getAccountByUsername(username);
         account.setPersonalizedMatkul(listMatkul);
         accountRepository.save(account);
+    }
+
+    public void decodeCheckedMatkul(String username, List<String> listMatkul) {
+        List<Matkul> checkedMatkul = new ArrayList<>();
+        for (String stringMatkul : listMatkul) {
+            String result = decode(stringMatkul);
+            Matkul matkul = matkulRepository.findByTitle(result);
+            checkedMatkul.add(matkul);
+        }
+        saveMatkul(decode(username), checkedMatkul);
     }
 
     public Account getAccountByUsername(String username) {

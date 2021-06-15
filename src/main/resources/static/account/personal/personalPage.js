@@ -2,6 +2,7 @@ const baseUrl = window.location.protocol + '//' + (window.location.href).match('
 
 $('#checkboxSubmit').on('click', function(event) {
     let username = document.querySelector('#username').getAttribute('value');
+    username = encodeURIComponent(username);
     let checkedCourse = [];
     let allCourse = $("input[type='checkbox']").toArray();
     allCourse.forEach((item)=> {
@@ -9,6 +10,5 @@ $('#checkboxSubmit').on('click', function(event) {
             checkedCourse.push(encodeURIComponent($(item).val()));
         }
     });
-    console.log(username);
     location.href = `${baseUrl}/personalFilter?listMatkul=${checkedCourse}&username=${username}`;
 });
