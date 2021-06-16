@@ -40,8 +40,4 @@ public class PesanController {
     public String createPesan(Model model) {
         return "template/formPesan";
     }
-
-//    @GetMapping("/rincian")
-//    public String rincian(Model model) { return "rincian/rincian"; }
-
 }

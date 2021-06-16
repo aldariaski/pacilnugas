@@ -6,16 +6,12 @@ import com.pacilnugas.account.core.Student;
 import com.pacilnugas.account.core.TeachingAssistant;
 import com.pacilnugas.account.repository.AccountRepository;
 import com.pacilnugas.account.security.PasswordCrypter;
-import com.pacilnugas.account.security.URLCoder;
+import com.pacilnugas.account.security.LinkCoder;
 import com.pacilnugas.activities.model.Matkul;
 import com.pacilnugas.activities.repository.MatkulRepository;
-import com.pacilnugas.activities.service.MatkulService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +23,7 @@ public class AccountService {
     @Autowired
     private MatkulRepository matkulRepository;
 
-    private URLCoder urlCoder;
+    private LinkCoder linkCoder;
     private PasswordCrypter passwordCrypter;
 
     /**
@@ -39,7 +35,7 @@ public class AccountService {
         } catch (Exception e) {
             this.passwordCrypter = null;
         }
-        this.urlCoder = new URLCoder();
+        this.linkCoder = new LinkCoder();
     }
 
     /**
@@ -59,18 +55,20 @@ public class AccountService {
     /**
      * Creating account based upon the type that user picks.
      */
-    public void createAccount(String username, String password, String type) {
+    public Account createAccount(String username, String password, String type) {
         password = passwordCrypter.encrypt(password);
+        Account newAccount = null;
         if (type.equalsIgnoreCase("Student")) {
-            Student newAccount = new Student(username, password);
+            newAccount = new Student(username, password);
             accountRepository.save(newAccount);
         } else if (type.equalsIgnoreCase("Teaching Assistant")) {
-            TeachingAssistant newAccount = new TeachingAssistant(username, password);
+            newAccount = new TeachingAssistant(username, password);
             accountRepository.save(newAccount);
         } else if (type.equalsIgnoreCase("Lecturer")) {
-            Lecturer newAccount = new Lecturer(username, password);
+            newAccount = new Lecturer(username, password);
             accountRepository.save(newAccount);
         }
+        return newAccount;
     }
 
     public List<Account> getAllAccount() {
@@ -97,13 +95,13 @@ public class AccountService {
      * Authenticating account based on username and password the user inputs.
      */
     public String authenticatePersonal(String username, String password) {
-        Account foundAccount = accountRepository.findById(username).get();
+        Account foundAccount = accountRepository.findByUsername(username);
         password = passwordCrypter.encrypt(password);
-        if (foundAccount.getPassword().equalsIgnoreCase(password)) {
+        if (foundAccount.getPassword().equals(password)) {
             if (!foundAccount.getPersonalizedAccess()) {
                 return "loginPersonalFail";
             }
-            return "personal?username=" + urlCoder.encode(username);
+            return "personal?username=" + linkCoder.encode(username);
         }
         return "loginPersonalError";
     }
@@ -112,9 +110,9 @@ public class AccountService {
      * Authenticating account based on username and password the user inputs.
      */
     public String authenticateCourse(String username, String password) {
-        Account foundAccount = accountRepository.findById(username).get();
+        Account foundAccount = accountRepository.findByUsername(username);
         password = passwordCrypter.encrypt(password);
-        if (foundAccount.getPassword().equalsIgnoreCase(password)) {
+        if (foundAccount.getPassword().equals(password)) {
             if (!foundAccount.getCourseAccess()) {
                 return "loginCourseFail";
             }
@@ -132,6 +130,9 @@ public class AccountService {
         accountRepository.save(account);
     }
 
+    /**
+     * Decoding passed checked courses to be save at user's personalized page.
+     */
     public void decodeCheckedMatkul(String username, List<String> listMatkul) {
         List<Matkul> checkedMatkul = new ArrayList<>();
         for (String stringMatkul : listMatkul) {
@@ -143,7 +144,7 @@ public class AccountService {
     }
 
     public Account getAccountByUsername(String username) {
-        return accountRepository.findById(username).get();
+        return accountRepository.findByUsername(username);
     }
 
     /**
@@ -159,10 +160,10 @@ public class AccountService {
     }
 
     public String encode(String code) {
-        return urlCoder.encode(code);
+        return linkCoder.encode(code);
     }
 
     public String decode(String code) {
-        return urlCoder.decode(code);
+        return linkCoder.decode(code);
     }
 }
