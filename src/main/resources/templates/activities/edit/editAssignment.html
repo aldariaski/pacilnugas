@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/fragments/navbar.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/template/formPesan.css}">
+
+    <title>Edit Assignment</title>
+
+</head>
+
+<body>
+<div th:insert="fragments/navbar :: navbar"></div>
+<div class="flex-container">
+    <div class="flex-item-top">
+        <p id="judul" style="font-size: 40px;font-weight: 700;color: #406AD8;">Edit<span style="color:#CE3030;">Tugas</span></p>
+        <p id="judul-2" style="font-size: 20px;font-weight: 300;color: #406AD8;">(Hanya bisa diakses pengajar)</span></p>
+    </div>
+    <div class="flex-item-bottom">
+        <hr>
+        <form th:action="@{/task/view/{idAss}/update(idAss=${AssignmentIni.getId_activity()})}"
+              th:object="${AssignmentIni}" method="POST">
+            <div class="form-group">
+
+                <label for="title">Nama Tugas</label>
+                <input type="text" class="form-control" id="title" name="title" th:value="${AssignmentIni.getTitle()}" required><br>
+                <label for="matkul">Pilih Mata Kuliah</label> <span class="badge badge-secondary">New</span>
+                <select class="form-control" id="matkul" name="matkul" th:field="*{matkul}" th:value="${AssignmentIni.getMatkul()}" required>
+                    <option value="" selected="" disabled="">Pilih Mata Kuliah</option>
+                    <option value="Adpro">Adpro</option>
+                    <option value="Statprob">Statprob</option>
+                    <option value="Klik">Klik untuk membuat matkul baru</option>
+                </select><br>
+                <label for="description">Deskripsi Tugas</label>
+                <textarea class="form-control" id="description" rows="4" cols="50" name="description" th:text="${AssignmentIni.getDescription()}" required></textarea><br>
+                <label for="maker_username">Nama Pengajar (Anda)</label>
+                <input type="text" class="form-control" id="maker_username" name="maker_username" value="Budi Budiman" disabled required><br>
+                <label for="deadline">Deadline</label>
+                <input type="date" id="deadline" name="deadline" th:value="${AssignmentIni.getDeadline()}" required>
+                <input type="time" id="deadline-time" name="deadline-time" th:value="${AssignmentIni.getTime()}" required>
+            </div>
+    </div>
+</div>
+
+<div class="flex-container-but">
+    <button id="simpan-button" class="button">Simpan</button>
+    </form>
+</div>
+
+
+<div class="footer"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script th:src="@{/fragments/navbar.js}"></script>
+<script>
+    document
+        .getElementById("simpan-button")
+        .addEventListener("click", function( e ){ //e => event
+            if( ! confirm("Are you sure you want to make these changes?") ){
+                e.preventDefault(); // ! => don't want to do this
+            } else {
+                //want to do this! => maybe do something about it?
+                alert('Changes successfully saved');
+            }
+        });
+</script>
+</body>
+
+
+</html>

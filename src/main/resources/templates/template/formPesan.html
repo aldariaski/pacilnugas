@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/template/formPesan.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" th:href="@{/fragments/navbar.css}">
+
+    <title>Buat Pesan</title>
+
+</head>
+
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="flex-container">
+    <div class="flex-item-top">
+        <p id="judul" style="font-size: 40px;font-weight: 700;color: #406AD8;">Tuliskan<span style="color:#CE3030;">Pesan!</span></p>
+    </div>
+    <div class="flex-item-bottom">
+        <hr>
+        <form th:action="@{/pesan/new-pesan}" method="POST">
+            <div class="form-group">
+                <label for="nama">Penerima Pesan</label>
+                <input type="text" class="form-control" id="nama" name="nama" placeholder="Maung" required><br>
+                <label for="kategori">Pilih Kategori Pesan</label>
+                <select class="form-control" id="kategori" name="kategori" required>
+                    <option value="" selected="" disabled="">Pilih Kategori Pesan</option>
+                    <option value="Ujian">Pesan motivasi ujian</option>
+                    <option value="Tugas">Pesan penyemangat tugas</option>
+                    <option value="Bebas">Pesan sehari-hari</option>
+                </select><br>
+                <label for="motivasi">Isi Pesan</label>
+                <textarea class="form-control" id="motivasi" rows="4" cols="50" name="motivasi" placeholder="Isi pesanmu disini..." required></textarea><br>
+                <div class="flex-gap">
+                    <label style="width: 30%;">Tambah quotes?</label><br>
+                    <div class="flex">
+                        <input type="radio" class="form-control" id="yes" name="quotes" value="Yes">
+                        <label>Yes</label>
+                    </div>
+                    <div class="flex">
+                        <input type="radio" class="form-control" id="no" name="quotes" value="No" checked>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+<div class="kosong"></div>
+<div class="flex-container-but">
+    <button onclick="myFunction()" class="button">Kirim</button>
+        </form>
+</div>
+
+<div class="footer"></div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script th:src="@{/fragments/navbar.js}"></script>
+<script>
+    function myFunction() {
+        var name = document.getElementById("nama").value;
+        var kategori = document.getElementById("kategori").value;
+        var motivasi = document.getElementById("motivasi").value;
+        if (name == '' || kategori == '' || motivasi == '') {
+            alert("Please fill out all fields");
+        } else {
+            alert("Message successfully sent");
+        }
+    }
+</script>
+</html>

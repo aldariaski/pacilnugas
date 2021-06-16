@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" type="text/css" th:href="@{/fragments/navbar.css}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" th:href="@{/account/personal/personalPage.css}">
+  <title>Personal Page</title>
+</head>
+
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="flex-item-top">
+  <div class="flex">
+    <p id="judul" style="font-size:30px;font-weight:700;color: #406AD8;">Personal<span style="color:#CE3030;">Page</span></p>
+  </div>
+  <div class="flex"></div>
+</div>
+<div>
+  <div class="flex">
+    <p style="font-size: 24px;font-weight: 500;" th:text="${display}"></p>
+  </div>
+  <div class="flex"></div>
+</div>
+<div th:each="matkul: ${listMatkulPersonal}">
+  <div class="flex-container">
+    <p style="font-size:24px;font-weight:600;" th:text="${matkul.getTitle()}"></p>
+    <div class="flex-item-bottom">
+      <ul>
+        <div th:each="tugas: ${matkul.getListAssignment()}">
+          <li>
+            <p th:text="${tugas.getTitle()}"></p>
+            <p>
+              <span th:text="${tugas.getDeadlineFormatted()}"></span>
+              -
+              <span th:text="${tugas.getTime()}"></span>
+            </p>
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="flex-container">
+  <div>
+    <input type="hidden" id="username" name="username" th:value="${username}">
+    <div th:each="matkul: ${listMatkulTotal}">
+    <input type="checkbox" id="${matkul.getTitle()}" name="${matkul.getTitle()}" th:value="${matkul.getTitle()}">
+    <label for="${matkul.getTitle()}">
+      <p th:text="${matkul.getTitle()}"></p>
+    </label><br>
+    </div>
+    <div class="flex-container-but">
+      <button id="checkboxSubmit" class="button">Filter</button>
+    </div>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script th:src="@{/fragments/navbar.js}"></script>
+<script th:src="@{/account/personal/personalPage.js}"></script>
+</body>
+</html>
