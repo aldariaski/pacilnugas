@@ -11,7 +11,7 @@ import java.security.spec.KeySpec;
 
 public class PasswordCrypter {
     private static final String UNICODE_FORMAT = "UTF8";
-    public static final String DESEDE_ENCRYPTION_SCHEME = "DESede";
+    public static String DESEDE_ENCRYPTION_SCHEME;
     private KeySpec ks;
     private SecretKeyFactory skf;
     private Cipher cipher;
@@ -21,9 +21,10 @@ public class PasswordCrypter {
     SecretKey key;
 
     /**
-     * Constructor for a password coder used for storing and retrieving password safely.
+     * Constructor for a password crypter used for storing and retrieving password safely.
      */
-    public PasswordCrypter() throws Exception {
+    public PasswordCrypter(String encryptionScheme) throws Exception {
+        DESEDE_ENCRYPTION_SCHEME = encryptionScheme;
         myEncryptionKey = "ThisIsSpartaThisIsSparta";
         myEncryptionScheme = DESEDE_ENCRYPTION_SCHEME;
         arrayBytes = myEncryptionKey.getBytes(UNICODE_FORMAT);
@@ -36,15 +37,19 @@ public class PasswordCrypter {
     /**
      * Password encryption that is used for storing password and retrieving password.
      */
-    public String encrypt(String unencryptedString) {
+    public String encrypt(String unencryptedString, boolean emulateError) {
         String encryptedString = null;
         try {
-            cipher.init(Cipher.ENCRYPT_MODE, key);
-            byte[] plainText = unencryptedString.getBytes(UNICODE_FORMAT);
-            byte[] encryptedText = cipher.doFinal(plainText);
-            encryptedString = new String(Base64.encodeBase64(encryptedText));
+            if (emulateError) {
+                throw new Exception();
+            } else {
+                cipher.init(Cipher.ENCRYPT_MODE, key);
+                byte[] plainText = unencryptedString.getBytes(UNICODE_FORMAT);
+                byte[] encryptedText = cipher.doFinal(plainText);
+                encryptedString = new String(Base64.encodeBase64(encryptedText));
+            }
         } catch (Exception e) {
-            e.printStackTrace();
+            encryptedString = "";
         }
         return encryptedString;
     }
