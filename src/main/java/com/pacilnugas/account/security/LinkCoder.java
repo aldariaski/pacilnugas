@@ -5,9 +5,12 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-public class URLCoder {
-    public URLCoder() {}
+public class LinkCoder {
+    public LinkCoder() {}
 
+    /**
+     * Encoding real data to link code.
+     */
     public String encode(String unencoded) {
         try {
             String encoded = URLEncoder.encode(unencoded, StandardCharsets.UTF_8.name());
@@ -17,6 +20,9 @@ public class URLCoder {
         }
     }
 
+    /**
+     * Decoding link code to real data.
+     */
     public String decode(String undecoded) {
         try {
             String decoded = URLDecoder.decode(undecoded, StandardCharsets.UTF_8.name());
