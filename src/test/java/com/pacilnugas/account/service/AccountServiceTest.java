@@ -8,7 +8,6 @@ import com.pacilnugas.account.repository.AccountRepository;
 import com.pacilnugas.account.security.PasswordCrypter;
 import com.pacilnugas.activities.model.Matkul;
 import com.pacilnugas.activities.repository.MatkulRepository;
-import com.pacilnugas.template.core.Pesan;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,9 +39,13 @@ public class AccountServiceTest {
 
     @BeforeEach
     private void setUp() {
-        Student student = new Student("syabib", "8mzCNJUNtvSJJSpQl9fUJg==");
-        TeachingAssistant teachingAssistant = new TeachingAssistant("jc", "8mzCNJUNtvSJJSpQl9fUJg==");
-        Lecturer lecturer = new Lecturer("bapak", "8mzCNJUNtvSJJSpQl9fUJg==");
+        Student student = new Student();
+        TeachingAssistant teachingAssistant = new TeachingAssistant();
+        Lecturer lecturer = new Lecturer();
+
+        student = new Student("syabib", "8mzCNJUNtvSJJSpQl9fUJg==");
+        teachingAssistant = new TeachingAssistant("jc", "8mzCNJUNtvSJJSpQl9fUJg==");
+        lecturer = new Lecturer("bapak", "8mzCNJUNtvSJJSpQl9fUJg==");
 
         List<Account> listAccount = new ArrayList<>();
         listAccount.add(student);
@@ -53,7 +56,13 @@ public class AccountServiceTest {
         lenient().when(accountRepository.findByUsername("sasfort")).thenReturn(student);
         lenient().when(accountRepository.findByUsername("jc")).thenReturn(teachingAssistant);
         lenient().when(accountRepository.findByUsername("bapak")).thenReturn(lecturer);
-        lenient().when(passwordCrypter.encrypt("12345678")).thenReturn("8mzCNJUNtvSJJSpQl9fUJg==");
+        lenient().when(passwordCrypter.encrypt("12345678", false)).thenReturn("8mzCNJUNtvSJJSpQl9fUJg==");
+    }
+
+    @Test
+    void testSetupFailed() {
+        accountService.setUp("");
+        assertEquals(accountService.getPasswordCrypter(), null);
     }
 
     @Test
