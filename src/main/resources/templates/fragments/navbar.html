@@ -1,0 +1,60 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="navbar">
+    <div id="navbar-toggler"><i class="fa fa-bars"></i></div>
+    <nav id="navbar" class="main-menu">
+        <ul>
+            <li>
+                <a th:href="@{/}">
+                    <i class="fa material-icons fa-2x">home</i>
+                    <span class="nav-text">Home</span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a th:href="@{/task/input-tugas}">
+                    <i class="fa material-icons fa-2x">create</i>
+                    <span class="nav-text">Create Assignment</span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a th:href="@{/loginCourse}">
+                    <i class="fa material-icons fa-2x">create</i>
+                    <span class="nav-text">Create Course (Matkul)</span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a th:href="@{/loginPersonal}">
+                    <i class="fa material-icons fa-2x">account_circle</i>
+                    <span class="nav-text">Personal Page</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/scoretracker}">
+                    <i class="fa material-icons fa-2x">sports_score</i>
+                    <span class="nav-text">Score Tracker</span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a th:href="@{/pesan}">
+                    <i class="fa material-icons fa-2x">emoji_emotions</i>
+                    <span class="nav-text">Message</span>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="logout">
+            <li>
+                <a th:href="@{/existingAccount}">
+                    <i class="fa material-icons fa-2x">groups</i>
+                    <span class="nav-text">Existing Accounts</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/registration}">
+                    <i class="fa material-icons fa-2x">person_add</i>
+                    <span class="nav-text">Register</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>
